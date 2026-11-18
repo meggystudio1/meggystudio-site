@@ -664,9 +664,9 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
           <img class="ph" src="assets/story/story-2.webp" alt="Person working on a laptop in a dim office" loading="lazy" decoding="async">
           <img class="ph" src="assets/story/story-3.webp" alt="Speaker on stage in front of a large audience" loading="lazy" decoding="async">
           <img class="ph" src="assets/story/story-4.webp" alt="Audience raising their hands" loading="lazy" decoding="async">
-          <div class="float f1" data-c="1"><img src="assets/slides/t-corporate-0.webp" alt="" loading="lazy"></div>
-          <div class="float f2" data-c="1"><img src="assets/slides/t-corporate-3.webp" alt="" loading="lazy"></div>
-          <div class="float f1" data-c="2"><img src="assets/slides/t-racing-0.webp" alt="" loading="lazy"></div>
+          <div class="float f1" data-c="1"><img src="assets/slides/t-corporate-0.webp" alt="Corporate PowerPoint template cover slide" loading="lazy"></div>
+          <div class="float f2" data-c="1"><img src="assets/slides/t-corporate-3.webp" alt="Corporate PowerPoint template data slide" loading="lazy"></div>
+          <div class="float f1" data-c="2"><img src="assets/slides/t-racing-0.webp" alt="Racing PowerPoint template cover slide" loading="lazy"></div>
           <div class="cap"><span id="storyTag">01</span><b id="storyCap">Idea</b></div>
           <div class="story-dots" id="storyDots"><i class="on"></i><i></i><i></i><i></i></div>
         </div>
@@ -910,7 +910,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
   <div class="dialog">
     <div class="viewer">
       <div class="main-img" id="mMain">
-        <img id="mImg" src="" alt="">
+        <img id="mImg" src="" alt="Template slide preview">
         <button class="icon-btn prev" id="mPrev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
         <button class="icon-btn next" id="mNext" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         <span class="count" id="mCount">1 / 9</span>
@@ -1055,7 +1055,7 @@ let R=1000, rot=0, target=0, cur=0, dragging=false, hover=false, dwell=performan
 const panels=PANO.map(t=>{
   const p=document.createElement("div"); p.className="panel";
   p.innerHTML=`<div class="lbl">${t.name}</div>
-    <div class="frame">${[0,1,2].map(k=>`<img class="layer${k===0?" on":""}" ${k===0?`src="${hsrc(t.id,0)}"`:`data-src="${hsrc(t.id,k)}"`} alt="${k===0?t.name+" template slide":""}" draggable="false" decoding="async">`).join("")}</div>
+    <div class="frame">${[0,1,2].map(k=>`<img class="layer${k===0?" on":""}" ${k===0?`src="${hsrc(t.id,0)}"`:`data-src="${hsrc(t.id,k)}"`} alt="${t.name} PowerPoint template slide ${k+1}" draggable="false" decoding="async">`).join("")}</div>
     <div class="refl"><img src="${thumb(t.id,0)}" alt="" draggable="false" loading="lazy"></div>`;
   ring.appendChild(p); return p;
 });
@@ -1142,7 +1142,7 @@ function setChapter(i){
 
 /* ---- laptop ---- */
 const scr=$("#scr");
-PANO.forEach((t,i)=>scr.insertAdjacentHTML("beforeend",`<img src="${thumb(t.id,0)}" alt="" loading="lazy"${i===0?' class="on"':""}>`));
+PANO.forEach((t,i)=>scr.insertAdjacentHTML("beforeend",`<img src="${thumb(t.id,0)}" alt="${t.name} PowerPoint template cover" loading="lazy"${i===0?' class="on"':""}>`));
 const scrImgs=[...scr.children]; let scrIdx=0;
 
 /* ---- morph demo ---- */
@@ -1219,7 +1219,7 @@ function matches(t){
 function cardEl(t){
   const c=document.createElement("a"); c.className="card"; c.href="/templates/"+t.id;
   c.setAttribute("aria-label",`${t.name}, ${t.cat}. View details`);
-  c.innerHTML=`<div class="thumb">${newest.includes(t.id)?'<span class="new">New</span>':''}<img class="base" src="${thumb(t.id,0)}" alt="" loading="lazy" decoding="async" width="640" height="360"><img class="alt" alt="" decoding="async">
+  c.innerHTML=`<div class="thumb">${newest.includes(t.id)?'<span class="new">New</span>':''}<img class="base" src="${thumb(t.id,0)}" alt="${t.name} PowerPoint pitch deck template cover" loading="lazy" decoding="async" width="640" height="360"><img class="alt" alt="${t.name} PowerPoint template sample slide" decoding="async">
       <div class="prog">${Array.from({length:t.n},()=>"<span></span>").join("")}</div></div>
     <div class="card-meta"><b>${t.name}</b><span>${t.cat}</span></div>
     <div class="card-tags">${t.tags.map(x=>`<i>${x}</i>`).join("")}</div>`;
@@ -1249,7 +1249,7 @@ const SAMPLE=[["Cover","Corporate"],["Section divider","K-Pop Bento"],["Dashboar
   const main=$("#svMain"), th=$("#svThumbs"); let si=0, siv=null;
   SAMPLE.forEach(([a,b],i)=>{
     main.insertAdjacentHTML("beforeend",`<img src="assets/free/sample-${i+1}.webp" alt="Free sample slide ${i+1}: ${a} from ${b}" loading="lazy"${i===0?' class="on"':""}>`);
-    const bt=document.createElement("button"); bt.setAttribute("aria-label",`Show slide ${i+1}, ${a}`); bt.innerHTML=`<img src="assets/free/sample-${i+1}.webp" alt="" loading="lazy">`;
+    const bt=document.createElement("button"); bt.setAttribute("aria-label",`Show slide ${i+1}, ${a}`); bt.innerHTML=`<img src="assets/free/sample-${i+1}.webp" alt="Free sample slide ${i+1} thumbnail" loading="lazy">`;
     bt.onclick=()=>{show(i); clearInterval(siv);}; th.appendChild(bt);
   });
   const imgs=[...main.querySelectorAll("img")];
@@ -1379,8 +1379,8 @@ function openT(id,fromHash){
   mt=t; lastFocus=document.activeElement;
   $("#mPage").href="/templates/"+t.id; $("#mName").textContent=t.name; $("#mCat").textContent=t.cat; $("#mDesc").textContent=t.desc;
   const th=$("#mThumbs"); th.innerHTML="";
-  for(let k=0;k<t.n;k++){const b=document.createElement("button"); b.setAttribute("aria-label","Slide "+(k+1)); b.innerHTML=`<img src="${thumb(t.id,k)}" alt="">`; b.onclick=()=>showSlide(k); th.appendChild(b);}
-  mk=0; $("#mImg").style.opacity=1; $("#mImg").src=img(t.id,0); $("#mCount").textContent=`1 / ${t.n}`;
+  for(let k=0;k<t.n;k++){const b=document.createElement("button"); b.setAttribute("aria-label","Slide "+(k+1)); b.innerHTML=`<img src="${thumb(t.id,k)}" alt="${t.name} slide ${k+1} thumbnail">`; b.onclick=()=>showSlide(k); th.appendChild(b);}
+  mk=0; $("#mImg").style.opacity=1; $("#mImg").src=img(t.id,0); $("#mImg").alt=t.name+" PowerPoint template slide 1"; $("#mCount").textContent=`1 / ${t.n}`;
   [...th.children].forEach((b,i)=>b.classList.toggle("on",i===0));
   modal.classList.add("open"); document.body.style.overflow="hidden";
   if(!fromHash&&location.hash!=="#"+id) history.replaceState(null,"","#"+id);
