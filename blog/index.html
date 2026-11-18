@@ -94,7 +94,116 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 @media (max-width:880px){.bl{grid-template-columns:1fr}}
 @media (max-width:880px){.hero,.cols{grid-template-columns:1fr}.gal,.rel,.grid{grid-template-columns:1fr 1fr}.markets{grid-template-columns:1fr 1fr}.nav nav{display:none}}
 @media (max-width:520px){.gal,.rel,.grid{grid-template-columns:1fr}.wrap{padding:0 18px}}
-</style>
+
+body{background:var(--bg)}
+.progress{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--x),#2E8BEA);z-index:50;transition:width .1s linear}
+.phero{position:relative;overflow:hidden;color:#F4F7FF;background:radial-gradient(120% 140% at 85% -10%,var(--b) 0%,transparent 55%),radial-gradient(90% 120% at -10% 110%,var(--b) 0%,transparent 50%),var(--a);padding:34px 0 150px}
+.phero:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(180deg,#000,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 85%);pointer-events:none}
+.phero .wrap{position:relative;z-index:1}
+.phero .crumb{color:rgba(255,255,255,.6);margin:6px 0 26px}.phero .crumb a:hover{color:#fff}
+.pill{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:99px;font-size:12.5px;font-weight:500;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--x);box-shadow:0 0 10px var(--x)}
+.phero h1{font-size:clamp(34px,5.4vw,62px);line-height:1.04;letter-spacing:-.03em;max-width:900px;margin:18px 0 18px;color:#fff}
+.phero .dek{font-size:clamp(17px,1.6vw,20px);color:rgba(240,244,255,.78);max-width:720px;line-height:1.55}
+.by{display:flex;align-items:center;gap:12px;margin-top:28px;font-size:14px;color:rgba(255,255,255,.75);flex-wrap:wrap}
+.by .av{width:38px;height:38px;border-radius:50%;background:#0E1430;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center}.by .av svg{height:18px;width:auto;--logo-w:#fff}
+.by b{color:#fff;font-weight:600}.by span.dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4)}
+.cover{max-width:1060px;margin:-118px auto 0;padding:0 24px;position:relative;z-index:2}
+.cover img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:20px;box-shadow:0 40px 90px -30px rgba(10,15,40,.6),0 0 0 1px rgba(255,255,255,.08)}
+.playout{display:grid;grid-template-columns:240px minmax(0,720px);gap:64px;justify-content:center;max-width:1160px;margin:56px auto 0;padding:0 24px}
+.side{position:sticky;top:88px;align-self:start;max-height:calc(100vh - 110px);overflow:auto}
+.side .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
+.side ol{list-style:none;border-left:1px solid var(--line)}
+.side li a{display:block;padding:7px 0 7px 16px;margin-left:-1px;border-left:2px solid transparent;font-size:14px;color:var(--muted);line-height:1.35;transition:color .2s,border-color .2s}
+.side li a:hover{color:var(--text)}.side li a.on{color:var(--text);border-left-color:var(--x2)}
+.side .share{margin-top:28px;display:flex;gap:8px}
+.sbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);background:var(--card);cursor:pointer}.sbtn:hover{color:var(--text);border-color:var(--muted)}.sbtn svg{width:17px;height:17px}
+.mtoc{display:none;margin-bottom:28px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.mtoc summary{padding:14px 18px;font-weight:500;cursor:pointer;list-style:none;display:flex;justify-content:space-between}.mtoc summary:after{content:"+";color:var(--muted)}
+.mtoc[open] summary:after{content:"\2013"}.mtoc a{color:var(--text)!important;text-decoration:none!important}.mtoc ol{padding:0 18px 14px 36px}.mtoc li{margin:6px 0;font-size:15px}
+.post{max-width:none;min-width:0}.playout>*{min-width:0}
+.post .lede{font-size:21px;line-height:1.55;color:var(--text);margin-bottom:20px;font-weight:400}
+.post p,.post li{font-size:17.5px;line-height:1.75}.post p{margin:0 0 18px}
+.post h2{font-size:clamp(25px,2.6vw,31px);margin:60px 0 16px;letter-spacing:-.025em;scroll-margin-top:90px;display:flex;gap:14px;align-items:baseline}
+.post h2 .hn{font-family:var(--mono);font-size:13px;color:var(--x2);font-weight:500;letter-spacing:0;flex:none;transform:translateY(-4px)}
+.post h3{font-size:20px;margin:30px 0 8px;letter-spacing:-.015em}
+.post h3.num{display:flex;align-items:center;gap:12px;margin-top:34px}
+.post h3.num i{font-style:normal;font-family:var(--mono);font-size:12.5px;font-weight:500;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--x2) 14%,transparent);color:var(--x2);border:1px solid color-mix(in srgb,var(--x2) 30%,transparent)}
+.post ul{list-style:none;padding-left:0}.post ul li{position:relative;padding-left:26px}
+.post ul li:before{content:"";position:absolute;left:4px;top:.72em;width:8px;height:8px;border-radius:3px;background:var(--x2);opacity:.85;transform:rotate(45deg)}
+.post ol:not(.steps){padding-left:24px}.post ol:not(.steps) li::marker{color:var(--x2);font-weight:600}
+.post a:not(.btn){color:var(--x2);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.post figure{margin:34px 0}
+.post figure img{border-radius:16px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(20,30,60,.45);width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.post figcaption{font-size:14px;color:var(--muted);margin-top:12px;padding-left:14px;border-left:2px solid var(--x2);text-align:left}
+.takeaways{border-radius:18px;padding:24px 26px;margin:6px 0 34px;background:linear-gradient(135deg,color-mix(in srgb,var(--x2) 12%,var(--card)),var(--card));border:1px solid color-mix(in srgb,var(--x2) 26%,var(--line))}
+.takeaways .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--x2);margin-bottom:10px}
+.takeaways ul{margin:0}.takeaways li{font-size:16.5px!important;margin:8px 0}
+.post ol.steps{list-style:none;padding:0;counter-reset:st;display:grid;gap:12px;margin:22px 0 26px}
+.post ol.steps li{counter-increment:st;position:relative;padding:18px 20px 18px 74px;border:1px solid var(--line);border-radius:14px;background:var(--card);margin:0}
+.post ol.steps li:before{content:counter(st,decimal-leading-zero);position:absolute;left:18px;top:16px;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:var(--mono);font-size:14px;color:#fff;background:linear-gradient(135deg,var(--a2),var(--b2))}
+.post ol.steps li b{display:block;font-size:17.5px;margin-bottom:2px}
+.tbl{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:20px 0 22px;background:var(--card)}
+.tbl .sc{overflow-x:auto}
+.post table{width:100%;border-collapse:collapse;font-size:15.5px;margin:0;display:table}
+.post th{font-weight:600;text-align:left;padding:14px 16px;background:color-mix(in srgb,var(--x2) 10%,var(--card));border-bottom:1px solid var(--line);white-space:nowrap}
+.post td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}.post tr:last-child td{border-bottom:0}
+.ok,.no,.mid{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:99px;font-size:13px;font-weight:500;white-space:nowrap}
+.ok{background:rgba(0,180,140,.12);color:#00916F}.no{background:rgba(220,60,80,.1);color:#C8314A}.mid{background:rgba(230,160,20,.13);color:#A86C00}
+@media (prefers-color-scheme:dark){.ok{color:#3FE6BE}.no{color:#FF7A8E}.mid{color:#FFC35A}}
+.post .note{font-size:14px;color:var(--muted)}
+.tip{position:relative;border-radius:14px;padding:18px 20px 18px 58px;margin:26px 0;font-size:16.5px;line-height:1.65;background:color-mix(in srgb,var(--x2) 8%,var(--card));border:1px solid color-mix(in srgb,var(--x2) 24%,var(--line))}
+.tip:before{content:"";position:absolute;left:18px;top:18px;width:24px;height:24px;border-radius:8px;background:var(--x2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z'/%3E%3C/svg%3E") center/14px no-repeat}
+.cta{position:relative;overflow:hidden;border-radius:22px;padding:34px;margin:44px 0;color:#F4F7FF;background:radial-gradient(120% 140% at 100% 0%,var(--b) 0%,transparent 60%),var(--a);border:0}
+.cta b{font-size:24px;font-weight:600;letter-spacing:-.02em;display:block;margin-bottom:8px;color:#fff;max-width:370px}
+.cta p{color:rgba(240,244,255,.75)!important;margin-bottom:22px;max-width:360px;font-size:16px!important}
+.cta .acts{position:relative;z-index:1}.cta .btn-primary{background:#fff;color:#0E1430}.cta .btn-secondary{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.cta .stack{position:absolute;right:-56px;top:50%;width:300px;height:200px;transform:translateY(-50%)}
+.cta .stack img{position:absolute;width:250px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.45)}
+.cta .stack img:nth-child(1){right:60px;top:-10px;transform:rotate(-8deg);opacity:.75}.cta .stack img:nth-child(2){right:20px;top:40px;transform:rotate(4deg)}
+.dm{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 10px}
+.dm a,.dm div{position:relative;display:block;text-decoration:none!important;color:var(--text)!important}
+.dm img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:9px;border:1px solid var(--line);box-shadow:0 10px 24px -14px rgba(20,30,60,.5);transition:transform .25s}
+.dm a:hover img{transform:translateY(-3px)}
+.dm span{display:flex;gap:6px;align-items:baseline;font-size:13px;margin-top:7px;font-weight:500}.dm span i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--x2)}
+.dmcap{font-size:13.5px;color:var(--muted);margin-bottom:8px}
+.endbox{display:flex;gap:16px;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;margin-top:54px}
+.endbox .av{width:52px;height:52px;border-radius:14px;background:#0E1430;display:grid;place-items:center;flex:none}.endbox .av svg{height:24px;width:auto;--logo-w:#fff}
+.endbox p{margin:0!important;font-size:15px!important;color:var(--muted)}.endbox b{display:block;color:var(--text);font-size:16px}
+.endbox .share{margin-left:auto;display:flex;gap:8px}
+.more{max-width:1160px;margin:70px auto 0;padding:0 24px}
+.more h2{font-size:26px;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card2{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+.card2:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card2 .im{aspect-ratio:16/9;overflow:hidden;position:relative}.card2 .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.card2:hover .im img{transform:scale(1.04)}
+.card2 .tx{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card2 .tg{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);display:flex;gap:8px;align-items:center}.card2 .tg i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.card2 h3{font-size:19px;line-height:1.25}.card2 p{font-size:14.5px;color:var(--muted);line-height:1.55}
+.card2 .rt{margin-top:auto;padding-top:6px;font-size:13px;color:var(--muted)}
+@media (max-width:1000px){.playout{display:block;max-width:768px}.side{display:none}.mtoc{display:block}}
+@media (max-width:880px){.cards{grid-template-columns:1fr 1fr}.dm{grid-template-columns:repeat(3,1fr)}.cta .stack{display:none}}
+@media (max-width:560px){.phero{padding:22px 0 110px}.cover{margin-top:-86px;padding:0 16px}.cover img{border-radius:14px}.playout{margin-top:36px;padding:0 18px}.cards{grid-template-columns:1fr}.dm{grid-template-columns:repeat(2,1fr)}.post ol.steps li{padding:16px 16px 16px 66px}.post ol.steps li:before{left:14px}.endbox{flex-wrap:wrap}.endbox .share{margin-left:0}.cta{padding:26px}.post p,.post li{font-size:17px}}
+/* blog index */
+.bhero{position:relative;overflow:hidden;color:#fff;padding:40px 0 64px;background:radial-gradient(80% 120% at 90% 0%,#1E4FC2 0%,transparent 55%),radial-gradient(70% 120% at 0% 100%,#006A5C 0%,transparent 55%),#0E1430}
+.bhero:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(180deg,#000,transparent);-webkit-mask-image:linear-gradient(180deg,#000,transparent)}
+.bhero .wrap{position:relative;z-index:1}.bhero .crumb{color:rgba(255,255,255,.6);margin:0 0 28px}
+.bhero h1{font-size:clamp(38px,6vw,68px);letter-spacing:-.035em;line-height:1;margin-bottom:16px}
+.bhero p{font-size:18px;color:rgba(240,244,255,.75);max-width:560px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.chip{height:36px;padding:0 15px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px;cursor:pointer}
+.chip.on{background:#fff;color:#0E1430;border-color:#fff}
+.feat{display:grid;grid-template-columns:1.25fr 1fr;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--line);margin:-34px 0 34px;position:relative;z-index:2;box-shadow:0 40px 80px -40px rgba(10,20,50,.45);transition:transform .3s}
+.feat:hover{transform:translateY(-3px)}
+.feat .im{overflow:hidden;min-height:320px}.feat .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.feat:hover .im img{transform:scale(1.03)}
+.feat .tx{padding:34px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.feat .new{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.feat h2{font-size:clamp(24px,2.6vw,32px);line-height:1.15;letter-spacing:-.025em}.feat p{color:var(--muted)}
+.feat .rt{font-size:13.5px;color:var(--muted)}
+.bgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.bfoot{margin:60px 0 0}
+@media (max-width:880px){.feat{grid-template-columns:1fr}.feat .im{min-height:0;aspect-ratio:16/9}.bgrid{grid-template-columns:1fr}}
+:root{--a:#0E1430;--b:#1E4FC2;--x:#2EE6C9;--x2:#00917C}@media (prefers-color-scheme:dark){:root{--x2:#2EE6C9}}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "name": "MEGGYSTUDIO Blog", "url": "https://meggystudio.com/blog", "publisher": {"@type": "Organization", "name": "MEGGYSTUDIO", "url": "https://meggystudio.com/", "logo": {"@type": "ImageObject", "url": "https://meggystudio.com/assets/logo.png"}}, "blogPost": [{"@type": "BlogPosting", "headline": "How to Use the Morph Transition in PowerPoint", "url": "https://meggystudio.com/blog/how-to-use-morph-transition-powerpoint", "datePublished": "2026-11-18"}, {"@type": "BlogPosting", "headline": "Pitch Deck Structure: The 12 Slides Every Startup Needs", "url": "https://meggystudio.com/blog/pitch-deck-structure", "datePublished": "2026-11-18"}, {"@type": "BlogPosting", "headline": "Free Pitch Deck Template for PowerPoint, With Morph", "url": "https://meggystudio.com/blog/free-pitch-deck-template-powerpoint", "datePublished": "2026-11-18"}, {"@type": "BlogPosting", "headline": "Company Profile Presentation: What to Include", "url": "https://meggystudio.com/blog/company-profile-presentation", "datePublished": "2026-11-18"}, {"@type": "BlogPosting", "headline": "Event Proposal Deck: How to Pitch Your Event to Sponsors", "url": "https://meggystudio.com/blog/event-sponsorship-proposal-deck", "datePublished": "2026-11-18"}]}</script>
 </head>
 <body>
@@ -103,17 +212,28 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
   <nav aria-label="Main"><a href="/templates">All templates</a><a href="/#howto">How to use</a><a href="/#free">Free sample</a><a href="/blog">Blog</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
   <a class="btn btn-primary" href="/#buy">Buy</a>
 </div></header>
-<main class="wrap">
-<p class="crumb"><a href="/">Home</a> / Blog</p>
-<section>
-  <h1 style="font-size:clamp(30px,4vw,42px);margin-bottom:10px">Presentation guides</h1>
-  <p class="sub">Practical, no-fluff guides on pitch decks, PowerPoint and presenting with confidence.</p>
-  <div class="bl"><a href="/blog/how-to-use-morph-transition-powerpoint"><div class="shot"><img src="/assets/slides/liquid-glass-0.webp" alt="Liquid Glass PowerPoint template cover slide built for Morph transitions" loading="lazy" width="1280" height="720"></div><span class="eyebrow">PowerPoint tips</span><h2>How to Use the Morph Transition in PowerPoint</h2><p>Learn how PowerPoint Morph works, which versions support it, and the pro tricks (like !! naming) that make slides glide like a keynote. Step by step, with examples.</p></a><a href="/blog/pitch-deck-structure"><div class="shot"><img src="/assets/slides/quantum-tech-0.webp" alt="Quantum Tech startup pitch deck PowerPoint template cover" loading="lazy" width="1280" height="720"></div><span class="eyebrow">Pitch decks</span><h2>Pitch Deck Structure: The 12 Slides Every Startup Needs</h2><p>A clear pitch deck structure investors can follow: the 12 essential slides, what to put on each one, the right order, and the mistakes that lose attention.</p></a><a href="/blog/free-pitch-deck-template-powerpoint"><div class="shot"><img src="/assets/slides/cyber-tech-0.webp" alt="Cyber Tech PowerPoint pitch deck template cover slide" loading="lazy" width="1280" height="720"></div><span class="eyebrow">Free resources</span><h2>Free Pitch Deck Template for PowerPoint, With Morph</h2><p>Download a free 5-slide PowerPoint pitch deck template with Morph transitions: cover, divider, content and closing slides. Here&#x27;s what&#x27;s inside and how to use it.</p></a><a href="/blog/company-profile-presentation"><div class="shot"><img src="/assets/slides/corporate-0.webp" alt="Corporate company profile PowerPoint template cover slide" loading="lazy" width="1280" height="720"></div><span class="eyebrow">Business presentations</span><h2>Company Profile Presentation: What to Include</h2><p>What to put in a company profile presentation: the essential slides, the right order, writing tips and design rules, plus a ready-made PowerPoint template.</p></a><a href="/blog/event-sponsorship-proposal-deck"><div class="shot"><img src="/assets/slides/neon-groove-0.webp" alt="Neon Groove event proposal PowerPoint template cover" loading="lazy" width="1280" height="720"></div><span class="eyebrow">Event proposals</span><h2>Event Proposal Deck: How to Pitch Your Event to Sponsors</h2><p>How to build an event sponsorship proposal deck that sponsors say yes to: the slide structure, what brands want to see, sponsorship packages and design tips.</p></a></div>
-</section>
+<main>
+<section class="bhero"><div class="wrap">
+  <p class="crumb"><a href="/">Home</a> / Blog</p>
+  <h1>Presentation guides</h1>
+  <p>Practical, no-fluff guides on pitch decks, PowerPoint and presenting with confidence. Written by the team behind MEGGYSTUDIO templates.</p>
+  <div class="chips" role="tablist"><button class="chip on" data-f="all">All guides</button><button class="chip" data-f="PowerPoint tips">PowerPoint tips</button><button class="chip" data-f="Pitch decks">Pitch decks</button><button class="chip" data-f="Free resources">Free resources</button><button class="chip" data-f="Business presentations">Business presentations</button><button class="chip" data-f="Event proposals">Event proposals</button></div>
+</div></section>
+<div class="wrap">
+  <a class="feat" data-tag="PowerPoint tips" href="/blog/how-to-use-morph-transition-powerpoint"><div class="im"><img src="/assets/slides/liquid-glass-0.webp" alt="Liquid Glass PowerPoint template cover slide built for Morph transitions" width="1280" height="720" fetchpriority="high"></div>
+  <div class="tx"><span class="new">Featured guide</span><h2>How to Use the Morph Transition in PowerPoint</h2><p>Learn how PowerPoint Morph works, which versions support it, and the pro tricks (like !! naming) that make slides glide like a keynote. Step by step, with examples.</p><span class="rt">PowerPoint tips &nbsp;/&nbsp; 8 min read</span></div></a>
+  <div class="bgrid"><a class="card2" data-tag="Pitch decks" href="/blog/pitch-deck-structure" style="--c:#9C8CFF"><div class="im"><img src="/assets/slides/quantum-tech-0.webp" alt="Quantum Tech startup pitch deck PowerPoint template cover" loading="lazy" width="1280" height="720"></div><div class="tx"><span class="tg"><i></i>Pitch decks</span><h3>Pitch Deck Structure: The 12 Slides Every Startup Needs</h3><p>A clear pitch deck structure investors can follow: the 12 essential slides, what to put on each one, the right order, and the mistakes that lose attention.</p><span class="rt">9 min read</span></div></a><a class="card2" data-tag="Free resources" href="/blog/free-pitch-deck-template-powerpoint" style="--c:#2EE6C9"><div class="im"><img src="/assets/slides/cyber-tech-0.webp" alt="Cyber Tech PowerPoint pitch deck template cover slide" loading="lazy" width="1280" height="720"></div><div class="tx"><span class="tg"><i></i>Free resources</span><h3>Free Pitch Deck Template for PowerPoint, With Morph</h3><p>Download a free 5-slide PowerPoint pitch deck template with Morph transitions: cover, divider, content and closing slides. Here&#x27;s what&#x27;s inside and how to use it.</p><span class="rt">5 min read</span></div></a><a class="card2" data-tag="Business presentations" href="/blog/company-profile-presentation" style="--c:#7FB2FF"><div class="im"><img src="/assets/slides/corporate-0.webp" alt="Corporate company profile PowerPoint template cover slide" loading="lazy" width="1280" height="720"></div><div class="tx"><span class="tg"><i></i>Business presentations</span><h3>Company Profile Presentation: What to Include</h3><p>What to put in a company profile presentation: the essential slides, the right order, writing tips and design rules, plus a ready-made PowerPoint template.</p><span class="rt">8 min read</span></div></a><a class="card2" data-tag="Event proposals" href="/blog/event-sponsorship-proposal-deck" style="--c:#FF6FD8"><div class="im"><img src="/assets/slides/neon-groove-0.webp" alt="Neon Groove event proposal PowerPoint template cover" loading="lazy" width="1280" height="720"></div><div class="tx"><span class="tg"><i></i>Event proposals</span><h3>Event Proposal Deck: How to Pitch Your Event to Sponsors</h3><p>How to build an event sponsorship proposal deck that sponsors say yes to: the slide structure, what brands want to see, sponsorship packages and design tips.</p><span class="rt">9 min read</span></div></a></div>
+  <div class="bfoot"><div class="cta" style="--a:#0E1430;--b:#1E4FC2"><div class="stack" aria-hidden="true"><img src="/assets/slides/t-cyber-tech-3.webp" alt=""><img src="/assets/slides/t-corporate-0.webp" alt=""></div><b>Skip the blank page</b><p>Every MEGGYSTUDIO template has 50 slides with Morph built in. Try 5 of them free.</p><div class="acts"><a class="btn btn-primary" href="/#free">Get the free sample</a><a class="btn btn-secondary" href="/templates">Browse templates</a></div></div></div>
+</div>
 </main>
 <footer><div class="wrap foot">
   <nav aria-label="Footer"><a href="/">Home</a><a href="/templates">All templates</a><a href="/blog">Blog</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a></nav>
   <span>&copy; 2026 MEGGYSTUDIO. All rights reserved.</span>
 </div></footer>
-</body>
+<script>
+document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){
+ document.querySelectorAll('.chip').forEach(function(x){x.classList.toggle('on',x===c);});
+ var f=c.dataset.f; document.querySelectorAll('[data-tag]').forEach(function(el){ el.style.display=(f==='all'||el.dataset.tag===f)?'':'none'; });
+});});
+</script></body>
 </html>
