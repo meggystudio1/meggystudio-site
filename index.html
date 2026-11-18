@@ -65,9 +65,14 @@ h1,h2,h3{font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 
 /* ambient glow behind everything */
 .glow{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.glow i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(80px);opacity:.35;transition:background 1.2s}
-.glow i:nth-child(1){left:-20vmax;top:-25vmax;background:var(--g1,#2E8BEA)}
-.glow i:nth-child(2){right:-25vmax;bottom:-30vmax;background:var(--g2,#00E0C0);opacity:.22}
+@property --bgc{syntax:"<color>";inherits:true;initial-value:#0E1430}
+:root{transition:--bgc .9s ease}
+@property --g1{syntax:"<color>";inherits:true;initial-value:#2E8BEA}
+@property --g2{syntax:"<color>";inherits:true;initial-value:#00E0C0}
+.glow{transition:--g1 1.2s,--g2 1.2s}
+.glow i{position:absolute;width:80vmax;height:80vmax;border-radius:50%;opacity:.35}
+.glow i:nth-child(1){left:-30vmax;top:-35vmax;background:radial-gradient(closest-side,var(--g1),transparent)}
+.glow i:nth-child(2){right:-35vmax;bottom:-40vmax;background:radial-gradient(closest-side,var(--g2),transparent);opacity:.22}
 :root[data-theme="light"] .glow i{opacity:.16}
 
 /* buttons */
@@ -577,9 +582,10 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 
 /* ================= 2.0 ================= */
 /* grain: a fixed, static noise layer so flat colors feel printed, not plastic */
-.grain{position:fixed;inset:-50%;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.045;transform:translateZ(0);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-:root[data-theme="light"] .grain{opacity:.07;mix-blend-mode:multiply}
+:root[data-theme="light"] .grain{opacity:.05}
+@media (hover:none){.grain{display:none}}
 
 /* hero as a slide: crop marks + slide meta */
 .hero .wrap{position:relative}
@@ -666,10 +672,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 .thumb .lab.new{background:var(--accent-bg);color:#03241F}
 .thumb img.base{transition:transform .6s var(--ease),opacity .5s var(--ease)}
 .card:hover .thumb img.base{transform:scale(1.03)}
-.chips.cols .sw{width:28px;height:28px;border-radius:50%;border:2px solid var(--bgc,var(--bg));box-shadow:0 0 0 1px var(--line);transition:box-shadow .2s,transform .2s;flex:none}
-.chips.cols .sw:hover{transform:scale(1.08)}
-.chips.cols .sw.on{box-shadow:0 0 0 2px var(--text)}
-.chips.cols{align-items:center}
 .cwrap{position:relative;display:flex}.cwrap>.card{width:100%}
 .cmp{position:absolute;right:10px;top:10px;z-index:3;height:28px;padding:0 10px 0 8px;border-radius:99px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:#fff;background:rgba(10,14,30,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);opacity:0;transition:opacity .2s,background .2s}
 .cwrap:hover .cmp,.cmp.on,.cmp:focus-visible{opacity:1}
@@ -783,6 +785,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 #show img.pre{opacity:0;transform:scale(.97);filter:blur(6px)}
 #show .hud{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:16px;padding:16px 20px;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);opacity:0;transition:opacity .3s}
 #show.ui .hud{opacity:1}
+@media (hover:none){#show .hud{opacity:1}#show .stagebox{cursor:default}}
 #show .hud .pb{flex:1;height:2px;background:rgba(255,255,255,.18);border-radius:2px;overflow:hidden}
 #show .hud .pb i{display:block;height:100%;background:#fff;transition:width .4s var(--ease)}
 #show .hud span{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.75);white-space:nowrap}
@@ -1032,7 +1035,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
         </div>
         <div class="chips" id="cats" role="tablist" aria-label="Filter by category"></div>
         <div class="chips" id="tags" aria-label="Filter by mood"><span class="chips-label">Mood</span></div>
-        <div class="chips cols" id="cols" aria-label="Filter by color"><span class="chips-label">Color</span></div>
       </div>
       <div class="grid" id="grid"></div>
       <div class="ex-more"><button class="btn btn-secondary" id="more" hidden>Show more templates</button></div>
@@ -1332,9 +1334,7 @@ const DECK = [
   ["y2k-chrome",0,"Cover"],["memphis-pop",1,"Section divider"],["quantum-tech",3,"Dashboard"],["art-deco",8,"Team"],
   ["swiss-style",5,"Pricing"],["80s-synthwave",8,"Phone mockup"],["comic-book",6,"Donut chart"],["car-company",5,"Product lineup"]
 ];
-/* 2.0: dominant colors per template (measured from the slide images) */
-const COLS = {"corporate": ["blue"], "neon-groove": ["pink", "purple"], "retro-game": ["purple", "blue"], "quantum-tech": ["blue"], "music-playlist": ["red", "orange"], "cyber-tech": ["purple", "pink"], "liquid-glass": ["purple", "blue"], "movie-streaming": ["red", "orange"], "travel": ["blue", "teal"], "gaming": ["red", "gold"], "racing": ["red"], "kpop-bento": ["purple", "pink"], "y2k-chrome": ["purple", "blue"], "memphis-pop": ["blue", "pink"], "corporate-minimalist": ["orange"], "80s-synthwave": ["pink", "purple"], "comic-book": ["red", "orange"], "swiss-style": ["blue"], "gym-fitness": ["green"], "retro-90s": ["gold", "blue"], "christmas-bento": ["red", "orange"], "ramadan-layered": ["blue", "purple"], "pixel-art": ["blue", "green"], "art-deco": ["red", "gold"], "modern-techno": ["purple", "blue"], "car-company": ["teal"]};
-const SWATCH = {red:"#E5383B",orange:"#F77F00",gold:"#E0B43C",green:"#2DBE60",teal:"#00C9AB",blue:"#2E6BFF",purple:"#8B5CF6",pink:"#EC4899"};
+var V2READY=false; /* set true once the 2.0 script below has run */
 /* 2.0: one label per card at most. Change freely. */
 const PICKS = {"car-company":["pick","Staff pick"],"art-deco":["pick","Staff pick"],"liquid-glass":["pick","Staff pick"],
   "quantum-tech":["pitch","Best for pitching"],"corporate":["pitch","Best for pitching"],"modern-techno":["pitch","Best for pitching"]};
@@ -1395,7 +1395,7 @@ const buyWrap=$("#buyWrap");
 const closeBuy=()=>{buyWrap.classList.remove("open"); $("#buyBtn").setAttribute("aria-expanded",false);};
 $("#buyBtn").onclick=e=>{e.stopPropagation(); const o=buyWrap.classList.toggle("open"); $("#buyBtn").setAttribute("aria-expanded",o);};
 document.addEventListener("click",e=>{ if(!buyWrap.contains(e.target)) closeBuy(); });
-$("#menuBtn").onclick=()=>{const o=document.body.classList.toggle("nav-open"); $("#menuBtn").setAttribute("aria-expanded",o);};
+$("#menuBtn").onclick=()=>{const o=document.body.classList.toggle("nav-open"); $("#menuBtn").setAttribute("aria-expanded",o); if(V2READY) mbarTick();};
 $$("#sheetNav a").forEach(a=>a.onclick=()=>document.body.classList.remove("nav-open"));
 const navLinks=$$(".links a");
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id)); }),{rootMargin:"-45% 0px -50% 0px"});
@@ -1554,7 +1554,7 @@ baR.addEventListener("input",()=>ba.style.setProperty("--x",baR.value+"%"));
 
 /* ---- templates explorer (search, category, mood, sort, paging) ---- */
 const PAGE=9;
-const st={q:"",cat:"All",tags:new Set(),col:null,sort:"new",limit:PAGE};
+const st={q:"",cat:"All",tags:new Set(),sort:"new",limit:PAGE};
 const grid=$("#grid"), catsEl=$("#cats"), tagsEl=$("#tags");
 const ALLTAGS=[...new Set(TEMPLATES.flatMap(t=>t.tags))].sort();
 const newest=TEMPLATES.filter(t=>t.added===LATEST).map(t=>t.id);
@@ -1577,7 +1577,6 @@ addEventListener("keydown",e=>{ if(e.key==="/"&&!/input|textarea|select/i.test(d
 function matches(t){
   if(st.cat!=="All"&&t.cat!==st.cat) return false;
   for(const tg of st.tags) if(!t.tags.includes(tg)) return false;
-  if(st.col&&!(COLS[t.id]||[]).includes(st.col)) return false;
   if(st.q){ const hay=(t.name+" "+t.cat+" "+t.tags.join(" ")+" "+t.desc).toLowerCase(); return st.q.split(/\s+/).every(w=>hay.includes(w)); }
   return true;
 }
@@ -1591,8 +1590,9 @@ function cardEl(t){
   c.onclick=e=>{ if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1) return; e.preventDefault(); openT(t.id); };
   const alt=c.querySelector(".alt"), bars=[...c.querySelectorAll(".prog span")]; let k=0, iv=null;
   const mark=()=>bars.forEach((b,j)=>b.classList.toggle("on",j<=k));
-  c.addEventListener("mouseenter",()=>{ if(reduce)return; k=0; mark(); iv=setInterval(()=>{k=(k+1)%t.n; alt.src=thumb(t.id,k); alt.classList.toggle("show",k!==0); mark();},950); });
-  c.addEventListener("mouseleave",()=>{ clearInterval(iv); alt.classList.remove("show"); k=0; mark(); });
+  const stop=()=>{ clearInterval(iv); iv=null; alt.classList.remove("show"); k=0; mark(); };
+  c.addEventListener("pointerenter",e=>{ if(reduce||e.pointerType!=="mouse"||iv)return; k=0; mark(); iv=setInterval(()=>{ if(!c.isConnected){stop();return;} k=(k+1)%t.n; alt.src=thumb(t.id,k); alt.classList.toggle("show",k!==0); mark();},950); });
+  c.addEventListener("pointerleave",stop); c.addEventListener("click",stop);
   return wrapCard(t,c);
 }
 function renderGrid(anim,append){
@@ -1685,8 +1685,8 @@ function buildThread(){
   thread.setAttribute("width",W); thread.setAttribute("height",H); thread.setAttribute("viewBox",`0 0 ${W} ${H}`);
   const secs=$$("main [data-bg]").slice(1), pts=[];
   secs.forEach((s,i)=>{const y=s.offsetTop+80; pts.push([x0+(i%2?18:-18),y]);});
-  let d=`M${x0},${$(".hero").offsetTop+120}`;
-  pts.forEach(([x,y],i)=>{const py=i?pts[i-1][1]:$(".hero").offsetTop+120; const my=(py+y)/2; d+=` C${x0+(i%2?-40:40)},${my} ${x},${my} ${x},${y}`;});
+  const ty0=$(".hero").offsetTop+$(".hero").offsetHeight+40; let d=`M${x0},${ty0}`;
+  pts.forEach(([x,y],i)=>{const py=i?pts[i-1][1]:ty0; const my=(py+y)/2; d+=` C${x0+(i%2?-40:40)},${my} ${x},${my} ${x},${y}`;});
   tBase.setAttribute("d",d); tInk.setAttribute("d",d);
   tLen=tInk.getTotalLength(); tInk.style.strokeDasharray=tLen; tInk.style.strokeDashoffset=tLen;
   drawNodes(pts);
@@ -1698,37 +1698,39 @@ const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
 const mix=(a,b,t)=>{const A=hex(a),B=hex(b); return `rgb(${A.map((v,i)=>Math.round(lerp(v,B[i],t))).join(",")})`;};
 function secProgress(el){const r=el.getBoundingClientRect(); return clamp(-r.top/(r.height-innerHeight));}
 let ticking=false;
+let secTops=[], heroH=0, mainTop=0, mainH=0, heroTop=0, lastBg="", screenEl=$("#screen"), insideEl=$("#inside");
+function measure(){ secTops=bgSecs.map(s=>s.offsetTop); heroH=$(".hero").offsetHeight; heroTop=$(".hero").offsetTop; const m=$("main"); mainTop=m.getBoundingClientRect().top+scrollY; mainH=m.offsetHeight; }
+function inView(el){const r=el.getBoundingClientRect(); return r.bottom>-50&&r.top<innerHeight+50;}
 function updateScroll(force){
+  if(force||!secTops.length) measure();
   const y=scrollY, vh=innerHeight, mid=y+vh*.5;
   $("#hdr").classList.toggle("scrolled",y>8);
   const docH=document.documentElement.scrollHeight-vh; $("#progress").style.setProperty("--p",docH>0?y/docH:0);
-  /* background color */
-  const pal=BG[root.dataset.theme==="light"?"light":"dark"];
-  let idx=0;
-  for(let i=0;i<bgSecs.length;i++){ if(bgSecs[i].offsetTop<=mid) idx=i; }
-  const a=bgSecs[idx], b=bgSecs[idx+1];
-  let t=0; if(b){ const span=b.offsetTop-a.offsetTop; t=clamp((mid-a.offsetTop-span*.6)/(span*.4)); }
-  const ca=pal[+a.dataset.bg], cb=b?pal[+b.dataset.bg]:ca;
-  root.style.setProperty("--bgc",mix(ca,cb,t));
-  const ga=GLOW[+a.dataset.bg], gb=b?GLOW[+b.dataset.bg]:ga;
-  root.style.setProperty("--g1",mix(ga[0],gb[0],t)); root.style.setProperty("--g2",mix(ga[1],gb[1],t));
+  /* background color: one step per chapter, CSS does the fade */
+  let idx=0; for(let i=0;i<secTops.length;i++){ if(secTops[i]<=mid) idx=i; }
+  const theme=root.dataset.theme==="light"?"light":"dark", key=theme+idx;
+  if(key!==lastBg){ lastBg=key; const k=+bgSecs[idx].dataset.bg; root.style.setProperty("--bgc",BG[theme][k]); root.style.setProperty("--g1",GLOW[k][0]); root.style.setProperty("--g2",GLOW[k][1]); }
   /* story chapter */
   let ci=0; chapters.forEach((c,i)=>{const r=c.getBoundingClientRect(); if(r.top<vh*.55) ci=i;}); setChapter(ci);
   /* laptop */
-  const sp=secProgress($("#screen"));
-  const lid=reduce?0:lerp(-72,0,ease(clamp(sp/.35)));
-  $("#lid").style.setProperty("--lid",lid+"deg");
-  const si=clamp(Math.floor(clamp((sp-.35)/.6)*N),0,N-1);
-  if(si!==scrIdx){scrImgs[scrIdx].classList.remove("on"); scrImgs[si].classList.add("on"); scrIdx=si; $("#scrName").textContent=PANO[si].name;}
+  if(force||inView(screenEl)){
+    const sp=secProgress(screenEl);
+    const lid=reduce?0:lerp(-72,0,ease(clamp(sp/.35)));
+    $("#lid").style.setProperty("--lid",lid+"deg");
+    const si=clamp(Math.floor(clamp((sp-.35)/.6)*N),0,N-1);
+    if(si!==scrIdx){scrImgs[scrIdx].classList.remove("on"); scrImgs[si].classList.add("on"); scrIdx=si; $("#scrName").textContent=PANO[si].name;}
+  }
   /* deck */
-  deckRender(secProgress($("#inside")));
+  if(force||inView(insideEl)) deckRender(secProgress(insideEl));
   /* thread */
-  if(tLen){ const mr=$("main").getBoundingClientRect(); const p=clamp((vh*.6-mr.top-$(".hero").offsetTop)/(mr.height-$(".hero").offsetTop)); tInk.style.strokeDashoffset=tLen*(1-p); const pt=tInk.getPointAtLength(tLen*p); tDot.setAttribute("cx",pt.x); tDot.setAttribute("cy",pt.y); nodesTick(pt.y); }
+  if(tLen){ const p=clamp((y+vh*.6-mainTop-heroTop-heroH)/(mainH-heroTop-heroH)); tInk.style.strokeDashoffset=tLen*(1-p); const pt=tInk.getPointAtLength(tLen*p); tDot.setAttribute("cx",pt.x); tDot.setAttribute("cy",pt.y); nodesTick(pt.y); }
+  if(V2READY){ bandTick(); mbarTick(); }
   ticking=false;
 }
 addEventListener("scroll",()=>{ if(!ticking){ticking=true; requestAnimationFrame(()=>updateScroll());} if(innerWidth<=620&&buyWrap.classList.contains("open")) closeBuy(); },{passive:true});
 addEventListener("resize",()=>{size(); morphScale(); buildThread(); updateScroll(true);});
 addEventListener("load",()=>{buildThread(); updateScroll(true);});
+new ResizeObserver(()=>{ clearTimeout(window._mT); window._mT=setTimeout(()=>{buildThread(); updateScroll(true);},150); }).observe(document.querySelector("main"));
 buildThread(); updateScroll(true);
 
 /* ---- modal ---- */
@@ -1803,7 +1805,8 @@ function startIdx(){const h=new Date().getHours(), day=h>=6&&h<18; const i=PANO.
 
 /* big type band */
 const bandRows=$$(".band .row");
-function bandTick(){ if(!bandRows.length||reduce) return; const r=$(".band").getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+const bandEl=$(".band");
+function bandTick(){ if(!bandRows.length||reduce) return; const r=bandEl.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
   const p=(innerHeight-r.top)/(innerHeight+r.height); bandRows.forEach(row=>row.style.transform=`translateX(${(+row.dataset.dir)*(p-.5)*innerWidth*.45-innerWidth*.15}px)`);}
 
 /* before / after examples */
@@ -1861,15 +1864,6 @@ function cShow(k){
 }
 function closeCmp(){ $("#cview").classList.remove("open"); if(!modal.classList.contains("open")) document.body.style.overflow=""; if(cLast) cLast.focus(); mbarTick(); }
 $("#trayGo").onclick=openCmp; $("#cClose").onclick=closeCmp;
-
-/* color filter + extra sorts are wired into the explorer */
-(function(){
-  const row=$("#cols"), used=Object.keys(SWATCH).filter(c=>TEMPLATES.some(t=>(COLS[t.id]||[]).includes(c)));
-  used.forEach(c=>{ const b=document.createElement("button"); b.className="sw"; b.style.background=SWATCH[c]; b.title=c[0].toUpperCase()+c.slice(1);
-    b.setAttribute("aria-label",`Show ${c} templates`); b.setAttribute("aria-pressed","false");
-    b.onclick=()=>{ st.col=st.col===c?null:c; $$("#cols .sw").forEach(x=>{const on=x===b&&st.col===c; x.classList.toggle("on",on); x.setAttribute("aria-pressed",on);}); st.limit=PAGE; renderGrid(true); };
-    row.appendChild(b); });
-})();
 
 /* quiz */
 const QZ=[
@@ -1963,6 +1957,8 @@ $("#showStage").addEventListener("click",e=>{ if(e.target.closest("button")) ret
 let shx=null; $("#showStage").addEventListener("touchstart",e=>shx=e.touches[0].clientX,{passive:true});
 $("#showStage").addEventListener("touchend",e=>{ if(shx===null)return; const dx=e.changedTouches[0].clientX-shx; if(Math.abs(dx)>40) sShow(sK+(dx<0?1:-1)); shx=null; });
 $("#showX").onclick=closeShow;
+if(!document.documentElement.requestFullscreen) $("#showFs").style.display="none";
+$("#showX").textContent=matchMedia("(hover:none)").matches?"Close":"Esc";
 $("#showFs").onclick=()=>{ const el=$("#show"); if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); else if(el.requestFullscreen) el.requestFullscreen().catch(()=>{}); };
 $("#mPresent").onclick=e=>{e.stopPropagation(); openShow(mt,mk);};
 
@@ -1997,15 +1993,14 @@ function drawNodes(pts){
   pts.forEach(([x,y])=>{ const g=document.createElementNS("http://www.w3.org/2000/svg","g"); g.setAttribute("class","node");
     g.innerHTML=`<circle cx="${x}" cy="${y}" r="5"/>`; thread.insertBefore(g,tDot); nodes.push([g,y]); });
 }
-function nodesTick(y){ nodes.forEach(([g,ny])=>g.classList.toggle("on",ny<=y+2)); }
+function nodesTick(y){ nodes.forEach(n=>{const on=n[1]<=y+2; if(n[2]!==on){n[2]=on; n[0].classList.toggle("on",on);}}); }
 
 /* sticky buy bar on phones */
 let buyVis=false, endVis=false;
 new IntersectionObserver(es=>{buyVis=es[0].isIntersecting; mbarTick();},{threshold:.15}).observe($("#buy"));
 new IntersectionObserver(es=>{endVis=es[0].isIntersecting; mbarTick();}).observe($(".end"));
-function mbarTick(){ const past=scrollY>($(".hero").offsetHeight*.6); $("#mbar").classList.toggle("show",past&&!buyVis&&!endVis&&!anyOverlay()&&!$("#tray").classList.contains("show")); }
-addEventListener("scroll",()=>{mbarTick(); requestAnimationFrame(bandTick);},{passive:true});
-bandTick(); mbarTick();
+function mbarTick(){ if(typeof heroH==="undefined") return; const past=scrollY>(heroH*.6); $("#mbar").classList.toggle("show",past&&!buyVis&&!endVis&&!anyOverlay()&&!document.body.classList.contains("nav-open")&&!$("#tray").classList.contains("show")); }
+V2READY=true; bandTick(); mbarTick();
 new MutationObserver(mbarTick).observe(modal,{attributes:true,attributeFilter:["class"]});
 </script>
 </body>
