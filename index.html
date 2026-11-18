@@ -222,7 +222,7 @@ main>*:not(.thread){position:relative;z-index:1}
 .story-dots i.on{background:#fff;height:30px}
 
 /* laptop */
-.screen-sec{height:240vh;padding-top:0}
+.screen-sec{height:170vh;padding-top:0}
 .screen-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:26px;padding-top:64px;overflow:hidden}
 .laptop{width:min(820px,88vw);perspective:2000px}
 .lid{position:relative;width:86%;margin:0 auto;aspect-ratio:16/10.4;transform-origin:50% 100%;transform:rotateX(var(--lid,-70deg));background:#1b1e24;border-radius:18px 18px 4px 4px;padding:2.4% 2.4% 3.4%;box-shadow:0 0 0 1px rgba(255,255,255,.08) inset;will-change:transform}
@@ -311,7 +311,7 @@ main>*:not(.thread){position:relative;z-index:1}
 .empty b{display:block;color:var(--text);font-size:17px;margin-bottom:6px}
 
 /* stacked cards */
-.stack-sec{height:360vh;padding-top:0}
+.stack-sec{height:250vh;padding-top:0}
 .stack-sticky{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1.5fr;align-items:center;gap:40px;padding-top:64px}
 .stack-copy h2{font-size:clamp(28px,3.2vw,42px);line-height:1.08;margin:8px 0 14px}
 .stack-copy p{color:var(--muted);max-width:36ch}
@@ -401,6 +401,7 @@ main>*:not(.thread){position:relative;z-index:1}
 .free li em{font-style:normal;color:var(--muted)}
 .free .dl{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .free small{display:block;color:var(--muted);font-size:12.5px;margin-top:12px}
+.free .free-up{margin:14px 0 0;font-size:14px;color:var(--text)}.free .free-up a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .free .status{font-size:13px;color:var(--accent)}
 .sv{display:flex;flex-direction:column;gap:10px}
 .sv-main{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 26px 50px -18px rgba(0,0,0,.6);border:1px solid var(--line)}
@@ -565,8 +566,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
   .end-in .btn{width:100%}
   .foot{flex-direction:column;align-items:flex-start;gap:16px}
   summary{font-size:15.5px;padding:16px 2px}
-  .screen-sec{height:200vh}
-  .stack-sec{height:300vh}
+  .screen-sec{height:150vh}
+  .stack-sec{height:210vh}
   .free{padding:22px}
   .free ol{grid-template-columns:1fr}
   form.cform{grid-template-columns:1fr;padding:18px}
@@ -810,6 +811,34 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 @keyframes stir{25%{transform:rotate(-14deg)}60%{transform:rotate(10deg)}100%{transform:none}}
 #buyBtn:hover svg{transform:translateY(2px)}
 
+
+/* store chooser */
+.sheet{position:fixed;inset:0;z-index:115;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,8,20,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.sheet.open{display:flex;animation:fade .2s ease}
+.sheet-card{width:min(460px,100%);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);animation:rise .35s var(--ease);max-height:calc(100dvh - 40px);overflow:auto}
+.sheet-top{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:14px}
+.sheet-top h3{font-size:21px;margin-top:4px}
+.sheet-tpl{display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;background:var(--surface);border:1px solid var(--line);margin-bottom:12px}
+.sheet-tpl:empty{display:none}
+.sheet-tpl img{width:96px;aspect-ratio:16/9;object-fit:cover;border-radius:7px;flex:none}
+.sheet-tpl b{display:block;font-size:15px}.sheet-tpl small{font-size:12.5px;color:var(--muted)}
+.sheet-list{display:flex;flex-direction:column;gap:8px}
+.store{display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;border:1px solid var(--line);transition:border-color .2s,background .2s,transform .25s var(--ease)}
+.store:hover{border-color:var(--accent);transform:translateY(-1px)}
+.store .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:600;background:var(--surface-2);border:1px solid var(--line);flex:none}
+.store b{display:block;font-size:15px;font-weight:600}
+.store small{display:block;font-size:12.5px;color:var(--muted)}
+.store .go{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;white-space:nowrap}
+.store .go svg{width:14px;height:14px}
+.store.rec{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-bg) 8%,transparent)}
+.store.rec .logo{background:var(--accent-bg);color:#03241F;border-color:transparent}
+.store .rb{display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-left:6px;font-weight:500}
+.sheet-trust{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.sheet-trust li{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 10px;display:inline-flex;align-items:center;gap:6px}
+.sheet-trust li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-bg)}
+.sheet-note{font-size:12.5px;color:var(--muted);margin-top:10px}
+.market .rec-b{font-family:var(--mono);font-size:11px;color:var(--accent)}
+@media (max-width:620px){.sheet{align-items:flex-end;padding:0}.sheet-card{border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}}
 /* sticky buy bar on phones */
 .mbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:65;display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:16px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(150%);transition:transform .45s var(--ease)}
 .mbar.show{transform:none}
@@ -893,8 +922,8 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
       <h1 class="enter d1">PowerPoint pitch deck templates with Morph</h1>
       <p class="enter d2">PowerPoint templates with their own visual style, Morph transitions already set up, and fonts that work on any PC.</p>
       <div class="ctas enter d3">
-        <a class="btn btn-primary" href="#templates">Browse templates</a>
-        <a class="btn btn-secondary" href="#free">Get 5 free slides</a>
+        <a class="btn btn-primary" href="#templates">Browse <span id="heroN">26</span> templates</a>
+        <a class="btn btn-secondary" href="#free">Try 5 slides free</a>
       </div>
     </div>
     <div class="stage enter d4" aria-roledescription="carousel" aria-label="Template showcase">
@@ -915,28 +944,53 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
     <div class="ticker" aria-label="A deck costs less than a coffee"><div class="ticker-in"><ul><li><s>Iced latte</s><em>~$5.50</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Oat flat white</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Caramel macchiato</s><em>~$6.25</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Es kopi susu</s><em>~Rp25k</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Matcha latte</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Cold brew</s><em>~$5</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li class="us"><mark>One MEGGYSTUDIO deck</mark>50 slides, less than any cup on this list<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li></ul><ul aria-hidden="true"><li><s>Iced latte</s><em>~$5.50</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Oat flat white</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Caramel macchiato</s><em>~$6.25</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Es kopi susu</s><em>~Rp25k</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Matcha latte</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Cold brew</s><em>~$5</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li class="us"><mark>One MEGGYSTUDIO deck</mark>50 slides, less than any cup on this list<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li></ul></div></div>
   </div>
 
-  <section id="story" data-bg="1">
+  <section id="templates" data-bg="4">
     <div class="wrap">
-      <div class="center-head"><span class="eyebrow">From idea to stage</span><h2>Every great pitch starts on a blank page</h2></div>
-      <div class="story">
-        <div class="chapters" id="chapters">
-          <div class="chapter on" data-i="0"><span class="num">01 / Idea</span><h3>It starts with a scribble</h3><p>You know what you want to say. The hard part is making it look as good as the idea feels.</p></div>
-          <div class="chapter" data-i="1"><span class="num">02 / Build</span><h3>Pick a style, fill it in</h3><p>Open a MEGGYSTUDIO template and replace the sample text and photos. Every layout is already designed.</p></div>
-          <div class="chapter" data-i="2"><span class="num">03 / Present</span><h3>Walk on stage with confidence</h3><p>Morph transitions carry your audience from slide to slide, without a single animation to set up.</p></div>
-          <div class="chapter" data-i="3"><span class="num">04 / Applause</span><h3>Leave a lasting impression</h3><p>A deck that looks considered makes your message easier to remember.</p></div>
-        </div>
-        <div class="story-media" id="storyMedia">
-          <img class="ph on" src="assets/story/story-1.webp" alt="Open notebook and pencils on a wooden desk" decoding="async">
-          <img class="ph" src="assets/story/story-2.webp" alt="Person working on a laptop in a dim office" loading="lazy" decoding="async">
-          <img class="ph" src="assets/story/story-3.webp" alt="Speaker on stage in front of a large audience" loading="lazy" decoding="async">
-          <img class="ph" src="assets/story/story-4.webp" alt="Audience raising their hands" loading="lazy" decoding="async">
-          <div class="float f1" data-c="1"><img src="assets/slides/t-corporate-0.webp" alt="Corporate PowerPoint template cover slide" loading="lazy"></div>
-          <div class="float f2" data-c="1"><img src="assets/slides/t-corporate-3.webp" alt="Corporate PowerPoint template data slide" loading="lazy"></div>
-          <div class="float f1" data-c="2"><img src="assets/slides/t-racing-0.webp" alt="Racing PowerPoint template cover slide" loading="lazy"></div>
-          <div class="cap"><span id="storyTag">01</span><b id="storyCap">Idea</b></div>
-          <div class="story-dots" id="storyDots"><i class="on"></i><i></i><i></i><i></i></div>
-        </div>
+      <div class="sec-head">
+        <div><span class="eyebrow">Templates</span><h2>Find the style for your next pitch</h2></div>
+        <p>Every deck has 50 slides with Morph, costs less than a coffee and downloads right after payment. Click a card to preview it.</p>
       </div>
+      <div class="explorer">
+        <div class="ex-top">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input type="search" id="q" placeholder="Search by name or mood" aria-label="Search templates" autocomplete="off">
+          </div>
+          <select class="select" id="sort" aria-label="Sort templates">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+            <option value="az">Name A to Z</option>
+            <option value="dark">Dark first</option>
+            <option value="light">Light first</option>
+          </select>
+          <span class="ex-count" id="count" aria-live="polite"></span>
+        </div>
+        <div class="chips" id="cats" role="tablist" aria-label="Filter by category"></div>
+        <div class="chips" id="tags" aria-label="Filter by mood"><span class="chips-label">Mood</span></div>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="ex-more"><button class="btn btn-secondary" id="more" hidden>Show more templates</button></div>
+    </div>
+  </section>
+
+  <section id="match" data-bg="1">
+    <div class="wrap">
+      <div class="quiz reveal">
+        <div>
+          <span class="eyebrow">Still deciding?</span>
+          <h2>Let us pick three for you</h2>
+          <p class="lede">Answer three quick questions and we will pick three templates for your pitch.</p>
+          <div class="qsteps" id="qSteps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="qbox" id="qBox" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="uses" data-bg="2">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">Made for</span><h2>Whatever you are pitching this week</h2></div><p>Real moments people build decks for. Tap one to see the template that fits it.</p></div>
+      <div class="uses reveal" id="uses-grid"></div>
     </div>
   </section>
 
@@ -998,49 +1052,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
     <div class="row o" data-dir="1"><span>Fifty slides.</span><span>Morph on.</span><span>Fifty slides.</span><span>Morph on.</span></div>
   </div>
 
-  <section id="match" data-bg="4">
-    <div class="wrap">
-      <div class="quiz reveal">
-        <div>
-          <span class="eyebrow">Template match</span>
-          <h2>Not sure which style fits you?</h2>
-          <p class="lede">Answer three quick questions and we will pick three templates for your pitch.</p>
-          <div class="qsteps" id="qSteps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-        </div>
-        <div class="qbox" id="qBox" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="templates" data-bg="4">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><span class="eyebrow">Templates</span><h2>Find the style for your next pitch</h2></div>
-        <p>Search by name, mood or use case. Hover a card to flip through its slides, click to see nine of them.</p>
-      </div>
-      <div class="explorer">
-        <div class="ex-top">
-          <div class="search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-            <input type="search" id="q" placeholder="Search by name or mood" aria-label="Search templates" autocomplete="off">
-          </div>
-          <select class="select" id="sort" aria-label="Sort templates">
-            <option value="new">Newest first</option>
-            <option value="old">Oldest first</option>
-            <option value="az">Name A to Z</option>
-            <option value="dark">Dark first</option>
-            <option value="light">Light first</option>
-          </select>
-          <span class="ex-count" id="count" aria-live="polite"></span>
-        </div>
-        <div class="chips" id="cats" role="tablist" aria-label="Filter by category"></div>
-        <div class="chips" id="tags" aria-label="Filter by mood"><span class="chips-label">Mood</span></div>
-      </div>
-      <div class="grid" id="grid"></div>
-      <div class="ex-more"><button class="btn btn-secondary" id="more" hidden>Show more templates</button></div>
-    </div>
-  </section>
-
   <section class="stack-sec" id="inside" data-bg="5">
     <div class="wrap stack-sticky">
       <div class="stack-copy">
@@ -1051,13 +1062,6 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
         <div class="stack-bar"><i id="stackBar"></i></div>
       </div>
       <div class="deck" id="deck"></div>
-    </div>
-  </section>
-
-  <section id="uses" data-bg="5">
-    <div class="wrap">
-      <div class="sec-head"><div><span class="eyebrow">Made for</span><h2>Whatever you are pitching this week</h2></div><p>Real moments people build decks for. Tap one to see the template that fits it.</p></div>
-      <div class="uses reveal" id="uses-grid"></div>
     </div>
   </section>
 
@@ -1142,6 +1146,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
             <span class="status" id="freeStatus" role="status"></span>
           </div>
           <small>PPTX, 5 MB. Every slide carries the MEGGYSTUDIO mark. Free for personal use, not for resale.</small>
+          <p class="free-up">Like it? The full decks have 50 slides each. <a href="#templates">Pick your template</a></p>
         </div>
         <div class="sv" aria-label="Preview of the five free slides">
           <div class="sv-main" id="svMain"><span class="lab" id="svLab">01 Cover, Corporate</span></div>
@@ -1216,7 +1221,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
   <div class="end" data-bg="0">
     <div class="wrap end-in">
       <div><h2>Found the one?</h2><p>50 slides for less than a coffee. Every template is available on our marketplaces.</p></div>
-      <a class="btn btn-primary" href="#buy">See where to buy</a>
+      <button class="btn btn-primary" id="endBuy" type="button">Choose a store</button>
     </div>
   </div>
 </main>
@@ -1256,9 +1261,9 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
         <li><span>Fonts</span>Office-safe, no installs</li>
       </ul>
       <div class="acts">
-        <button class="btn btn-primary" id="mBuy">Where to buy</button>
+        <button class="btn btn-primary" id="mBuy">Buy this template</button>
         <a class="btn btn-secondary" id="mPage" href="/templates">Full details</a>
-        <small>Available on every marketplace we list</small>
+        <small>Cheaper than a coffee. Instant download.</small>
       </div>
     </div>
   </div>
@@ -1284,9 +1289,20 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 </div>
 <div class="toast" id="toast" role="status"></div>
 
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+  <div class="sheet-card">
+    <div class="sheet-top"><div><span class="eyebrow" id="shEye">Choose a store</span><h3 id="shTitle">Get the template</h3></div>
+      <button class="icon-btn" id="shClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="sheet-tpl" id="shTpl"></div>
+    <div class="sheet-list" id="shList"></div>
+    <ul class="sheet-trust"><li>Cheaper than a coffee</li><li>Instant download after payment</li><li>One-time payment, no subscription</li></ul>
+    <p class="sheet-note">The same PPTX file is on every store. Pick the one that fits how you pay.</p>
+  </div>
+</div>
+
 <div class="mbar" id="mbar">
   <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg><div><b>Cheaper than a coffee</b><small>50 slides, Morph on every slide</small></div></div>
-  <a class="btn btn-primary" href="#buy">Buy</a>
+  <button class="btn btn-primary" id="mbarBuy" type="button">Buy now</button>
 </div>
 
 <script>
@@ -1490,19 +1506,6 @@ pano.addEventListener("mouseenter",()=>hover=true); pano.addEventListener("mouse
 $("#prevBtn").onclick=()=>step(-1); $("#nextBtn").onclick=()=>step(1);
 $("#nowOpen").onclick=()=>openT(PANO[cur].id);
 size(); { const S=startIdx(); rot=target=S*STEP; setCenter(S); loadNear(S); } render(); requestAnimationFrame(tick);
-
-/* ---- story ---- */
-const chapters=$$(".chapter"), phs=$$("#storyMedia .ph"), floats=$$("#storyMedia .float"), sdots=[...$("#storyDots").children];
-const CAPS=["Idea","Build","Present","Applause"];
-let chap=0;
-function setChapter(i){
-  if(i===chap) return; chap=i;
-  chapters.forEach((c,j)=>c.classList.toggle("on",j===i));
-  phs.forEach((p,j)=>{p.classList.toggle("on",j===i); if(j===i&&p.loading==="lazy") p.loading="eager";});
-  floats.forEach(f=>f.classList.toggle("on",+f.dataset.c===i));
-  sdots.forEach((d,j)=>d.classList.toggle("on",j===i));
-  $("#storyTag").textContent=String(i+1).padStart(2,"0"); $("#storyCap").textContent=CAPS[i];
-}
 
 /* ---- laptop ---- */
 const scr=$("#scr");
@@ -1711,7 +1714,6 @@ function updateScroll(force){
   const theme=root.dataset.theme==="light"?"light":"dark", key=theme+idx;
   if(key!==lastBg){ lastBg=key; const k=+bgSecs[idx].dataset.bg; root.style.setProperty("--bgc",BG[theme][k]); root.style.setProperty("--g1",GLOW[k][0]); root.style.setProperty("--g2",GLOW[k][1]); }
   /* story chapter */
-  let ci=0; chapters.forEach((c,i)=>{const r=c.getBoundingClientRect(); if(r.top<vh*.55) ci=i;}); setChapter(ci);
   /* laptop */
   if(force||inView(screenEl)){
     const sp=secProgress(screenEl);
@@ -1780,7 +1782,7 @@ addEventListener("hashchange",fromHash); fromHash();
 
 /* ================= 2.0 ================= */
 const finePointer=matchMedia("(pointer:fine)").matches;
-const anyOverlay=()=>modal.classList.contains("open")||$("#cview").classList.contains("open")||$("#show").classList.contains("open");
+const anyOverlay=()=>modal.classList.contains("open")||$("#sheet").classList.contains("open")||$("#cview").classList.contains("open")||$("#show").classList.contains("open");
 function toast(html,ms=2600){const t=$("#toast"); t.innerHTML=html; t.classList.add("show"); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove("show"),ms);}
 
 /* hero: time-of-day start, used before the first render */
@@ -1901,9 +1903,10 @@ function qRender(){
   const top=scored.slice(0,3);
   box.innerHTML=`<div class="qpane"><span class="qn">Your matches</span><h3>Start with these three</h3>
     <div class="qres">${top.map((r,j)=>`<button class="qcard" data-id="${r.t.id}"><div class="im"><img src="${thumb(r.t.id,0)}" alt="${r.t.name} template cover" loading="lazy">${j?"":"<em>Best match</em>"}</div><b>${r.t.name}</b><small>Matches ${r.why.join(", ")||r.t.cat}</small></button>`).join("")}</div>
-    <div class="qacts"><button class="btn btn-primary" id="qOpen">Open ${top[0].t.name}</button><button class="btn btn-secondary" id="qAgain">Retake</button></div></div>`;
+    <div class="qacts"><button class="btn btn-primary" id="qBuy">Buy ${top[0].t.name}</button><button class="btn btn-secondary" id="qOpen">Preview it</button><button class="btn btn-secondary" id="qAgain">Retake</button></div></div>`;
   $$("#qBox .qcard").forEach(b=>b.onclick=()=>openT(b.dataset.id));
   $("#qOpen").onclick=()=>openT(top[0].t.id);
+  $("#qBuy").onclick=()=>openStore(top[0].t);
   $("#qAgain").onclick=()=>{qAns.length=0; qRender();};
 }
 qRender();
@@ -1942,11 +1945,11 @@ function openShow(t,k=0){
   sT=t; sK=k; sPrevOverflow=document.body.style.overflow; document.body.style.overflow="hidden";
   $("#showStage").innerHTML=""; $("#showName").textContent=t.name; $("#show").classList.add("open"); sShow(k,true); sUi(); mbarTick();
 }
-function sEnd(){ return `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px"><div><p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase">End of preview</p><h2 style="font-size:clamp(28px,4vw,48px);margin:10px 0 8px">The full deck has 50 slides</h2><p style="color:rgba(255,255,255,.7);margin-bottom:22px">Cheaper than a coffee, on every marketplace we list.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="sBuy" style="background:#fff;color:#0F1420">Where to buy</button><button class="btn" id="sAgain" style="border:1px solid rgba(255,255,255,.3)">Watch again</button></div></div></div>`; }
+function sEnd(){ return `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px"><div><p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase">End of preview</p><h2 style="font-size:clamp(28px,4vw,48px);margin:10px 0 8px">The full deck has 50 slides</h2><p style="color:rgba(255,255,255,.7);margin-bottom:22px">Cheaper than a coffee, on every marketplace we list.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="sBuy" style="background:#fff;color:#0F1420">Buy this template</button><button class="btn" id="sAgain" style="border:1px solid rgba(255,255,255,.3)">Watch again</button></div></div></div>`; }
 function sShow(k,first){
   const n=sT.n; k=clamp(k,0,n); sK=k; const stage=$("#showStage");
   [...stage.children].forEach(el=>{ el.classList.add("out"); setTimeout(()=>el.remove(),reduce?0:560); });
-  if(k===n){ stage.insertAdjacentHTML("beforeend",sEnd()); $("#sBuy").onclick=()=>{closeShow(); closeM(); $("#buy").scrollIntoView({behavior:reduce?"auto":"smooth"});}; $("#sAgain").onclick=()=>sShow(0); stage.style.cursor="default"; }
+  if(k===n){ stage.insertAdjacentHTML("beforeend",sEnd()); $("#sBuy").onclick=()=>{ const t=sT; closeShow(); openStore(t); }; $("#sAgain").onclick=()=>sShow(0); stage.style.cursor="default"; }
   else { stage.style.cursor=""; const im=new Image(); im.src=img(sT.id,k); im.alt=`${sT.name} slide ${k+1}`; im.className=first||reduce?"":"pre"; stage.appendChild(im); requestAnimationFrame(()=>requestAnimationFrame(()=>im.classList.remove("pre"))); }
   $("#showN").textContent=k===n?"End":`${k+1} / ${n}`; $("#showBar").style.width=(Math.min(k+1,n)/n*100)+"%";
 }
@@ -2000,6 +2003,35 @@ let buyVis=false, endVis=false;
 new IntersectionObserver(es=>{buyVis=es[0].isIntersecting; mbarTick();},{threshold:.15}).observe($("#buy"));
 new IntersectionObserver(es=>{endVis=es[0].isIntersecting; mbarTick();}).observe($(".end"));
 function mbarTick(){ if(typeof heroH==="undefined") return; const past=scrollY>(heroH*.6); $("#mbar").classList.toggle("show",past&&!buyVis&&!endVis&&!anyOverlay()&&!document.body.classList.contains("nav-open")&&!$("#tray").classList.contains("show")); }
+
+/* store chooser: recommended store first, based on where the visitor is */
+const IS_ID=(()=>{ try{ const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""; if(/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(tz)) return true; }catch(e){} return (navigator.languages||[navigator.language||""]).some(l=>/^id\b/i.test(l)); })();
+const REC_NOTE={ "Lynk.id":"Pay in Rupiah", "Gumroad":"Card or PayPal, worldwide", "Payhip":"Card or PayPal checkout" };
+const STORES=(()=>{ const live=MARKETS.filter(m=>m.url), order=IS_ID?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"];
+  return live.slice().sort((a,b)=>order.indexOf(a.name)-order.indexOf(b.name)); })();
+let shLast=null;
+function openStore(t){
+  shLast=document.activeElement;
+  $("#shEye").textContent=t?"Buy "+t.name:"Choose a store";
+  $("#shTitle").textContent=t?"Where do you want to pay?":"Get any template";
+  $("#shTpl").innerHTML=t?`<img src="${thumb(t.id,0)}" alt="${t.name} template cover"><div><b>${t.name}</b><small>50 slides, Morph, PPTX 16:9</small></div>`:"";
+  $("#shList").innerHTML=STORES.map((m,i)=>`<a class="store${i?"":" rec"}" href="${m.url}" target="_blank" rel="noopener"><span class="logo">${m.name[0]}</span><span><b>${m.name}${i?"":'<span class="rb">Recommended</span>'}</b><small>${REC_NOTE[m.name]||m.note}</small></span><span class="go">Open ${ext}</span></a>`).join("");
+  $("#sheet").classList.add("open"); document.body.style.overflow="hidden"; mbarTick(); $("#shList a").focus();
+}
+function closeStore(){ if(!$("#sheet").classList.contains("open")) return; $("#sheet").classList.remove("open"); if(!anyOverlay()) document.body.style.overflow=""; mbarTick(); if(shLast) shLast.focus(); }
+$("#shClose").onclick=closeStore; $("#sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") closeStore(); });
+addEventListener("keydown",e=>{ if(e.key==="Escape"&&$("#sheet").classList.contains("open")){ e.stopImmediatePropagation(); closeStore(); } },true);
+$("#mBuy").onclick=()=>openStore(mt);
+$("#mbarBuy").onclick=()=>openStore(null);
+$("#endBuy").onclick=()=>openStore(null);
+$("#heroN").textContent=N;
+/* header menu and store cards follow the same order and say which one we recommend */
+(function(){
+  const rec=STORES[0]&&STORES[0].name, order=STORES.map(m=>m.name);
+  [["#buyList",".mk"],["#markets",".market"]].forEach(([box,sel])=>{ const el=$(box); [...el.querySelectorAll(sel)].sort((a,b)=>order.indexOf(a.querySelector("b").textContent)-order.indexOf(b.querySelector("b").textContent)).forEach(n=>el.appendChild(n)); });
+  $$("#markets .market").forEach(n=>{ if(n.querySelector("b").textContent===rec){ n.querySelector(".badge").textContent="Recommended for you"; } });
+  $$("#buyList .mk").forEach(n=>{ if(n.querySelector("b").textContent===rec) n.querySelector(".st").textContent="Best for you"; });
+})();
 V2READY=true; bandTick(); mbarTick();
 new MutationObserver(mbarTick).observe(modal,{attributes:true,attributeFilter:["class"]});
 </script>

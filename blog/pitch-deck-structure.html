@@ -47,6 +47,10 @@ header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 8
 .specs{list-style:none;border-top:1px solid var(--line);margin:0 0 24px}
 .specs li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}.specs span{color:var(--muted)}
 .acts{display:flex;gap:10px;flex-wrap:wrap}
+.trust{font-size:13px;color:var(--muted);margin-top:12px}
+.tbar{display:none}
+@media (max-width:760px){.tbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(160%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}.tbar.show{transform:none}.tbar b{display:block;font-size:14px;line-height:1.2}.tbar small{font-size:12px;color:var(--muted)}.tbar .btn{height:40px}}
+.mk.rec{border-color:var(--accent)}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}.tags i{font-style:normal;font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
 section{margin:0 0 64px}
 section>h2{font-size:26px;margin-bottom:8px}section>p.sub{color:var(--muted);margin-bottom:22px}
@@ -308,6 +312,25 @@ body{background:var(--bg)}
   <nav aria-label="Footer"><a href="/">Home</a><a href="/templates">All templates</a><a href="/blog">Blog</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a><a href="https://www.pinterest.com/meggystudio/" target="_blank" rel="noopener me">Pinterest &#8599;</a><a href="https://www.behance.net/meggystudio" target="_blank" rel="noopener me">Behance &#8599;</a></nav>
   <span>&copy; 2026 MEGGYSTUDIO. All rights reserved.</span>
 </div></footer>
+<script>
+(function(){
+  var S={"Lynk.id": "https://lynk.id/meggystudio1", "Payhip": "https://payhip.com/MeggyStudio1", "Gumroad": "https://meggystudio.gumroad.com/"};
+  var id=false; try{ id=/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||""); }catch(e){}
+  if(!id) id=(navigator.languages||[navigator.language||""]).some(function(l){return /^id\b/i.test(l);});
+  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"], rec=order.filter(function(n){return S[n];})[0];
+  var b=document.getElementById("buyMain"); if(b&&rec){ b.href=S[rec]; b.textContent="Buy on "+rec; }
+  var bb=document.getElementById("buyBar"), tb=document.getElementById("tbar");
+  if(bb&&rec) bb.href=S[rec];
+  if(tb&&b&&window.IntersectionObserver){ var vis={}; var upd=function(){ tb.classList.toggle("show", !vis.main && !vis.buy && b.getBoundingClientRect().top<0); };
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ vis[e.target===b?"main":"buy"]=e.isIntersecting; }); upd(); });
+    io.observe(b); var by=document.getElementById("buy"); if(by) io.observe(by); addEventListener("scroll",upd,{passive:true}); }
+  [].forEach.call(document.querySelectorAll(".markets"),function(box){
+    var items=[].slice.call(box.children);
+    items.sort(function(a,c){ return order.indexOf(a.querySelector("b").textContent)-order.indexOf(c.querySelector("b").textContent); }).forEach(function(n){ box.appendChild(n); });
+    items.forEach(function(n){ if(n.querySelector("b").textContent===rec){ var e=n.querySelector("em"); if(e) e.textContent="Recommended for you \u2192"; n.classList.add("rec"); } });
+  });
+})();
+</script>
 <script>
 (function(){
  var bar=document.querySelector('.progress'),art=document.querySelector('.post');
