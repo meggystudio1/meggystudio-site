@@ -52,7 +52,7 @@
   --btn:#ECEFF6; --btn-text:#0E1430; --logo-w:#FFFFFF; color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-padding-top:72px}
+html{scroll-padding-top:72px;overscroll-behavior-x:none}
 body{background:var(--bgc,var(--bg));color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:color .3s}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -487,13 +487,13 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 .foot .social{gap:16px}.foot .social a{display:inline-flex;align-items:center;gap:4px}.foot .social svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.6}
 
 /* modal */
-.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(5,8,20,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.modal{overscroll-behavior:contain;position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(5,8,20,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .modal.open{display:flex;animation:fade .25s ease}
 @keyframes fade{from{opacity:0}}
 .dialog{width:min(1140px,100%);max-height:calc(100% - 8px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:18px;display:grid;grid-template-columns:1.65fr 1fr;animation:rise .4s var(--ease);box-shadow:var(--shadow)}
 @keyframes rise{from{opacity:0;transform:translateY(16px) scale(.985)}}
 .viewer{padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.main-img{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000}
+.main-img{touch-action:pan-y;position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000}
 .main-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease)}
 .main-img .icon-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(10,14,30,.7);backdrop-filter:blur(6px);z-index:2;border-color:rgba(255,255,255,.15);color:#fff}
 .main-img .prev{left:10px}.main-img .next{right:10px}
@@ -780,7 +780,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 /* present mode */
 #show{position:fixed;inset:0;z-index:120;background:#000;display:none;flex-direction:column;color:#fff;user-select:none;-webkit-user-select:none}
 #show.open{display:flex}
-#show .stagebox{flex:1;position:relative;display:grid;place-items:center;overflow:hidden;cursor:none}
+#show .stagebox{touch-action:pan-y;flex:1;position:relative;display:grid;place-items:center;overflow:hidden;cursor:none}
 #show img{position:absolute;max-width:100%;max-height:100%;width:auto;height:auto;aspect-ratio:16/9;object-fit:contain;transition:opacity .55s var(--ease),transform .7s var(--ease),filter .55s}
 #show img.out{opacity:0;transform:scale(1.04);filter:blur(6px)}
 #show img.pre{opacity:0;transform:scale(.97);filter:blur(6px)}
@@ -837,7 +837,12 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 .sheet-trust li{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 10px;display:inline-flex;align-items:center;gap:6px}
 .sheet-trust li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-bg)}
 .sheet-note{font-size:12.5px;color:var(--muted);margin-top:10px}
-.market .rec-b{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.market.live:not(.rec) .logo,.mk.live:not(.rec) .logo{background:var(--surface-2);color:var(--text);border-color:var(--line)}
+.market.live:not(.rec) .badge{color:var(--muted);border-color:var(--line)}
+.market.rec{border-color:color-mix(in srgb,var(--accent) 60%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 60%,transparent) inset}
+.mk.live:not(.rec) .st{color:var(--muted)}
+.mk .st{white-space:nowrap}
+.mk.rec{background:color-mix(in srgb,var(--accent-bg) 9%,transparent)}
 @media (max-width:620px){.sheet{align-items:flex-end;padding:0}.sheet-card{border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}}
 /* sticky buy bar on phones */
 .mbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:65;display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:16px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(150%);transition:transform .45s var(--ease)}
@@ -1411,8 +1416,8 @@ const buyWrap=$("#buyWrap");
 const closeBuy=()=>{buyWrap.classList.remove("open"); $("#buyBtn").setAttribute("aria-expanded",false);};
 $("#buyBtn").onclick=e=>{e.stopPropagation(); const o=buyWrap.classList.toggle("open"); $("#buyBtn").setAttribute("aria-expanded",o);};
 document.addEventListener("click",e=>{ if(!buyWrap.contains(e.target)) closeBuy(); });
-$("#menuBtn").onclick=()=>{const o=document.body.classList.toggle("nav-open"); $("#menuBtn").setAttribute("aria-expanded",o); if(V2READY) mbarTick();};
-$$("#sheetNav a").forEach(a=>a.onclick=()=>document.body.classList.remove("nav-open"));
+$("#menuBtn").onclick=()=>{const o=document.body.classList.toggle("nav-open"); $("#menuBtn").setAttribute("aria-expanded",o); if(V2READY) mbarTick(); if(o) ovPush(); else ovDone();};
+$$("#sheetNav a").forEach(a=>a.onclick=e=>{ document.body.classList.remove("nav-open"); $("#menuBtn").setAttribute("aria-expanded",false); if(history.state&&history.state.msOv){ e.preventDefault(); const h=a.getAttribute("href"); OV_SKIP++; history.back(); later(()=>{ if(h.startsWith("#")) document.querySelector(h).scrollIntoView(); else location.href=h; }); } });
 const navLinks=$$(".links a");
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id)); }),{rootMargin:"-45% 0px -50% 0px"});
 ["templates","morph","howto","free","contact","faq"].forEach(id=>io.observe(document.getElementById(id)));
@@ -1746,6 +1751,17 @@ function showSlide(k){
   $("#mCount").textContent=`${mk+1} / ${mt.n}`;
   [...$("#mThumbs").children].forEach((b,i)=>b.classList.toggle("on",i===mk));
 }
+var OV_SKIP=0, OV_POPPING=false, OV_CB=null;
+function ovPush(){ try{ history.pushState({msOv:1},"",location.href); }catch(e){} }
+function ovDone(cb){ if(!OV_POPPING&&history.state&&history.state.msOv){ OV_SKIP++; OV_CB=cb||null; history.back(); } else if(cb) cb(); }
+function closeTop(){
+  const open=id=>{const el=document.getElementById(id); return el&&el.classList.contains("open");};
+  if(open("sheet")) return closeStore(); if(open("show")) return closeShow(); if(open("cview")) return closeCmp();
+  if(modal.classList.contains("open")) return closeM();
+  if(document.body.classList.contains("nav-open")){ document.body.classList.remove("nav-open"); $("#menuBtn").setAttribute("aria-expanded",false); }
+}
+addEventListener("popstate",()=>{ if(OV_SKIP){OV_SKIP--; const c=OV_CB; OV_CB=null; if(c) c(); return;} OV_POPPING=true; try{ closeTop(); } finally{ OV_POPPING=false; } });
+function later(fn){ setTimeout(fn,90); } /* lets a pending history.back() settle first */
 function openT(id,fromHash){
   const t=TEMPLATES.find(x=>x.id===id); if(!t)return;
   mt=t; lastFocus=document.activeElement;
@@ -1754,15 +1770,17 @@ function openT(id,fromHash){
   for(let k=0;k<t.n;k++){const b=document.createElement("button"); b.setAttribute("aria-label","Slide "+(k+1)); b.innerHTML=`<img src="${thumb(t.id,k)}" alt="${t.name} slide ${k+1} thumbnail">`; b.onclick=()=>showSlide(k); th.appendChild(b);}
   mk=0; $("#mImg").style.opacity=1; $("#mImg").src=img(t.id,0); $("#mImg").alt=t.name+" PowerPoint template slide 1"; $("#mCount").textContent=`1 / ${t.n}`;
   [...th.children].forEach((b,i)=>b.classList.toggle("on",i===0));
+  const wasOpen=modal.classList.contains("open");
   modal.classList.add("open"); document.body.style.overflow="hidden";
-  if(!fromHash&&location.hash!=="#"+id) history.replaceState(null,"","#"+id);
+  if(!fromHash&&location.hash!=="#"+id) history.replaceState(history.state,"","#"+id);
+  if(!fromHash&&!wasOpen) ovPush();
   $("#mClose").focus();
 }
 function closeM(){
   if(!modal.classList.contains("open"))return;
   modal.classList.remove("open"); document.body.style.overflow="";
-  if(TEMPLATES.some(t=>"#"+t.id===location.hash)) history.replaceState(null,"",location.pathname+location.search);
   if(lastFocus) lastFocus.focus();
+  ovDone(()=>{ if(TEMPLATES.some(t=>"#"+t.id===location.hash)) history.replaceState(history.state,"",location.pathname+location.search); });
 }
 $("#mClose").onclick=closeM;
 $("#mBuy").onclick=()=>{closeM(); $("#buy").scrollIntoView({behavior:reduce?"auto":"smooth"});};
@@ -1856,15 +1874,15 @@ function openCmp(){
   $("#cPair").innerHTML=[a,b].map(t=>`<div class="cside"><div class="im"><img src="${img(t.id,0)}" alt="${t.name} slide 1" data-id="${t.id}"></div><div class="meta"><b>${t.name}<small>${t.cat}</small></b><button class="btn" data-open="${t.id}">View details</button></div></div>`).join("");
   $("#cNav").innerHTML=Array.from({length:n},(_,i)=>`<button class="n${i?"":" on"}" data-k="${i}" aria-label="Slide ${i+1}">${i+1}</button>`).join("");
   $$("#cNav .n").forEach(b=>b.onclick=()=>cShow(+b.dataset.k));
-  $$("#cPair [data-open]").forEach(b=>b.onclick=()=>{closeCmp(); openT(b.dataset.open);});
-  $("#cview").classList.add("open"); document.body.style.overflow="hidden"; $("#cClose").focus(); mbarTick();
+  $$("#cPair [data-open]").forEach(b=>b.onclick=()=>{closeCmp(); later(()=>openT(b.dataset.open));});
+  $("#cview").classList.add("open"); document.body.style.overflow="hidden"; $("#cClose").focus(); mbarTick(); ovPush();
 }
 function cShow(k){
   const n=$$("#cNav .n").length; cK=(k+n)%n;
   $$("#cPair img").forEach(im=>{ im.style.opacity=0; const id=im.dataset.id; setTimeout(()=>{im.src=img(id,cK); im.alt=`${TEMPLATES.find(x=>x.id===id).name} slide ${cK+1}`; im.onload=()=>im.style.opacity=1; if(im.complete) im.style.opacity=1;},160); });
   $$("#cNav .n").forEach((b,i)=>b.classList.toggle("on",i===cK));
 }
-function closeCmp(){ $("#cview").classList.remove("open"); if(!modal.classList.contains("open")) document.body.style.overflow=""; if(cLast) cLast.focus(); mbarTick(); }
+function closeCmp(){ if(!$("#cview").classList.contains("open")) return; $("#cview").classList.remove("open"); if(!modal.classList.contains("open")) document.body.style.overflow=""; if(cLast) cLast.focus(); mbarTick(); ovDone(); }
 $("#trayGo").onclick=openCmp; $("#cClose").onclick=closeCmp;
 
 /* quiz */
@@ -1943,18 +1961,18 @@ $$("#uses-grid .use").forEach(b=>b.onclick=()=>openT(b.dataset.id));
 let sT=null, sK=0, sPrevOverflow="", sUiT=null;
 function openShow(t,k=0){
   sT=t; sK=k; sPrevOverflow=document.body.style.overflow; document.body.style.overflow="hidden";
-  $("#showStage").innerHTML=""; $("#showName").textContent=t.name; $("#show").classList.add("open"); sShow(k,true); sUi(); mbarTick();
+  $("#showStage").innerHTML=""; $("#showName").textContent=t.name; $("#show").classList.add("open"); sShow(k,true); sUi(); mbarTick(); ovPush();
 }
 function sEnd(){ return `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px"><div><p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase">End of preview</p><h2 style="font-size:clamp(28px,4vw,48px);margin:10px 0 8px">The full deck has 50 slides</h2><p style="color:rgba(255,255,255,.7);margin-bottom:22px">Cheaper than a coffee, on every marketplace we list.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="sBuy" style="background:#fff;color:#0F1420">Buy this template</button><button class="btn" id="sAgain" style="border:1px solid rgba(255,255,255,.3)">Watch again</button></div></div></div>`; }
 function sShow(k,first){
   const n=sT.n; k=clamp(k,0,n); sK=k; const stage=$("#showStage");
   [...stage.children].forEach(el=>{ el.classList.add("out"); setTimeout(()=>el.remove(),reduce?0:560); });
-  if(k===n){ stage.insertAdjacentHTML("beforeend",sEnd()); $("#sBuy").onclick=()=>{ const t=sT; closeShow(); openStore(t); }; $("#sAgain").onclick=()=>sShow(0); stage.style.cursor="default"; }
+  if(k===n){ stage.insertAdjacentHTML("beforeend",sEnd()); $("#sBuy").onclick=()=>{ const t=sT; closeShow(); later(()=>openStore(t)); }; $("#sAgain").onclick=()=>sShow(0); stage.style.cursor="default"; }
   else { stage.style.cursor=""; const im=new Image(); im.src=img(sT.id,k); im.alt=`${sT.name} slide ${k+1}`; im.className=first||reduce?"":"pre"; stage.appendChild(im); requestAnimationFrame(()=>requestAnimationFrame(()=>im.classList.remove("pre"))); }
   $("#showN").textContent=k===n?"End":`${k+1} / ${n}`; $("#showBar").style.width=(Math.min(k+1,n)/n*100)+"%";
 }
 function sUi(){ $("#show").classList.add("ui"); clearTimeout(sUiT); sUiT=setTimeout(()=>$("#show").classList.remove("ui"),2200); }
-function closeShow(){ if(!$("#show").classList.contains("open")) return; if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); $("#show").classList.remove("open"); document.body.style.overflow=sPrevOverflow; mbarTick(); }
+function closeShow(){ if(!$("#show").classList.contains("open")) return; if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); $("#show").classList.remove("open"); document.body.style.overflow=sPrevOverflow; mbarTick(); ovDone(); }
 $("#show").addEventListener("mousemove",sUi);
 $("#showStage").addEventListener("click",e=>{ if(e.target.closest("button")) return; if(sK>=sT.n) return; sShow(sK+(e.clientX<innerWidth*.3?-1:1)); });
 let shx=null; $("#showStage").addEventListener("touchstart",e=>shx=e.touches[0].clientX,{passive:true});
@@ -2016,9 +2034,9 @@ function openStore(t){
   $("#shTitle").textContent=t?"Where do you want to pay?":"Get any template";
   $("#shTpl").innerHTML=t?`<img src="${thumb(t.id,0)}" alt="${t.name} template cover"><div><b>${t.name}</b><small>50 slides, Morph, PPTX 16:9</small></div>`:"";
   $("#shList").innerHTML=STORES.map((m,i)=>`<a class="store${i?"":" rec"}" href="${m.url}" target="_blank" rel="noopener"><span class="logo">${m.name[0]}</span><span><b>${m.name}${i?"":'<span class="rb">Recommended</span>'}</b><small>${REC_NOTE[m.name]||m.note}</small></span><span class="go">Open ${ext}</span></a>`).join("");
-  $("#sheet").classList.add("open"); document.body.style.overflow="hidden"; mbarTick(); $("#shList a").focus();
+  $("#sheet").classList.add("open"); document.body.style.overflow="hidden"; mbarTick(); $("#shList a").focus(); ovPush();
 }
-function closeStore(){ if(!$("#sheet").classList.contains("open")) return; $("#sheet").classList.remove("open"); if(!anyOverlay()) document.body.style.overflow=""; mbarTick(); if(shLast) shLast.focus(); }
+function closeStore(){ if(!$("#sheet").classList.contains("open")) return; $("#sheet").classList.remove("open"); if(!anyOverlay()) document.body.style.overflow=""; mbarTick(); if(shLast) shLast.focus(); ovDone(); }
 $("#shClose").onclick=closeStore; $("#sheet").addEventListener("click",e=>{ if(e.target.id==="sheet") closeStore(); });
 addEventListener("keydown",e=>{ if(e.key==="Escape"&&$("#sheet").classList.contains("open")){ e.stopImmediatePropagation(); closeStore(); } },true);
 $("#mBuy").onclick=()=>openStore(mt);
@@ -2029,8 +2047,8 @@ $("#heroN").textContent=N;
 (function(){
   const rec=STORES[0]&&STORES[0].name, order=STORES.map(m=>m.name);
   [["#buyList",".mk"],["#markets",".market"]].forEach(([box,sel])=>{ const el=$(box); [...el.querySelectorAll(sel)].sort((a,b)=>order.indexOf(a.querySelector("b").textContent)-order.indexOf(b.querySelector("b").textContent)).forEach(n=>el.appendChild(n)); });
-  $$("#markets .market").forEach(n=>{ if(n.querySelector("b").textContent===rec){ n.querySelector(".badge").textContent="Recommended for you"; } });
-  $$("#buyList .mk").forEach(n=>{ if(n.querySelector("b").textContent===rec) n.querySelector(".st").textContent="Best for you"; });
+  $$("#markets .market").forEach(n=>{ const r=n.querySelector("b").textContent===rec; n.classList.toggle("rec",r); if(r) n.querySelector(".badge").textContent="Recommended for you"; });
+  $$("#buyList .mk").forEach(n=>{ const r=n.querySelector("b").textContent===rec; n.classList.toggle("rec",r); if(r) n.querySelector(".st").textContent="Recommended"; });
 })();
 V2READY=true; bandTick(); mbarTick();
 new MutationObserver(mbarTick).observe(modal,{attributes:true,attributeFilter:["class"]});

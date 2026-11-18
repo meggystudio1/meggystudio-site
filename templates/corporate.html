@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{var t=localStorage.getItem("ms-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <title>Corporate Pitch Deck PowerPoint Template with Morph (50 Slides) | MEGGYSTUDIO</title>
 <meta name="description" content="A bold blue 50-slide PowerPoint template for company profiles, pitch decks and business reports, with Morph transitions already set up.">
 <link rel="canonical" href="https://meggystudio.com/templates/corporate">
@@ -25,7 +26,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F3F5FA;--text:#0F1420;--muted:#5B6472;--accent:#00917C;--line:rgba(15,25,50,.11);--surface:rgba(15,25,50,.04);--card:#fff;--btn:#0F1420;--btn-text:#fff;--logo-w:#0F1420;--shadow:0 24px 50px -24px rgba(20,30,60,.25);--font:"Geist",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
@@ -50,7 +52,7 @@ header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 8
 .trust{font-size:13px;color:var(--muted);margin-top:12px}
 .tbar{display:none}
 @media (max-width:760px){.tbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(160%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}.tbar.show{transform:none}.tbar b{display:block;font-size:14px;line-height:1.2}.tbar small{font-size:12px;color:var(--muted)}.tbar .btn{height:40px}}
-.mk.rec{border-color:var(--accent)}
+.mk.rec{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}.tags i{font-style:normal;font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
 section{margin:0 0 64px}
 section>h2{font-size:26px;margin-bottom:8px}section>p.sub{color:var(--muted);margin-bottom:22px}
