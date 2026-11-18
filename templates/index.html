@@ -67,6 +67,31 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.foot nav{display:flex;gap:18px;flex-wrap:wrap}.foot a:hover{color:var(--text)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .grid a{display:flex;flex-direction:column;gap:10px}.grid p{font-size:14px;color:var(--muted)}
+.post{max-width:760px;margin:0 auto}
+.post h1{font-size:clamp(30px,4.4vw,46px);margin:10px 0 14px}
+.meta{font-size:13.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.post .lede{font-size:19px;color:var(--text);margin-bottom:18px}
+.post p,.post li{font-size:17px}.post p{margin:0 0 16px}
+.post h2{font-size:27px;margin:44px 0 14px;scroll-margin-top:84px}.post h3{font-size:20px;margin:26px 0 8px}
+.post ul,.post ol{padding-left:22px;margin:0 0 18px}.post li{margin:7px 0}
+.post a:not(.btn){color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.post code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+.post figure{margin:26px 0}.post figure img{border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.post figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;text-align:center}
+.post table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+@media (max-width:600px){.post table{display:block;overflow-x:auto}}
+.post .crumb a{color:inherit;text-decoration:none}
+.post th,.post td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.post th{font-weight:600;background:var(--surface)}
+.post .note{font-size:14px;color:var(--muted)}
+.tip{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0;font-size:16px}
+.cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;margin:34px 0;box-shadow:var(--shadow)}
+.cta b{font-size:20px;font-weight:600;display:block;margin-bottom:6px}.cta p{color:var(--muted);margin-bottom:16px}
+.toc{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:0 0 28px;background:var(--surface)}
+.toc b{font-size:13px;font-family:var(--mono);color:var(--muted);font-weight:500}.toc ol{margin:8px 0 0;padding-left:20px}.toc li{font-size:15px;margin:4px 0}.toc a{color:var(--text)!important;text-decoration:none!important}
+.posthero{margin:0 0 26px}
+.bl{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.bl a{display:flex;flex-direction:column;gap:10px}.bl h2{font-size:21px}.bl p{font-size:15px;color:var(--muted)}
+@media (max-width:880px){.bl{grid-template-columns:1fr}}
 @media (max-width:880px){.hero,.cols{grid-template-columns:1fr}.gal,.rel,.grid{grid-template-columns:1fr 1fr}.markets{grid-template-columns:1fr 1fr}.nav nav{display:none}}
 @media (max-width:520px){.gal,.rel,.grid{grid-template-columns:1fr}.wrap{padding:0 18px}}
 </style>
@@ -75,7 +100,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 <body>
 <header><div class="wrap nav">
   <a class="brand" href="/" aria-label="MEGGYSTUDIO home"><svg viewBox="166 30 1278 1012" aria-hidden="true"><defs><linearGradient id="mlg" gradientUnits="userSpaceOnUse" x1="0" y1="40" x2="0" y2="1030"><stop offset="0" stop-color="#00EFCB"/><stop offset="1" stop-color="#2E8BEA"/></linearGradient></defs><path fill="var(--logo-w)" fill-rule="evenodd" d="M1031,568 L1028,569 L879,825 L876,827 L847,783 L840,774 L837,774 L800,838 L805,850 L870,949 L873,948 L1064,625 L1061,614 Z M353,47 L350,48 L179,1028 L359,1029 L414,1028 L458,784 L455,773 L418,708 L415,711 L368,962 L351,965 L252,963 L389,216 L419,258 L713,707 L716,707 L752,644 Z"/><path fill="url(#mlg)" fill-rule="evenodd" d="M1253,42 L1145,41 L1142,43 L568,1024 L568,1029 L646,1028 L1190,99 L1193,103 L1348,947 L1348,954 L1345,956 L1314,955 L1312,953 L1174,201 L1170,198 L1129,270 L1124,287 L1256,1024 L1260,1029 L1430,1029 L1409,897 L1283,208 L1273,141 Z"/></svg><span>MEGGYSTUDIO</span></a>
-  <nav aria-label="Main"><a href="/templates">All templates</a><a href="/#howto">How to use</a><a href="/#free">Free sample</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
+  <nav aria-label="Main"><a href="/templates">All templates</a><a href="/#howto">How to use</a><a href="/#free">Free sample</a><a href="/blog">Blog</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
   <a class="btn btn-primary" href="#buy">Buy</a>
 </div></header>
 <main class="wrap">
@@ -92,7 +117,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 </section>
 </main>
 <footer><div class="wrap foot">
-  <nav aria-label="Footer"><a href="/">Home</a><a href="/templates">All templates</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a></nav>
+  <nav aria-label="Footer"><a href="/">Home</a><a href="/templates">All templates</a><a href="/blog">Blog</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a></nav>
   <span>&copy; 2026 MEGGYSTUDIO. All rights reserved.</span>
 </div></footer>
 </body>
