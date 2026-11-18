@@ -287,6 +287,9 @@ main>*:not(.thread){position:relative;z-index:1}
 .chip.tag{height:30px;font-size:12.5px;background:transparent}
 .chip.tag.on{background:color-mix(in srgb,var(--accent-bg) 18%,transparent);color:var(--text);border-color:var(--accent)}
 .chips-label{font-family:var(--mono);font-size:11.5px;color:var(--muted);align-self:center;margin-right:4px}
+.mood-btn{display:none;height:30px;padding:0 12px;border-radius:99px;border:1px dashed var(--line);font-size:12.5px;color:var(--muted);align-items:center;gap:6px}
+.mood-btn svg{width:12px;height:12px;transition:transform .25s}
+#tags.open .mood-btn svg{transform:rotate(180deg)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px}
 .card{display:flex;flex-direction:column;gap:12px;text-align:left;border-radius:var(--r);transition:transform .35s var(--ease)}
 .card:hover{transform:translateY(-3px)}
@@ -443,6 +446,7 @@ form.cform{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:26px;bord
 /* buy */
 .markets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .market{display:flex;flex-direction:column;gap:22px;padding:22px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);transition:border-color .25s,transform .3s var(--ease)}
+.market.live{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
 a.market:hover{border-color:var(--accent);transform:translateY(-3px)}
 .market .row1{display:flex;justify-content:space-between;align-items:center}
 .market .logo{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-weight:600;background:var(--surface-2);border:1px solid var(--line)}
@@ -573,8 +577,11 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
   form.cform{grid-template-columns:1fr;padding:18px}
   .ex-count{margin-left:0;width:100%}
   .search{max-width:none}
-  .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}
-  .chips::-webkit-scrollbar{display:none}
+  .chips{gap:6px}
+  #cats .chip{height:32px;padding:0 12px;font-size:13px}
+  #tags .chips-label{display:none}
+  #tags .mood-btn{display:inline-flex}
+  #tags:not(.open) .chip.tag:not(.on){display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*:before,*:after{transition:none!important;animation:none!important}
@@ -830,19 +837,15 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 .store small{display:block;font-size:12.5px;color:var(--muted)}
 .store .go{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;white-space:nowrap}
 .store .go svg{width:14px;height:14px}
-.store.rec{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent-bg) 8%,transparent)}
-.store.rec .logo{background:var(--accent-bg);color:#03241F;border-color:transparent}
+.store{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.store .logo{background:var(--accent-bg);color:#03241F;border-color:transparent}
 .store .rb{display:inline-block;font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-left:6px;font-weight:500}
 .sheet-trust{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .sheet-trust li{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 10px;display:inline-flex;align-items:center;gap:6px}
 .sheet-trust li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-bg)}
 .sheet-note{font-size:12.5px;color:var(--muted);margin-top:10px}
-.market.live:not(.rec) .logo,.mk.live:not(.rec) .logo{background:var(--surface-2);color:var(--text);border-color:var(--line)}
-.market.live:not(.rec) .badge{color:var(--muted);border-color:var(--line)}
-.market.rec{border-color:color-mix(in srgb,var(--accent) 60%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 60%,transparent) inset}
-.mk.live:not(.rec) .st{color:var(--muted)}
 .mk .st{white-space:nowrap}
-.mk.rec{background:color-mix(in srgb,var(--accent-bg) 9%,transparent)}
+
 @media (max-width:620px){.sheet{align-items:flex-end;padding:0}.sheet-card{border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}}
 /* sticky buy bar on phones */
 .mbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:65;display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:16px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(150%);transition:transform .45s var(--ease)}
@@ -971,7 +974,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
           <span class="ex-count" id="count" aria-live="polite"></span>
         </div>
         <div class="chips" id="cats" role="tablist" aria-label="Filter by category"></div>
-        <div class="chips" id="tags" aria-label="Filter by mood"><span class="chips-label">Mood</span></div>
+        <div class="chips" id="tags" aria-label="Filter by mood"><span class="chips-label">Mood</span><button class="mood-btn" id="moodBtn" type="button" aria-expanded="false">Filter by mood<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
       </div>
       <div class="grid" id="grid"></div>
       <div class="ex-more"><button class="btn btn-secondary" id="more" hidden>Show more templates</button></div>
@@ -2033,7 +2036,7 @@ function openStore(t){
   $("#shEye").textContent=t?"Buy "+t.name:"Choose a store";
   $("#shTitle").textContent=t?"Where do you want to pay?":"Get any template";
   $("#shTpl").innerHTML=t?`<img src="${thumb(t.id,0)}" alt="${t.name} template cover"><div><b>${t.name}</b><small>50 slides, Morph, PPTX 16:9</small></div>`:"";
-  $("#shList").innerHTML=STORES.map((m,i)=>`<a class="store${i?"":" rec"}" href="${m.url}" target="_blank" rel="noopener"><span class="logo">${m.name[0]}</span><span><b>${m.name}${i?"":'<span class="rb">Recommended</span>'}</b><small>${REC_NOTE[m.name]||m.note}</small></span><span class="go">Open ${ext}</span></a>`).join("");
+  $("#shList").innerHTML=STORES.map((m,i)=>`<a class="store" href="${m.url}" target="_blank" rel="noopener"><span class="logo">${m.name[0]}</span><span><b>${m.name}</b><small>${REC_NOTE[m.name]||m.note}</small></span><span class="go">Open ${ext}</span></a>`).join("");
   $("#sheet").classList.add("open"); document.body.style.overflow="hidden"; mbarTick(); $("#shList a").focus(); ovPush();
 }
 function closeStore(){ if(!$("#sheet").classList.contains("open")) return; $("#sheet").classList.remove("open"); if(!anyOverlay()) document.body.style.overflow=""; mbarTick(); if(shLast) shLast.focus(); ovDone(); }
@@ -2047,9 +2050,8 @@ $("#heroN").textContent=N;
 (function(){
   const rec=STORES[0]&&STORES[0].name, order=STORES.map(m=>m.name);
   [["#buyList",".mk"],["#markets",".market"]].forEach(([box,sel])=>{ const el=$(box); [...el.querySelectorAll(sel)].sort((a,b)=>order.indexOf(a.querySelector("b").textContent)-order.indexOf(b.querySelector("b").textContent)).forEach(n=>el.appendChild(n)); });
-  $$("#markets .market").forEach(n=>{ const r=n.querySelector("b").textContent===rec; n.classList.toggle("rec",r); if(r) n.querySelector(".badge").textContent="Recommended for you"; });
-  $$("#buyList .mk").forEach(n=>{ const r=n.querySelector("b").textContent===rec; n.classList.toggle("rec",r); if(r) n.querySelector(".st").textContent="Recommended"; });
 })();
+$("#moodBtn").onclick=()=>{ const o=$("#tags").classList.toggle("open"); $("#moodBtn").setAttribute("aria-expanded",o); };
 V2READY=true; bandTick(); mbarTick();
 new MutationObserver(mbarTick).observe(modal,{attributes:true,attributeFilter:["class"]});
 </script>
