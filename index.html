@@ -981,8 +981,8 @@ const TEMPLATES = [
  {id:"car-company", name:"Car Company", cat:"Business", n:9, added:"2026-11-18", tags:["Dark", "Sport", "Photo"], desc:"A motorsport style car company deck in black and racing teal, with gauges, blueprints and road photos. Great for car brands and dealers, EV startups and mobility and transport companies."}
 ];
 const DECK = [
-  ["corporate",3,"Big numbers"],["kpop-bento",1,"Section divider"],["quantum-tech",3,"Dashboard"],["racing",4,"Team"],
-  ["liquid-glass",6,"Pricing"],["neon-groove",7,"Roadmap"],["gaming",5,"Gallery"],["travel",7,"Closing"]
+  ["y2k-chrome",0,"Cover"],["memphis-pop",1,"Section divider"],["quantum-tech",3,"Dashboard"],["art-deco",8,"Team"],
+  ["swiss-style",5,"Pricing"],["80s-synthwave",8,"Phone mockup"],["comic-book",6,"Donut chart"],["car-company",5,"Product lineup"]
 ];
 /* Background color per chapter (data-bg index), dark and light */
 const BG = {
@@ -1048,9 +1048,11 @@ MARKETS.forEach(m=>{
 });
 
 /* ---- hero panorama ---- */
+const LATEST=TEMPLATES.reduce((m,t)=>t.added>m?t.added:m,"");
+const PANO=(()=>{const a=TEMPLATES.filter(t=>t.added===LATEST), b=TEMPLATES.filter(t=>t.added!==LATEST), o=[]; for(let i=0;i<Math.max(a.length,b.length);i++){ if(a[i])o.push(a[i]); if(b[i])o.push(b[i]); } return o;})();
 const pano=$("#pano"), ring=$("#ring"), STEP=360/N;
 let R=1000, rot=0, target=0, cur=0, dragging=false, hover=false, dwell=performance.now(), phase=0, PW=400, panoVisible=true;
-const panels=TEMPLATES.map(t=>{
+const panels=PANO.map(t=>{
   const p=document.createElement("div"); p.className="panel";
   p.innerHTML=`<div class="lbl">${t.name}</div>
     <div class="frame">${[0,1,2].map(k=>`<img class="layer${k===0?" on":""}" ${k===0?`src="${hsrc(t.id,0)}"`:`data-src="${hsrc(t.id,k)}"`} alt="${k===0?t.name+" template slide":""}" draggable="false" decoding="async">`).join("")}</div>
@@ -1084,7 +1086,7 @@ function showLayer(i,k){
 }
 function setCenter(c){
   showLayer(cur,0); cur=c; dwell=performance.now(); phase=0; loadNear(c); showLayer(c,0);
-  $("#nowName").textContent=TEMPLATES[c].name; $("#nowCat").textContent=TEMPLATES[c].cat;
+  $("#nowName").textContent=PANO[c].name; $("#nowCat").textContent=PANO[c].cat;
 }
 function goTo(i){target=rot+norm(i*STEP-rot); dwell=performance.now();}
 function step(d){target=Math.round(target/STEP)*STEP+d*STEP; dwell=performance.now();}
@@ -1114,7 +1116,7 @@ function endDrag(e){
   if(moved<6){
     const el=document.elementFromPoint(e.clientX,e.clientY), p=el&&el.closest(".panel"), i=panels.indexOf(p);
     target=Math.round(rot/STEP)*STEP;
-    if(i>=0){ if(i===cur) openT(TEMPLATES[i].id); else goTo(i); }
+    if(i>=0){ if(i===cur) openT(PANO[i].id); else goTo(i); }
     return;
   }
   target=Math.round((rot+vel*8)/STEP)*STEP; dwell=performance.now();
@@ -1122,7 +1124,7 @@ function endDrag(e){
 pano.addEventListener("pointerup",endDrag); pano.addEventListener("pointercancel",endDrag);
 pano.addEventListener("mouseenter",()=>hover=true); pano.addEventListener("mouseleave",()=>hover=false);
 $("#prevBtn").onclick=()=>step(-1); $("#nextBtn").onclick=()=>step(1);
-$("#nowOpen").onclick=()=>openT(TEMPLATES[cur].id);
+$("#nowOpen").onclick=()=>openT(PANO[cur].id);
 size(); setCenter(0); loadNear(0); render(); requestAnimationFrame(tick);
 
 /* ---- story ---- */
@@ -1140,7 +1142,7 @@ function setChapter(i){
 
 /* ---- laptop ---- */
 const scr=$("#scr");
-TEMPLATES.forEach((t,i)=>scr.insertAdjacentHTML("beforeend",`<img src="${thumb(t.id,0)}" alt="" loading="lazy"${i===0?' class="on"':""}>`));
+PANO.forEach((t,i)=>scr.insertAdjacentHTML("beforeend",`<img src="${thumb(t.id,0)}" alt="" loading="lazy"${i===0?' class="on"':""}>`));
 const scrImgs=[...scr.children]; let scrIdx=0;
 
 /* ---- morph demo ---- */
@@ -1191,7 +1193,7 @@ const PAGE=9;
 const st={q:"",cat:"All",tags:new Set(),sort:"new",limit:PAGE};
 const grid=$("#grid"), catsEl=$("#cats"), tagsEl=$("#tags");
 const ALLTAGS=[...new Set(TEMPLATES.flatMap(t=>t.tags))].sort();
-const newest=[...TEMPLATES].sort((a,b)=>b.added.localeCompare(a.added)).slice(0,3).map(t=>t.id);
+const newest=TEMPLATES.filter(t=>t.added===LATEST).map(t=>t.id);
 ["All",...CATS].forEach(c=>{
   const b=document.createElement("button"); b.className="chip"; b.setAttribute("role","tab"); b.dataset.c=c;
   b.innerHTML=`${c}<sup>${c==="All"?N:TEMPLATES.filter(t=>t.cat===c).length}</sup>`;
@@ -1349,7 +1351,7 @@ function updateScroll(force){
   const lid=reduce?0:lerp(-72,0,ease(clamp(sp/.35)));
   $("#lid").style.setProperty("--lid",lid+"deg");
   const si=clamp(Math.floor(clamp((sp-.35)/.6)*N),0,N-1);
-  if(si!==scrIdx){scrImgs[scrIdx].classList.remove("on"); scrImgs[si].classList.add("on"); scrIdx=si; $("#scrName").textContent=TEMPLATES[si].name;}
+  if(si!==scrIdx){scrImgs[scrIdx].classList.remove("on"); scrImgs[si].classList.add("on"); scrIdx=si; $("#scrName").textContent=PANO[si].name;}
   /* deck */
   deckRender(secProgress($("#inside")));
   /* thread */
