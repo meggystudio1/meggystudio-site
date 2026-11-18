@@ -574,6 +574,257 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
   *,*:before,*:after{transition:none!important;animation:none!important}
   .d1 .tt{width:14ch}
 }
+
+/* ================= 2.0 ================= */
+/* grain: a fixed, static noise layer so flat colors feel printed, not plastic */
+.grain{position:fixed;inset:-50%;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:root[data-theme="light"] .grain{opacity:.07;mix-blend-mode:multiply}
+
+/* hero as a slide: crop marks + slide meta */
+.hero .wrap{position:relative}
+.slidebox{position:absolute;inset:-26px 4% -30px;pointer-events:none}
+.slidebox i{position:absolute;width:18px;height:18px;border-color:var(--muted);border-style:solid;border-width:0;opacity:.45}
+.slidebox i:nth-child(1){left:0;top:0;border-left-width:1px;border-top-width:1px}
+.slidebox i:nth-child(2){right:0;top:0;border-right-width:1px;border-top-width:1px}
+.slidebox i:nth-child(3){left:0;bottom:0;border-left-width:1px;border-bottom-width:1px}
+.slidebox i:nth-child(4){right:0;bottom:0;border-right-width:1px;border-bottom-width:1px}
+.slidebox span{position:absolute;top:-2px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.slidebox .sl-l{left:28px}.slidebox .sl-r{right:28px}
+.slidebox .sl-r b{display:inline-block;width:6px;height:6px;border-radius:50%;background:#FF3B30;margin-right:7px;vertical-align:1px;animation:rec 1.6s ease-in-out infinite}
+@keyframes rec{50%{opacity:.25}}
+@media (max-width:760px){.slidebox{display:none}}
+
+/* laser pointer, only inside the hero copy, only with a mouse */
+.laser{position:fixed;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#FF3B30;z-index:60;pointer-events:none;opacity:0;transition:opacity .2s;
+  box-shadow:0 0 0 2px rgba(255,59,48,.18),0 0 14px 4px rgba(255,59,48,.55)}
+.laser.on{opacity:1}
+.laser-trail{position:fixed;left:0;top:0;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#FF3B30;z-index:59;pointer-events:none;opacity:0}
+
+/* coffee ticker */
+.ticker{margin-top:56px;border-block:1px solid var(--line);overflow:hidden;position:relative;background:color-mix(in srgb,var(--bgc,var(--bg)) 70%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker-in{display:flex;width:max-content;animation:tick 38s linear infinite}
+.ticker:hover .ticker-in{animation-play-state:paused}
+.ticker ul{display:flex;align-items:center;list-style:none;flex:none}
+.ticker li{display:flex;align-items:center;gap:14px;padding:14px 0 14px 22px;font-size:14px;color:var(--muted);white-space:nowrap}
+.ticker li s{text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--muted) 70%,transparent)}
+.ticker li em{font-style:normal;font-family:var(--mono);font-size:12.5px}
+.ticker li svg{width:15px;height:15px;opacity:.5;flex:none;margin-left:8px}
+.ticker li.us{color:var(--text);font-weight:500}
+.ticker li.us mark{background:var(--text);color:var(--bg);padding:3px 9px;border-radius:99px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* big type band */
+.band{padding:110px 0 0;overflow:hidden}
+.band .row{display:flex;gap:.35em;white-space:nowrap;font-size:clamp(64px,11vw,168px);font-weight:700;letter-spacing:-.045em;line-height:.95;will-change:transform}
+.band .row span{display:inline-block}
+.band .row.o span{color:transparent;-webkit-text-stroke:1.2px color-mix(in srgb,var(--text) 55%,transparent)}
+.band .row span.a{background:linear-gradient(90deg,#00EFCB,#2E8BEA);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:0}
+.band .row:nth-child(2){margin-top:.08em}
+
+/* before / after tabs */
+.ba-tabs{display:flex;justify-content:center;margin:-14px auto 22px}
+.ba-cap{text-align:center;font-size:13px;color:var(--muted);margin-top:14px}
+.ba-cap b{color:var(--text);font-weight:500}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:.9fr 1.3fr;gap:44px;align-items:start;padding:40px;border-radius:24px;border:1px solid var(--line);background:var(--surface);position:relative;overflow:hidden}
+.quiz h2{font-size:clamp(28px,3.2vw,42px);line-height:1.08;margin:8px 0 14px}
+.quiz .lede{color:var(--muted);max-width:36ch}
+.qsteps{display:flex;gap:6px;margin-top:24px}
+.qsteps i{width:34px;height:3px;border-radius:2px;background:var(--line);transition:background .3s}
+.qsteps i.on{background:var(--accent-bg)}
+.qbox{min-height:330px;position:relative}
+.qpane{display:flex;flex-direction:column;gap:14px;animation:qin .45s var(--ease)}
+@keyframes qin{from{opacity:0;transform:translateX(18px)}}
+.qpane h3{font-size:20px;font-weight:600}
+.qpane .qn{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qopt{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:16px 16px 15px;border-radius:14px;border:1px solid var(--line);background:var(--card);transition:border-color .2s,transform .25s var(--ease),box-shadow .25s}
+.qopt:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+.qopt b{font-size:15px;font-weight:600}
+.qopt small{font-size:13px;color:var(--muted);line-height:1.4}
+.qopt .sw{display:flex;gap:4px;margin-bottom:6px}
+.qopt .sw u{width:14px;height:14px;border-radius:4px;text-decoration:none}
+.qback{align-self:flex-start;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.qres{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.qcard{display:flex;flex-direction:column;gap:8px;text-align:left}
+.qcard .im{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.qcard .im img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.qcard:hover .im img{transform:scale(1.04)}
+.qcard .im em{position:absolute;left:8px;top:8px;font-style:normal;font-family:var(--mono);font-size:10.5px;padding:3px 7px;border-radius:5px;background:var(--text);color:var(--bg)}
+.qcard b{font-size:15px;font-weight:600}
+.qcard small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.qacts{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+/* catalog: labels, colors, compare */
+.thumb .lab{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:10.5px;padding:3px 7px;border-radius:5px;z-index:2;letter-spacing:.02em}
+.thumb .lab.pick{background:#0F1420;color:#fff}
+:root[data-theme="dark"] .thumb .lab.pick{background:#fff;color:#0F1420}
+.thumb .lab.pitch{background:rgba(255,255,255,.92);color:#0F1420;box-shadow:0 0 0 1px rgba(15,20,32,.12)}
+.thumb .lab.new{background:var(--accent-bg);color:#03241F}
+.thumb img.base{transition:transform .6s var(--ease),opacity .5s var(--ease)}
+.card:hover .thumb img.base{transform:scale(1.03)}
+.chips.cols .sw{width:28px;height:28px;border-radius:50%;border:2px solid var(--bgc,var(--bg));box-shadow:0 0 0 1px var(--line);transition:box-shadow .2s,transform .2s;flex:none}
+.chips.cols .sw:hover{transform:scale(1.08)}
+.chips.cols .sw.on{box-shadow:0 0 0 2px var(--text)}
+.chips.cols{align-items:center}
+.cwrap{position:relative;display:flex}.cwrap>.card{width:100%}
+.cmp{position:absolute;right:10px;top:10px;z-index:3;height:28px;padding:0 10px 0 8px;border-radius:99px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:#fff;background:rgba(10,14,30,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);opacity:0;transition:opacity .2s,background .2s}
+.cwrap:hover .cmp,.cmp.on,.cmp:focus-visible{opacity:1}
+@media (hover:none){.cmp{opacity:1}}
+.cmp i{width:14px;height:14px;border-radius:4px;border:1.5px solid rgba(255,255,255,.8);display:grid;place-items:center}
+.cmp.on{background:var(--accent-bg);color:#03241F;border-color:transparent}
+.cmp.on i{border-color:#03241F;background:#03241F}
+.cmp.on i:after{content:"";width:6px;height:3px;border:solid var(--accent-bg);border-width:0 0 1.5px 1.5px;transform:rotate(-45deg) translate(1px,-1px)}
+.tray{position:fixed;left:50%;bottom:18px;z-index:70;transform:translate(-50%,140%);display:flex;align-items:center;gap:12px;padding:8px 8px 8px 16px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:0 20px 50px -12px rgba(0,0,0,.45);transition:transform .45s var(--ease);max-width:calc(100% - 24px)}
+.tray.show{transform:translate(-50%,0)}
+.tray .slots{display:flex;gap:8px;align-items:center;min-width:0}
+.tray .slot{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tray .slot img{width:46px;aspect-ratio:16/9;border-radius:5px;object-fit:cover;border:1px solid var(--line)}
+.tray .slot.empty{color:var(--muted);font-weight:400}
+.tray .slot.empty i{width:46px;aspect-ratio:16/9;border-radius:5px;border:1px dashed var(--line)}
+.tray .vs{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.tray .btn{height:38px}
+.tray .x{width:38px;height:38px}
+.cview{position:fixed;inset:0;z-index:110;display:none;flex-direction:column;background:rgba(5,8,20,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;padding:22px}
+.cview.open{display:flex;animation:fade .25s ease}
+.cview .top{display:flex;justify-content:space-between;align-items:center;gap:16px;max-width:1500px;width:100%;margin:0 auto 16px}
+.cview .top .eyebrow{color:rgba(255,255,255,.6)}
+.cview .icon-btn{color:#fff;border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.06)}
+.cpair{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1500px;width:100%;margin:0 auto;align-content:center}
+.cside{display:flex;flex-direction:column;gap:10px;min-width:0}
+.cside .im{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.cside .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s var(--ease)}
+.cside .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cside b{font-size:18px;font-weight:600}
+.cside small{color:rgba(255,255,255,.6);font-size:13px;margin-left:8px;font-weight:400}
+.cside .btn{height:36px;background:#fff;color:#0F1420}
+.cnav{display:flex;justify-content:center;align-items:center;gap:8px;margin:18px auto 0;flex-wrap:wrap}
+.cnav button.n{width:34px;height:34px;border-radius:9px;font-family:var(--mono);font-size:12.5px;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.14)}
+.cnav button.n.on{background:#fff;color:#0F1420;border-color:#fff}
+@media (max-width:760px){.cpair{grid-template-columns:1fr;align-content:start;overflow:auto}.cview{padding:14px}.tray .slot span{max-width:84px;overflow:hidden;text-overflow:ellipsis}}
+
+/* use cases wall */
+.uses{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:14px}
+.use{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;text-align:left;min-height:150px;isolation:isolate}
+.use img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;transition:transform .7s var(--ease),opacity .4s;z-index:-1}
+
+.use:hover img{transform:scale(1.05);opacity:1}
+.use .tx{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 24px);padding:9px 12px 8px;border-radius:10px;background:var(--card);color:var(--text);box-shadow:0 10px 24px -10px rgba(0,0,0,.5);transition:transform .35s var(--ease)}
+.use:hover .tx{transform:translateY(-2px)}
+.use .tx b{display:block;font-size:15px;font-weight:600;line-height:1.25}
+.use .tx small{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.02em}
+.use.w2{grid-column:span 2}.use.h2{grid-row:span 2}
+.use.h2 .tx{left:16px;bottom:16px;padding:12px 16px 11px}.use.h2 .tx b{font-size:20px}
+@media (max-width:1060px){.uses{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.uses{grid-template-columns:1fr 1fr;grid-auto-rows:120px;gap:10px}.use{min-height:120px}.use.h2{grid-row:span 1}.use .tx{left:8px;bottom:8px;padding:6px 9px}.use .tx b{font-size:12.5px}.use.h2 .tx b{font-size:13px}.use .tx small{display:none}}
+
+/* make it yours: live cover */
+.try{display:grid;grid-template-columns:.8fr 1.45fr;gap:40px;align-items:center}
+.try h2{font-size:clamp(28px,3.2vw,42px);line-height:1.08;margin:8px 0 14px}
+.try .lede{color:var(--muted);margin-bottom:22px;max-width:38ch}
+.tform{display:flex;flex-direction:column;gap:14px}
+.tform .field input{background:var(--card)}
+.accs{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.accs button{width:30px;height:30px;border-radius:50%;border:2px solid var(--bgc,var(--bg));box-shadow:0 0 0 1px var(--line);transition:box-shadow .2s,transform .2s}
+.accs button.on{box-shadow:0 0 0 2px var(--text)}
+.accs label{position:relative;width:30px;height:30px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px var(--line);cursor:pointer;background:conic-gradient(#FF3B30,#FFB300,#22C55E,#00C9AB,#2E8BEA,#A855F7,#EC4899,#FF3B30)}
+.accs label input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.tnote{font-size:12.5px;color:var(--muted)}
+.tstage{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tslide{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.tcan{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0;--ac:#2E5BFF}
+.tcan>div{position:absolute;inset:0;opacity:0;transition:opacity .45s var(--ease)}
+.tcan>div.on{opacity:1}
+.tcan .bn{word-break:break-word}
+/* style: swiss */
+.ts-swiss{background:#F1EFEA;color:#111;font-family:Arial,Helvetica,sans-serif}
+.ts-swiss .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.06) 1px,transparent 1px);background-size:133.33px 150px}
+.ts-swiss .top{position:absolute;left:80px;right:80px;top:56px;display:flex;justify-content:space-between;font-size:20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.ts-swiss .circ{position:absolute;right:150px;top:170px;width:400px;height:400px;border-radius:50%;background:var(--ac)}
+.ts-swiss .sq{position:absolute;right:120px;bottom:120px;width:90px;height:90px;background:#111}
+.ts-swiss .bn{position:absolute;left:76px;bottom:190px;width:1000px;font-size:200px;font-weight:700;letter-spacing:-.05em;line-height:.88}
+.ts-swiss .bn i{font-style:normal;color:var(--ac)}
+.ts-swiss .tg{position:absolute;left:84px;bottom:110px;font-size:30px;max-width:900px;line-height:1.3}
+/* style: night */
+.ts-night{background:#0A0B0C;color:#fff;font-family:"Century Gothic","Avenir Next",Futura,Geist,sans-serif}
+.ts-night .ph{position:absolute;right:0;top:0;width:58%;height:100%;background:url(assets/story/story-3.webp) center/cover;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%);filter:saturate(.7)}
+.ts-night .glo{position:absolute;left:-200px;bottom:-300px;width:900px;height:700px;border-radius:50%;background:var(--ac);filter:blur(140px);opacity:.38}
+.ts-night .logo{position:absolute;left:90px;top:70px;font-size:22px;letter-spacing:.3em;text-transform:uppercase;display:flex;align-items:center;gap:16px}
+.ts-night .logo s{width:30px;height:22px;background:var(--ac);transform:skewX(-24deg);display:inline-block}
+.ts-night .tag{position:absolute;left:92px;top:300px;font-family:Consolas,"Geist Mono",monospace;font-size:22px;letter-spacing:.2em;color:var(--ac)}
+.ts-night .bn{position:absolute;left:86px;top:350px;width:880px;font-size:132px;line-height:.98;text-transform:uppercase;letter-spacing:-.01em}
+.ts-night .tg{position:absolute;left:92px;top:640px;width:700px;font-size:28px;color:rgba(255,255,255,.7);line-height:1.4}
+.ts-night .bar{position:absolute;left:92px;bottom:90px;width:360px;height:4px;background:linear-gradient(90deg,var(--ac),transparent)}
+.ts-night .btn2{position:absolute;left:92px;bottom:150px;height:64px;padding:0 40px;display:flex;align-items:center;background:var(--ac);color:#06110F;font-size:22px;font-weight:700;letter-spacing:.14em;transform:skewX(-14deg)}
+.ts-night .btn2 span{transform:skewX(14deg)}
+/* style: gala */
+.ts-gala{background:radial-gradient(ellipse at 50% 30%,#3A1430,#14060F 70%);color:#F6EBDD;font-family:Georgia,"Times New Roman",serif;text-align:center}
+.ts-gala .fr{position:absolute;inset:44px;border:2px solid var(--ac)}
+.ts-gala .fr:after{content:"";position:absolute;inset:14px;border:1px solid color-mix(in srgb,var(--ac) 60%,transparent)}
+.ts-gala .arch{position:absolute;left:50%;top:110px;width:620px;height:700px;margin-left:-310px;border:1.5px solid color-mix(in srgb,var(--ac) 70%,transparent);border-radius:310px 310px 0 0;border-bottom:0}
+.ts-gala .rays{position:absolute;left:50%;top:110px;width:2px;height:240px;margin-left:-1px;background:var(--ac);box-shadow:-120px 40px 0 -0px color-mix(in srgb,var(--ac) 40%,transparent),120px 40px 0 0 color-mix(in srgb,var(--ac) 40%,transparent)}
+.ts-gala .eb{position:absolute;left:0;right:0;top:330px;font-size:24px;letter-spacing:.5em;text-transform:uppercase;color:var(--ac)}
+.ts-gala .bn{position:absolute;left:200px;right:200px;top:390px;font-size:120px;line-height:1;letter-spacing:.02em}
+.ts-gala .bn i{color:var(--ac)}
+.ts-gala .tg{position:absolute;left:300px;right:300px;top:640px;font-size:28px;font-style:italic;color:rgba(246,235,221,.75);line-height:1.4}
+.ts-gala .yr{position:absolute;left:0;right:0;bottom:96px;font-size:20px;letter-spacing:.4em;color:var(--ac)}
+.tstage .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+@media (max-width:1060px){.try{grid-template-columns:1fr}}
+
+/* present mode */
+#show{position:fixed;inset:0;z-index:120;background:#000;display:none;flex-direction:column;color:#fff;user-select:none;-webkit-user-select:none}
+#show.open{display:flex}
+#show .stagebox{flex:1;position:relative;display:grid;place-items:center;overflow:hidden;cursor:none}
+#show img{position:absolute;max-width:100%;max-height:100%;width:auto;height:auto;aspect-ratio:16/9;object-fit:contain;transition:opacity .55s var(--ease),transform .7s var(--ease),filter .55s}
+#show img.out{opacity:0;transform:scale(1.04);filter:blur(6px)}
+#show img.pre{opacity:0;transform:scale(.97);filter:blur(6px)}
+#show .hud{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:16px;padding:16px 20px;background:linear-gradient(0deg,rgba(0,0,0,.7),transparent);opacity:0;transition:opacity .3s}
+#show.ui .hud{opacity:1}
+#show .hud .pb{flex:1;height:2px;background:rgba(255,255,255,.18);border-radius:2px;overflow:hidden}
+#show .hud .pb i{display:block;height:100%;background:#fff;transition:width .4s var(--ease)}
+#show .hud span{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.75);white-space:nowrap}
+#show .hud button{font-family:var(--mono);font-size:12px;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:7px;padding:5px 10px}
+.toast{position:fixed;left:50%;top:22px;z-index:130;transform:translate(-50%,calc(-100% - 40px));visibility:hidden;padding:10px 16px;border-radius:12px;background:#fff;color:#0F1420;font-size:14px;font-weight:500;box-shadow:0 14px 40px rgba(0,0,0,.4);transition:transform .45s var(--ease);white-space:nowrap}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.toast kbd{font-family:var(--mono);font-size:12px;border:1px solid rgba(15,20,32,.2);border-radius:5px;padding:1px 6px;margin:0 2px}
+.main-img .present{position:absolute;left:10px;bottom:10px;z-index:2;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:7px;background:rgba(10,14,30,.7);backdrop-filter:blur(6px);color:#fff;font-size:12.5px;font-weight:500;border:1px solid rgba(255,255,255,.15)}
+.main-img .present svg{width:12px;height:12px}
+
+/* thread nodes */
+.thread .node circle{fill:var(--bgc,var(--bg));stroke:var(--line);stroke-width:1.5;transition:stroke .4s,fill .4s}
+.thread .node text{font-family:var(--mono);font-size:10px;fill:var(--muted);text-anchor:end;dominant-baseline:middle;transition:fill .4s}
+.thread .node.on circle{stroke:var(--accent-bg);fill:var(--accent-bg)}
+.thread .node.on text{fill:var(--text)}
+
+/* micro interactions */
+.btn-primary{transition:background .2s,opacity .2s,transform .25s var(--ease),box-shadow .25s}
+.btn-primary:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--btn) 70%,transparent)}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+.pill-b:hover .cup{animation:stir .7s var(--ease)}
+@keyframes stir{25%{transform:rotate(-14deg)}60%{transform:rotate(10deg)}100%{transform:none}}
+#buyBtn:hover svg{transform:translateY(2px)}
+
+/* sticky buy bar on phones */
+.mbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:65;display:none;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:16px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(150%);transition:transform .45s var(--ease)}
+.mbar.show{transform:none}
+.mbar .t{display:flex;align-items:center;gap:10px;min-width:0}
+.mbar .t svg{width:22px;height:22px;flex:none;color:var(--accent)}
+.mbar .t b{display:block;font-size:13.5px;font-weight:600;line-height:1.2}
+.mbar .t small{display:block;font-size:12px;color:var(--muted);line-height:1.2}
+.mbar .btn{height:40px}
+@media (max-width:760px){.mbar{display:flex}}
+
+@media (max-width:1060px){.quiz{grid-template-columns:1fr;gap:24px;padding:28px}}
+@media (max-width:620px){
+  .quiz{padding:20px}.qopts{grid-template-columns:1fr}.qres{grid-template-columns:1fr 1fr}.qres .qcard:nth-child(3){display:none}.qbox{min-height:0}
+  .ticker{margin-top:40px}.ticker li{font-size:13px;padding:12px 0 12px 18px}
+  .band{padding-top:80px}
+  .tray{left:10px;right:10px;transform:translateY(140%);bottom:10px}.tray.show{transform:none}.tray .vs{display:none}.tray .slot img,.tray .slot.empty i{width:38px}
+}
+@media (prefers-reduced-motion:reduce){.ticker-in{animation:none}.ticker{overflow-x:auto}.laser,.laser-trail{display:none}}
 </style>
 </head>
 <body>
@@ -634,6 +885,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
 
   <div class="hero" data-bg="0">
     <div class="wrap">
+      <div class="slidebox" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="sl-l">Slide 01 / 50</span><span class="sl-r"><b></b>Morph on</span></div>
       <span class="pill enter"><span class="pill-a"><i></i><span id="pillN">12</span> templates<span class="xs-hide">, 50 slides each</span></span><a class="pill-b" href="#buy"><svg class="cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="st" d="M8 2.5c-.8 1 .8 1.8 0 3"/><path class="st s2" d="M12 2.5c-.8 1 .8 1.8 0 3"/><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg>Cheaper than a coffee</a></span>
       <h1 class="enter d1">PowerPoint pitch deck templates with Morph</h1>
       <p class="enter d2">PowerPoint templates with their own visual style, Morph transitions already set up, and fonts that work on any PC.</p>
@@ -657,6 +909,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
       </div>
       <div class="drag-hint">Drag or swipe to browse</div>
     </div>
+    <div class="ticker" aria-label="A deck costs less than a coffee"><div class="ticker-in"><ul><li><s>Iced latte</s><em>~$5.50</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Oat flat white</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Caramel macchiato</s><em>~$6.25</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Es kopi susu</s><em>~Rp25k</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Matcha latte</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Cold brew</s><em>~$5</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li class="us"><mark>One MEGGYSTUDIO deck</mark>50 slides, less than any cup on this list<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li></ul><ul aria-hidden="true"><li><s>Iced latte</s><em>~$5.50</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Oat flat white</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Caramel macchiato</s><em>~$6.25</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Es kopi susu</s><em>~Rp25k</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Matcha latte</s><em>~$6</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li><s>Cold brew</s><em>~$5</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li><li class="us"><mark>One MEGGYSTUDIO deck</mark>50 slides, less than any cup on this list<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg></li></ul></div></div>
   </div>
 
   <section id="story" data-bg="1">
@@ -725,12 +978,33 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
   <section id="compare" data-bg="3">
     <div class="wrap">
       <div class="center-head"><span class="eyebrow">Before and after</span><h2>Same content, a different first impression</h2><p>Drag the handle to compare a default slide with a MEGGYSTUDIO layout.</p></div>
+      <div class="ba-tabs"><div class="toggle" role="group" aria-label="Choose an example" id="baTabs"></div></div>
       <div class="ba reveal" id="ba">
         <img src="assets/misc/plain.webp" alt="Default PowerPoint slide with a title and bullet points" loading="lazy">
         <img class="after" src="assets/slides/corporate-3.webp" alt="The same numbers designed with the Corporate template" loading="lazy">
         <span class="tag tl">Default slide</span><span class="tag tr">MEGGYSTUDIO</span>
         <div class="handle"><div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></div></div>
         <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Compare default slide and template slide">
+      </div>
+      <p class="ba-cap" id="baCap">Example from <b>Corporate</b></p>
+    </div>
+  </section>
+
+  <div class="band" aria-hidden="true">
+    <div class="row" data-dir="-1"><span>Pitch.</span><span class="a">Present.</span><span>Win.</span><span>Pitch.</span><span class="a">Present.</span><span>Win.</span></div>
+    <div class="row o" data-dir="1"><span>Fifty slides.</span><span>Morph on.</span><span>Fifty slides.</span><span>Morph on.</span></div>
+  </div>
+
+  <section id="match" data-bg="4">
+    <div class="wrap">
+      <div class="quiz reveal">
+        <div>
+          <span class="eyebrow">Template match</span>
+          <h2>Not sure which style fits you?</h2>
+          <p class="lede">Answer three quick questions and we will pick three templates for your pitch.</p>
+          <div class="qsteps" id="qSteps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="qbox" id="qBox" aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -751,11 +1025,14 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
             <option value="new">Newest first</option>
             <option value="old">Oldest first</option>
             <option value="az">Name A to Z</option>
+            <option value="dark">Dark first</option>
+            <option value="light">Light first</option>
           </select>
           <span class="ex-count" id="count" aria-live="polite"></span>
         </div>
         <div class="chips" id="cats" role="tablist" aria-label="Filter by category"></div>
         <div class="chips" id="tags" aria-label="Filter by mood"><span class="chips-label">Mood</span></div>
+        <div class="chips cols" id="cols" aria-label="Filter by color"><span class="chips-label">Color</span></div>
       </div>
       <div class="grid" id="grid"></div>
       <div class="ex-more"><button class="btn btn-secondary" id="more" hidden>Show more templates</button></div>
@@ -772,6 +1049,40 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
         <div class="stack-bar"><i id="stackBar"></i></div>
       </div>
       <div class="deck" id="deck"></div>
+    </div>
+  </section>
+
+  <section id="uses" data-bg="5">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">Made for</span><h2>Whatever you are pitching this week</h2></div><p>Real moments people build decks for. Tap one to see the template that fits it.</p></div>
+      <div class="uses reveal" id="uses-grid"></div>
+    </div>
+  </section>
+
+  <section id="try" data-bg="5">
+    <div class="wrap try">
+      <div>
+        <span class="eyebrow">Make it yours</span>
+        <h2>Type your brand, see it on a cover</h2>
+        <p class="lede">Pick a style and an accent color. This is a quick preview in your browser. In PowerPoint you change the same things with a click.</p>
+        <div class="tform">
+          <div class="field"><label for="tName">Brand name</label><input id="tName" maxlength="22" placeholder="Your brand" autocomplete="off"></div>
+          <div class="field"><label for="tTag">Tagline</label><input id="tTag" maxlength="60" placeholder="What you are pitching" autocomplete="off"></div>
+          <div class="field"><label>Accent color</label><div class="accs" id="tAccs"></div></div>
+          <p class="tnote">Nothing you type leaves this page.</p>
+        </div>
+      </div>
+      <div class="tstage">
+        <div class="tslide" id="tSlide"><div class="tcan" id="tCan">
+          <div class="ts-swiss on" data-s="swiss"><div class="grid"></div><div class="top"><span class="bn-s">Your brand</span><span>Pitch deck 2026</span></div><div class="circ"></div><div class="sq"></div><div class="bn"><span class="bn-t">Your brand</span><i>.</i></div><div class="tg tg-t">What you are pitching</div></div>
+          <div class="ts-night" data-s="night"><div class="glo"></div><div class="ph"></div><div class="logo"><s></s><span class="bn-s">Your brand</span></div><div class="tag">// PITCH DECK 2026</div><div class="bn bn-t">Your brand</div><div class="tg tg-t">What you are pitching</div><div class="btn2"><span>GET STARTED</span></div><div class="bar"></div></div>
+          <div class="ts-gala" data-s="gala"><div class="fr"></div><div class="arch"></div><div class="rays"></div><div class="eb">Presents</div><div class="bn bn-t">Your brand</div><div class="tg tg-t">What you are pitching</div><div class="yr">MMXXVI</div></div>
+        </div></div>
+        <div class="row">
+          <div class="toggle" role="group" aria-label="Choose a style" id="tStyles"><button class="on" data-s="swiss">Swiss</button><button data-s="night">Night drive</button><button data-s="gala">Gala</button></div>
+          <button class="btn btn-secondary" id="tReal">See the real template</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -926,6 +1237,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
         <button class="icon-btn prev" id="mPrev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
         <button class="icon-btn next" id="mNext" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
         <span class="count" id="mCount">1 / 9</span>
+        <button class="present" id="mPresent" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>Present</button>
       </div>
       <div class="mthumbs" id="mThumbs"></div>
     </div>
@@ -948,6 +1260,31 @@ footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;col
       </div>
     </div>
   </div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="laser-trail" id="laserT" aria-hidden="true"></div><div class="laser" id="laser" aria-hidden="true"></div>
+
+<div class="tray" id="tray" role="region" aria-label="Compare templates">
+  <div class="slots" id="traySlots"></div>
+  <button class="btn btn-primary" id="trayGo" disabled>Compare</button>
+  <button class="icon-btn x" id="trayX" aria-label="Clear comparison"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div class="cview" id="cview" role="dialog" aria-modal="true" aria-label="Compare two templates">
+  <div class="top"><span class="eyebrow">Side by side, same slide number</span><button class="icon-btn" id="cClose" aria-label="Close comparison"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="cpair" id="cPair"></div>
+  <div class="cnav" id="cNav"></div>
+</div>
+
+<div class="presenter" id="show" role="dialog" aria-modal="true" aria-label="Presentation preview">
+  <div class="stagebox" id="showStage"></div>
+  <div class="hud"><span id="showName"></span><div class="pb"><i id="showBar"></i></div><span id="showN">1 / 9</span><button id="showFs" type="button">Full screen</button><button id="showX" type="button">Esc</button></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<div class="mbar" id="mbar">
+  <div class="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M16.5 10.5h1.2a2.3 2.3 0 0 1 0 4.6h-1.5"/><path d="M4 21.5h14"/></svg><div><b>Cheaper than a coffee</b><small>50 slides, Morph on every slide</small></div></div>
+  <a class="btn btn-primary" href="#buy">Buy</a>
 </div>
 
 <script>
@@ -994,6 +1331,22 @@ const TEMPLATES = [
 const DECK = [
   ["y2k-chrome",0,"Cover"],["memphis-pop",1,"Section divider"],["quantum-tech",3,"Dashboard"],["art-deco",8,"Team"],
   ["swiss-style",5,"Pricing"],["80s-synthwave",8,"Phone mockup"],["comic-book",6,"Donut chart"],["car-company",5,"Product lineup"]
+];
+/* 2.0: dominant colors per template (measured from the slide images) */
+const COLS = {"corporate": ["blue"], "neon-groove": ["pink", "purple"], "retro-game": ["purple", "blue"], "quantum-tech": ["blue"], "music-playlist": ["red", "orange"], "cyber-tech": ["purple", "pink"], "liquid-glass": ["purple", "blue"], "movie-streaming": ["red", "orange"], "travel": ["blue", "teal"], "gaming": ["red", "gold"], "racing": ["red"], "kpop-bento": ["purple", "pink"], "y2k-chrome": ["purple", "blue"], "memphis-pop": ["blue", "pink"], "corporate-minimalist": ["orange"], "80s-synthwave": ["pink", "purple"], "comic-book": ["red", "orange"], "swiss-style": ["blue"], "gym-fitness": ["green"], "retro-90s": ["gold", "blue"], "christmas-bento": ["red", "orange"], "ramadan-layered": ["blue", "purple"], "pixel-art": ["blue", "green"], "art-deco": ["red", "gold"], "modern-techno": ["purple", "blue"], "car-company": ["teal"]};
+const SWATCH = {red:"#E5383B",orange:"#F77F00",gold:"#E0B43C",green:"#2DBE60",teal:"#00C9AB",blue:"#2E6BFF",purple:"#8B5CF6",pink:"#EC4899"};
+/* 2.0: one label per card at most. Change freely. */
+const PICKS = {"car-company":["pick","Staff pick"],"art-deco":["pick","Staff pick"],"liquid-glass":["pick","Staff pick"],
+  "quantum-tech":["pitch","Best for pitching"],"corporate":["pitch","Best for pitching"],"modern-techno":["pitch","Best for pitching"]};
+/* 2.0: use cases wall [title, template id, tile size] */
+const USES = [["Startup investor pitch","modern-techno","w2 h2"],["Campus competition","swiss-style",""],["Sponsorship proposal","art-deco",""],
+  ["Company profile","corporate",""],["K-pop fan project","kpop-bento",""],["Product launch","car-company","w2"],["Esports team","gaming",""],["Holiday campaign","christmas-bento",""]];
+/* 2.0: before and after examples */
+const BA = [
+  {k:"Stats",  b:"assets/misc/plain.webp",         a:"assets/slides/corporate-3.webp",    t:"Corporate",    ba:"Default slide with stats as bullet points"},
+  {k:"Pricing",b:"assets/misc/plain-pricing.webp", a:"assets/slides/swiss-style-5.webp",  t:"Swiss Style",  ba:"Default slide with pricing as bullet points"},
+  {k:"Team",   b:"assets/misc/plain-team.webp",    a:"assets/slides/art-deco-8.webp",     t:"Art Deco",     ba:"Default slide with a team list"},
+  {k:"Metrics",b:"assets/misc/plain-metrics.webp", a:"assets/slides/quantum-tech-3.webp", t:"Quantum Tech", ba:"Default slide with KPIs as bullet points"}
 ];
 /* Background color per chapter (data-bg index), dark and light */
 const BG = {
@@ -1136,7 +1489,7 @@ pano.addEventListener("pointerup",endDrag); pano.addEventListener("pointercancel
 pano.addEventListener("mouseenter",()=>hover=true); pano.addEventListener("mouseleave",()=>hover=false);
 $("#prevBtn").onclick=()=>step(-1); $("#nextBtn").onclick=()=>step(1);
 $("#nowOpen").onclick=()=>openT(PANO[cur].id);
-size(); setCenter(0); loadNear(0); render(); requestAnimationFrame(tick);
+size(); { const S=startIdx(); rot=target=S*STEP; setCenter(S); loadNear(S); } render(); requestAnimationFrame(tick);
 
 /* ---- story ---- */
 const chapters=$$(".chapter"), phs=$$("#storyMedia .ph"), floats=$$("#storyMedia .float"), sdots=[...$("#storyDots").children];
@@ -1201,7 +1554,7 @@ baR.addEventListener("input",()=>ba.style.setProperty("--x",baR.value+"%"));
 
 /* ---- templates explorer (search, category, mood, sort, paging) ---- */
 const PAGE=9;
-const st={q:"",cat:"All",tags:new Set(),sort:"new",limit:PAGE};
+const st={q:"",cat:"All",tags:new Set(),col:null,sort:"new",limit:PAGE};
 const grid=$("#grid"), catsEl=$("#cats"), tagsEl=$("#tags");
 const ALLTAGS=[...new Set(TEMPLATES.flatMap(t=>t.tags))].sort();
 const newest=TEMPLATES.filter(t=>t.added===LATEST).map(t=>t.id);
@@ -1224,13 +1577,14 @@ addEventListener("keydown",e=>{ if(e.key==="/"&&!/input|textarea|select/i.test(d
 function matches(t){
   if(st.cat!=="All"&&t.cat!==st.cat) return false;
   for(const tg of st.tags) if(!t.tags.includes(tg)) return false;
+  if(st.col&&!(COLS[t.id]||[]).includes(st.col)) return false;
   if(st.q){ const hay=(t.name+" "+t.cat+" "+t.tags.join(" ")+" "+t.desc).toLowerCase(); return st.q.split(/\s+/).every(w=>hay.includes(w)); }
   return true;
 }
 function cardEl(t){
   const c=document.createElement("a"); c.className="card"; c.href="/templates/"+t.id;
   c.setAttribute("aria-label",`${t.name}, ${t.cat}. View details`);
-  c.innerHTML=`<div class="thumb">${newest.includes(t.id)?'<span class="new">New</span>':''}<img class="base" src="${thumb(t.id,0)}" alt="${t.name} PowerPoint pitch deck template cover" loading="lazy" decoding="async" width="640" height="360"><img class="alt" alt="${t.name} PowerPoint template sample slide" decoding="async">
+  c.innerHTML=`<div class="thumb">${labelFor(t)}<img class="base" src="${thumb(t.id,0)}" alt="${t.name} PowerPoint pitch deck template cover" loading="lazy" decoding="async" width="640" height="360"><img class="alt" alt="${t.name} PowerPoint template sample slide" decoding="async">
       <div class="prog">${Array.from({length:t.n},()=>"<span></span>").join("")}</div></div>
     <div class="card-meta"><b>${t.name}</b><span>${t.cat}</span></div>
     <div class="card-tags">${t.tags.map(x=>`<i>${x}</i>`).join("")}</div>`;
@@ -1239,11 +1593,13 @@ function cardEl(t){
   const mark=()=>bars.forEach((b,j)=>b.classList.toggle("on",j<=k));
   c.addEventListener("mouseenter",()=>{ if(reduce)return; k=0; mark(); iv=setInterval(()=>{k=(k+1)%t.n; alt.src=thumb(t.id,k); alt.classList.toggle("show",k!==0); mark();},950); });
   c.addEventListener("mouseleave",()=>{ clearInterval(iv); alt.classList.remove("show"); k=0; mark(); });
-  return c;
+  return wrapCard(t,c);
 }
 function renderGrid(anim,append){
   [...catsEl.children].forEach(b=>{const on=b.dataset.c===st.cat; b.classList.toggle("on",on); b.setAttribute("aria-selected",on);});
   let list=TEMPLATES.filter(matches);
+  const byNew=(a,b)=>b.added.localeCompare(a.added)||TEMPLATES.indexOf(b)-TEMPLATES.indexOf(a);
+  if(st.sort==="dark"||st.sort==="light"){ const k=st.sort==="dark"?"Dark":"Light"; list.sort((a,b)=>(b.tags.includes(k)-a.tags.includes(k))||byNew(a,b)); } else
   list.sort(st.sort==="az"?(a,b)=>a.name.localeCompare(b.name):st.sort==="old"?(a,b)=>a.added.localeCompare(b.added)||TEMPLATES.indexOf(a)-TEMPLATES.indexOf(b):(a,b)=>b.added.localeCompare(a.added)||TEMPLATES.indexOf(b)-TEMPLATES.indexOf(a));
   const shown=list.slice(0,st.limit), start=append?grid.children.length:0;
   if(!append) grid.innerHTML="";
@@ -1333,6 +1689,7 @@ function buildThread(){
   pts.forEach(([x,y],i)=>{const py=i?pts[i-1][1]:$(".hero").offsetTop+120; const my=(py+y)/2; d+=` C${x0+(i%2?-40:40)},${my} ${x},${my} ${x},${y}`;});
   tBase.setAttribute("d",d); tInk.setAttribute("d",d);
   tLen=tInk.getTotalLength(); tInk.style.strokeDasharray=tLen; tInk.style.strokeDashoffset=tLen;
+  drawNodes(pts);
 }
 
 /* ---- scroll engine ---- */
@@ -1366,7 +1723,7 @@ function updateScroll(force){
   /* deck */
   deckRender(secProgress($("#inside")));
   /* thread */
-  if(tLen){ const mr=$("main").getBoundingClientRect(); const p=clamp((vh*.6-mr.top-$(".hero").offsetTop)/(mr.height-$(".hero").offsetTop)); tInk.style.strokeDashoffset=tLen*(1-p); const pt=tInk.getPointAtLength(tLen*p); tDot.setAttribute("cx",pt.x); tDot.setAttribute("cy",pt.y); }
+  if(tLen){ const mr=$("main").getBoundingClientRect(); const p=clamp((vh*.6-mr.top-$(".hero").offsetTop)/(mr.height-$(".hero").offsetTop)); tInk.style.strokeDashoffset=tLen*(1-p); const pt=tInk.getPointAtLength(tLen*p); tDot.setAttribute("cx",pt.x); tDot.setAttribute("cy",pt.y); nodesTick(pt.y); }
   ticking=false;
 }
 addEventListener("scroll",()=>{ if(!ticking){ticking=true; requestAnimationFrame(()=>updateScroll());} if(innerWidth<=620&&buyWrap.classList.contains("open")) closeBuy(); },{passive:true});
@@ -1418,6 +1775,238 @@ addEventListener("keydown",e=>{
 });
 function fromHash(){const id=location.hash.slice(1); if(TEMPLATES.some(t=>t.id===id)) openT(id,true);}
 addEventListener("hashchange",fromHash); fromHash();
+
+/* ================= 2.0 ================= */
+const finePointer=matchMedia("(pointer:fine)").matches;
+const anyOverlay=()=>modal.classList.contains("open")||$("#cview").classList.contains("open")||$("#show").classList.contains("open");
+function toast(html,ms=2600){const t=$("#toast"); t.innerHTML=html; t.classList.add("show"); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove("show"),ms);}
+
+/* hero: time-of-day start, used before the first render */
+function startIdx(){const h=new Date().getHours(), day=h>=6&&h<18; const i=PANO.findIndex(t=>t.tags.includes(day?"Light":"Dark")); return i<0?0:i;}
+(function(){const h=new Date().getHours(), day=h>=6&&h<18; $(".drag-hint").textContent=(day?"Daytime pick shown first.":"Night pick shown first.")+" Drag or swipe to browse";})();
+
+/* hero: count up */
+(function(){const el=$("#pillN"); if(reduce){el.textContent=N;return;} el.textContent="0"; const t0=performance.now()+350;
+  (function f(now){const p=clamp((now-t0)/900); el.textContent=Math.round(ease(p)*N); if(p<1) requestAnimationFrame(f);})(t0);})();
+
+/* hero: laser pointer */
+(function(){
+  if(!finePointer||reduce) return;
+  const zone=$(".hero .wrap"), L=$("#laser"), T=$("#laserT"); let x=0,y=0,lx=0,ly=0,tx=0,ty=0,on=false,raf=0;
+  function loop(){lx+=(x-lx)*.45; ly+=(y-ly)*.45; tx+=(x-tx)*.14; ty+=(y-ty)*.14;
+    L.style.transform=`translate(${lx}px,${ly}px)`; T.style.transform=`translate(${tx}px,${ty}px)`;
+    T.style.opacity=on?Math.min(.35,Math.hypot(x-tx,y-ty)/60):0;
+    raf=on||Math.hypot(x-tx,y-ty)>.5?requestAnimationFrame(loop):0;}
+  zone.addEventListener("pointermove",e=>{ if(e.pointerType!=="mouse")return; x=e.clientX; y=e.clientY; if(!on){on=true; lx=tx=x; ly=ty=y; L.classList.add("on");} if(!raf) raf=requestAnimationFrame(loop); });
+  zone.addEventListener("pointerleave",()=>{on=false; L.classList.remove("on");});
+})();
+
+/* big type band */
+const bandRows=$$(".band .row");
+function bandTick(){ if(!bandRows.length||reduce) return; const r=$(".band").getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+  const p=(innerHeight-r.top)/(innerHeight+r.height); bandRows.forEach(row=>row.style.transform=`translateX(${(+row.dataset.dir)*(p-.5)*innerWidth*.45-innerWidth*.15}px)`);}
+
+/* before / after examples */
+(function(){
+  const tabs=$("#baTabs"), ims=$$("#ba img"), range=$("#baRange");
+  BA.forEach((x,i)=>{const b=document.createElement("button"); b.textContent=x.k; if(!i) b.className="on"; b.onclick=()=>pick(i); tabs.appendChild(b);});
+  function pick(i){
+    const x=BA[i]; [...tabs.children].forEach((b,j)=>b.classList.toggle("on",j===i));
+    ims[0].src=x.b; ims[0].alt=x.ba; ims[1].src=x.a; ims[1].alt=`The same content designed with the ${x.t} template`;
+    $("#baCap").innerHTML=`Example from <b>${x.t}</b>`;
+    if(reduce){ range.value=50; ba.style.setProperty("--x","50%"); return; }
+    const t0=performance.now(); (function f(now){const p=clamp((now-t0)/700), v=lerp(92,50,ease(p)); ba.style.setProperty("--x",v+"%"); range.value=v; if(p<1) requestAnimationFrame(f);})(t0);
+  }
+})();
+
+/* card labels and compare */
+function labelFor(t){ const p=PICKS[t.id]; if(p) return `<span class="lab ${p[0]}">${p[1]}</span>`; return newest.includes(t.id)?'<span class="lab new">New</span>':''; }
+var cmpSet=[]; /* var: the grid renders before this line runs */
+function wrapCard(t,c){
+  const w=document.createElement("div"); w.className="cwrap"; w.appendChild(c);
+  const b=document.createElement("button"); b.type="button"; b.className="cmp"; b.dataset.id=t.id;
+  const sel=(cmpSet||[]).includes(t.id);
+  b.innerHTML="<i></i>Compare"; b.setAttribute("aria-pressed",sel); b.classList.toggle("on",sel);
+  b.setAttribute("aria-label",`Compare ${t.name}`);
+  b.onclick=e=>{e.stopPropagation(); toggleCmp(t.id);};
+  w.appendChild(b); return w;
+}
+function toggleCmp(id){
+  if(cmpSet.includes(id)) cmpSet=cmpSet.filter(x=>x!==id); else { cmpSet.push(id); if(cmpSet.length>2) cmpSet.shift(); }
+  $$(".cmp").forEach(b=>{const on=cmpSet.includes(b.dataset.id); b.classList.toggle("on",on); b.setAttribute("aria-pressed",on);});
+  trayRender();
+}
+function trayRender(){
+  const slots=$("#traySlots"); slots.innerHTML="";
+  [0,1].forEach(i=>{ const id=cmpSet[i], t=id&&TEMPLATES.find(x=>x.id===id);
+    if(i) slots.insertAdjacentHTML("beforeend",'<span class="vs">vs</span>');
+    slots.insertAdjacentHTML("beforeend", t?`<span class="slot"><img src="${thumb(t.id,0)}" alt=""><span>${t.name}</span></span>`:`<span class="slot empty"><i></i>Pick one more</span>`); });
+  $("#trayGo").disabled=cmpSet.length<2; $("#tray").classList.toggle("show",cmpSet.length>0); mbarTick();
+}
+$("#trayX").onclick=()=>{cmpSet=[]; $$(".cmp").forEach(b=>{b.classList.remove("on"); b.setAttribute("aria-pressed",false);}); trayRender();};
+let cK=0, cLast=null;
+function openCmp(){
+  const [a,b]=cmpSet.map(id=>TEMPLATES.find(x=>x.id===id)); if(!a||!b) return;
+  const n=Math.min(a.n,b.n); cK=0; cLast=document.activeElement;
+  $("#cPair").innerHTML=[a,b].map(t=>`<div class="cside"><div class="im"><img src="${img(t.id,0)}" alt="${t.name} slide 1" data-id="${t.id}"></div><div class="meta"><b>${t.name}<small>${t.cat}</small></b><button class="btn" data-open="${t.id}">View details</button></div></div>`).join("");
+  $("#cNav").innerHTML=Array.from({length:n},(_,i)=>`<button class="n${i?"":" on"}" data-k="${i}" aria-label="Slide ${i+1}">${i+1}</button>`).join("");
+  $$("#cNav .n").forEach(b=>b.onclick=()=>cShow(+b.dataset.k));
+  $$("#cPair [data-open]").forEach(b=>b.onclick=()=>{closeCmp(); openT(b.dataset.open);});
+  $("#cview").classList.add("open"); document.body.style.overflow="hidden"; $("#cClose").focus(); mbarTick();
+}
+function cShow(k){
+  const n=$$("#cNav .n").length; cK=(k+n)%n;
+  $$("#cPair img").forEach(im=>{ im.style.opacity=0; const id=im.dataset.id; setTimeout(()=>{im.src=img(id,cK); im.alt=`${TEMPLATES.find(x=>x.id===id).name} slide ${cK+1}`; im.onload=()=>im.style.opacity=1; if(im.complete) im.style.opacity=1;},160); });
+  $$("#cNav .n").forEach((b,i)=>b.classList.toggle("on",i===cK));
+}
+function closeCmp(){ $("#cview").classList.remove("open"); if(!modal.classList.contains("open")) document.body.style.overflow=""; if(cLast) cLast.focus(); mbarTick(); }
+$("#trayGo").onclick=openCmp; $("#cClose").onclick=closeCmp;
+
+/* color filter + extra sorts are wired into the explorer */
+(function(){
+  const row=$("#cols"), used=Object.keys(SWATCH).filter(c=>TEMPLATES.some(t=>(COLS[t.id]||[]).includes(c)));
+  used.forEach(c=>{ const b=document.createElement("button"); b.className="sw"; b.style.background=SWATCH[c]; b.title=c[0].toUpperCase()+c.slice(1);
+    b.setAttribute("aria-label",`Show ${c} templates`); b.setAttribute("aria-pressed","false");
+    b.onclick=()=>{ st.col=st.col===c?null:c; $$("#cols .sw").forEach(x=>{const on=x===b&&st.col===c; x.classList.toggle("on",on); x.setAttribute("aria-pressed",on);}); st.limit=PAGE; renderGrid(true); };
+    row.appendChild(b); });
+})();
+
+/* quiz */
+const QZ=[
+  {q:"What are you presenting?",o:[
+    {t:"Startup or product pitch",s:"Investors, demo days, launches",c:{Tech:3,Business:1},g:{Startup:2,Futuristic:1}},
+    {t:"Company profile or proposal",s:"Clients, partners, annual reviews",c:{Business:3},g:{Clean:1,Minimal:1,Elegant:1}},
+    {t:"Event, music or campaign",s:"Sponsors, festivals, fan projects",c:{Entertainment:3,Lifestyle:1},g:{Music:1,Colorful:1}},
+    {t:"Gaming or esports",s:"Teams, studios, communities",c:{Gaming:3},g:{Pixel:1,Playful:1}},
+    {t:"School or campus project",s:"Competitions, thesis, class talks",c:{Business:1,Lifestyle:1},g:{Clean:1,Playful:1,Minimal:1}},
+    {t:"Brand or lifestyle pitch",s:"Food, fitness, travel, retail",c:{Lifestyle:3},g:{Photo:1,Sport:1}}]},
+  {q:"Pick a mood",o:[
+    {t:"Clean and calm",s:"Whitespace, sharp type, no noise",g:{Minimal:2,Clean:2,Light:1,Elegant:1},sw:["#F1EFEA","#2E5BFF","#111"]},
+    {t:"Bold and loud",s:"Big numbers, strong photos",g:{Bold:2,Sport:2,Photo:1},sw:["#0A0B0C","#FF3B30","#FFD400"]},
+    {t:"Fun and playful",s:"Color, stickers, characters",g:{Playful:2,Colorful:2,Pixel:1,Music:1},sw:["#FF5CA8","#FFD400","#5B5BFF"]},
+    {t:"Futuristic",s:"Glow, glass, 3D, data",g:{Futuristic:2,"3D":2,Startup:1},sw:["#0D1330","#00EFCB","#A855F7"]}]},
+  {q:"Light or dark slides?",o:[
+    {t:"Light",s:"Bright rooms, printed handouts",g:{Light:3},sw:["#FFFFFF","#EEF1F5","#C9D2DE"]},
+    {t:"Dark",s:"Stages, screens, big events",g:{Dark:3},sw:["#0A0B0C","#151B3A","#2A2F45"]},
+    {t:"Either is fine",s:"Show me the best match",g:{}}]}
+];
+const qAns=[];
+function qRender(){
+  const box=$("#qBox"), i=qAns.length; $$("#qSteps i").forEach((d,j)=>d.classList.toggle("on",j<=Math.min(i,2)));
+  if(i<QZ.length){
+    const Q=QZ[i];
+    box.innerHTML=`<div class="qpane"><span class="qn">Question ${i+1} of ${QZ.length}</span><h3>${Q.q}</h3><div class="qopts">${Q.o.map((o,k)=>`<button class="qopt" data-k="${k}">${o.sw?`<span class="sw">${o.sw.map(c=>`<u style="background:${c};box-shadow:0 0 0 1px var(--line)"></u>`).join("")}</span>`:""}<b>${o.t}</b><small>${o.s}</small></button>`).join("")}</div>${i?'<button class="qback" id="qBack">Back</button>':""}</div>`;
+    $$("#qBox .qopt").forEach(b=>b.onclick=()=>{qAns.push(+b.dataset.k); qRender();});
+    if(i) $("#qBack").onclick=()=>{qAns.pop(); qRender();};
+    return;
+  }
+  const picks=qAns.map((k,j)=>QZ[j].o[k]);
+  const scored=TEMPLATES.map(t=>{ let s=0; const why=new Set();
+    picks.forEach(p=>{ if(p.c&&p.c[t.cat]){s+=p.c[t.cat]; why.add(t.cat);} Object.entries(p.g||{}).forEach(([g,v])=>{ if(t.tags.includes(g)){s+=v; why.add(g);} }); });
+    return {t,s,why:[...why].slice(0,3)}; }).sort((a,b)=>b.s-a.s||b.t.added.localeCompare(a.t.added));
+  const top=scored.slice(0,3);
+  box.innerHTML=`<div class="qpane"><span class="qn">Your matches</span><h3>Start with these three</h3>
+    <div class="qres">${top.map((r,j)=>`<button class="qcard" data-id="${r.t.id}"><div class="im"><img src="${thumb(r.t.id,0)}" alt="${r.t.name} template cover" loading="lazy">${j?"":"<em>Best match</em>"}</div><b>${r.t.name}</b><small>Matches ${r.why.join(", ")||r.t.cat}</small></button>`).join("")}</div>
+    <div class="qacts"><button class="btn btn-primary" id="qOpen">Open ${top[0].t.name}</button><button class="btn btn-secondary" id="qAgain">Retake</button></div></div>`;
+  $$("#qBox .qcard").forEach(b=>b.onclick=()=>openT(b.dataset.id));
+  $("#qOpen").onclick=()=>openT(top[0].t.id);
+  $("#qAgain").onclick=()=>{qAns.length=0; qRender();};
+}
+qRender();
+
+/* use cases wall */
+USES.forEach(([title,id,cls])=>{ const t=TEMPLATES.find(x=>x.id===id); if(!t) return;
+  $("#uses-grid").insertAdjacentHTML("beforeend",`<button class="use ${cls}" data-id="${id}"><img src="${hsrc(id,0)}" alt="${t.name} PowerPoint template cover" loading="lazy" decoding="async"><span class="tx"><b>${title}</b><small>Template: ${t.name}</small></span></button>`); });
+$$("#uses-grid .use").forEach(b=>b.onclick=()=>openT(b.dataset.id));
+
+/* make it yours */
+(function(){
+  const can=$("#tCan"), slide=$("#tSlide"), ACC=["#2E5BFF","#00D6B2","#FF5A1F","#D4A85A","#FF4FA3","#8B5CF6"], DEF={swiss:"#2E5BFF",night:"#00D6B2",gala:"#D4A85A"}, REAL={swiss:"swiss-style",night:"car-company",gala:"art-deco"};
+  let style="swiss";
+  const fit=()=>can.style.transform=`scale(${slide.clientWidth/1600})`; fit(); new ResizeObserver(fit).observe(slide);
+  const accs=$("#tAccs");
+  ACC.forEach(c=>{const b=document.createElement("button"); b.type="button"; b.style.background=c; b.dataset.c=c; b.setAttribute("aria-label","Accent "+c); b.onclick=()=>setAcc(c); accs.appendChild(b);});
+  accs.insertAdjacentHTML("beforeend",'<label title="Custom color"><input type="color" id="tPick" value="#2E5BFF" aria-label="Custom accent color"></label>');
+  $("#tPick").oninput=e=>setAcc(e.target.value);
+  function setAcc(c){ can.style.setProperty("--ac",c); $$("#tAccs button").forEach(b=>b.classList.toggle("on",b.dataset.c.toLowerCase()===c.toLowerCase())); }
+  function text(){
+    const n=($("#tName").value.trim()||"Your brand"), g=($("#tTag").value.trim()||"What you are pitching"), L=n.length;
+    $$("#tCan .bn-t,#tCan .bn-s").forEach(e=>e.textContent=n); $$("#tCan .tg-t").forEach(e=>e.textContent=g);
+    $("#tCan .ts-swiss .bn").style.fontSize=Math.max(92,L<=9?200:200*9/L)+"px";
+    $("#tCan .ts-night .bn").style.fontSize=Math.max(70,L<=10?132:132*10/L)+"px";
+    $("#tCan .ts-gala .bn").style.fontSize=Math.max(66,L<=10?120:120*10/L)+"px";
+  }
+  $("#tName").oninput=text; $("#tTag").oninput=text;
+  $$("#tStyles button").forEach(b=>b.onclick=()=>{ style=b.dataset.s; $$("#tStyles button").forEach(x=>x.classList.toggle("on",x===b)); $$("#tCan>div").forEach(d=>d.classList.toggle("on",d.dataset.s===style)); setAcc(DEF[style]); $("#tPick").value=DEF[style]; });
+  $("#tReal").onclick=()=>openT(REAL[style]);
+  setAcc(DEF.swiss); text();
+})();
+
+/* present mode */
+let sT=null, sK=0, sPrevOverflow="", sUiT=null;
+function openShow(t,k=0){
+  sT=t; sK=k; sPrevOverflow=document.body.style.overflow; document.body.style.overflow="hidden";
+  $("#showStage").innerHTML=""; $("#showName").textContent=t.name; $("#show").classList.add("open"); sShow(k,true); sUi(); mbarTick();
+}
+function sEnd(){ return `<div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px"><div><p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase">End of preview</p><h2 style="font-size:clamp(28px,4vw,48px);margin:10px 0 8px">The full deck has 50 slides</h2><p style="color:rgba(255,255,255,.7);margin-bottom:22px">Cheaper than a coffee, on every marketplace we list.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="sBuy" style="background:#fff;color:#0F1420">Where to buy</button><button class="btn" id="sAgain" style="border:1px solid rgba(255,255,255,.3)">Watch again</button></div></div></div>`; }
+function sShow(k,first){
+  const n=sT.n; k=clamp(k,0,n); sK=k; const stage=$("#showStage");
+  [...stage.children].forEach(el=>{ el.classList.add("out"); setTimeout(()=>el.remove(),reduce?0:560); });
+  if(k===n){ stage.insertAdjacentHTML("beforeend",sEnd()); $("#sBuy").onclick=()=>{closeShow(); closeM(); $("#buy").scrollIntoView({behavior:reduce?"auto":"smooth"});}; $("#sAgain").onclick=()=>sShow(0); stage.style.cursor="default"; }
+  else { stage.style.cursor=""; const im=new Image(); im.src=img(sT.id,k); im.alt=`${sT.name} slide ${k+1}`; im.className=first||reduce?"":"pre"; stage.appendChild(im); requestAnimationFrame(()=>requestAnimationFrame(()=>im.classList.remove("pre"))); }
+  $("#showN").textContent=k===n?"End":`${k+1} / ${n}`; $("#showBar").style.width=(Math.min(k+1,n)/n*100)+"%";
+}
+function sUi(){ $("#show").classList.add("ui"); clearTimeout(sUiT); sUiT=setTimeout(()=>$("#show").classList.remove("ui"),2200); }
+function closeShow(){ if(!$("#show").classList.contains("open")) return; if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); $("#show").classList.remove("open"); document.body.style.overflow=sPrevOverflow; mbarTick(); }
+$("#show").addEventListener("mousemove",sUi);
+$("#showStage").addEventListener("click",e=>{ if(e.target.closest("button")) return; if(sK>=sT.n) return; sShow(sK+(e.clientX<innerWidth*.3?-1:1)); });
+let shx=null; $("#showStage").addEventListener("touchstart",e=>shx=e.touches[0].clientX,{passive:true});
+$("#showStage").addEventListener("touchend",e=>{ if(shx===null)return; const dx=e.changedTouches[0].clientX-shx; if(Math.abs(dx)>40) sShow(sK+(dx<0?1:-1)); shx=null; });
+$("#showX").onclick=closeShow;
+$("#showFs").onclick=()=>{ const el=$("#show"); if(document.fullscreenElement) document.exitFullscreen().catch(()=>{}); else if(el.requestFullscreen) el.requestFullscreen().catch(()=>{}); };
+$("#mPresent").onclick=e=>{e.stopPropagation(); openShow(mt,mk);};
+
+/* keys for the new overlays, and the F5 easter egg */
+addEventListener("keydown",e=>{
+  const typing=/input|textarea|select/i.test((document.activeElement||{}).tagName||"");
+  if($("#show").classList.contains("open")){
+    e.stopImmediatePropagation(); sUi();
+    if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){e.preventDefault(); if(sK<sT.n) sShow(sK+1);}
+    else if(["ArrowLeft","PageUp","Backspace"].includes(e.key)){e.preventDefault(); sShow(sK-1);}
+    else if(e.key==="Home") sShow(0); else if(e.key==="End") sShow(sT.n-1);
+    else if(e.key==="Escape"||e.key==="F5"){e.preventDefault(); closeShow();}
+    else if(e.key==="f"||e.key==="F") $("#showFs").click();
+    return;
+  }
+  if($("#cview").classList.contains("open")){
+    e.stopImmediatePropagation();
+    if(e.key==="Escape") closeCmp(); if(e.key==="ArrowRight") cShow(cK+1); if(e.key==="ArrowLeft") cShow(cK-1);
+    return;
+  }
+  if(e.key==="F5"&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!typing){
+    e.preventDefault(); e.stopImmediatePropagation();
+    const t=modal.classList.contains("open")?mt:PANO[cur]; openShow(t,0);
+    toast(`You pressed <kbd>F5</kbd>. Old habits. Presenting ${t.name}, <kbd>Esc</kbd> to exit.`,3600);
+  }
+},true);
+
+/* thread nodes */
+var nodes=[]; /* var: buildThread runs before this line */
+function drawNodes(pts){
+  thread.querySelectorAll(".node").forEach(n=>n.remove()); nodes=[];
+  pts.forEach(([x,y])=>{ const g=document.createElementNS("http://www.w3.org/2000/svg","g"); g.setAttribute("class","node");
+    g.innerHTML=`<circle cx="${x}" cy="${y}" r="5"/>`; thread.insertBefore(g,tDot); nodes.push([g,y]); });
+}
+function nodesTick(y){ nodes.forEach(([g,ny])=>g.classList.toggle("on",ny<=y+2)); }
+
+/* sticky buy bar on phones */
+let buyVis=false, endVis=false;
+new IntersectionObserver(es=>{buyVis=es[0].isIntersecting; mbarTick();},{threshold:.15}).observe($("#buy"));
+new IntersectionObserver(es=>{endVis=es[0].isIntersecting; mbarTick();}).observe($(".end"));
+function mbarTick(){ const past=scrollY>($(".hero").offsetHeight*.6); $("#mbar").classList.toggle("show",past&&!buyVis&&!endVis&&!anyOverlay()&&!$("#tray").classList.contains("show")); }
+addEventListener("scroll",()=>{mbarTick(); requestAnimationFrame(bandTick);},{passive:true});
+bandTick(); mbarTick();
+new MutationObserver(mbarTick).observe(modal,{attributes:true,attributeFilter:["class"]});
 </script>
 </body>
 </html>
