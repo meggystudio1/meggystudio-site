@@ -130,10 +130,13 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 <script>
 (function(){
   var S={"Lynk.id": "https://lynk.id/meggystudio1", "Payhip": "https://payhip.com/MeggyStudio1", "Gumroad": "https://meggystudio.gumroad.com/"};
-  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n) S[n.textContent]=a.href; });
+  var P={};
+  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n){ S[n.textContent]=a.href; if(a.hasAttribute("data-p")) P[n.textContent]=1; } });
   var id=false; try{ id=/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||""); }catch(e){}
   if(!id) id=(navigator.languages||[navigator.language||""]).some(function(l){return /^id\b/i.test(l);});
-  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"], rec=order.filter(function(n){return S[n];})[0];
+  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"];
+  order=order.filter(function(n){return P[n];}).concat(order.filter(function(n){return !P[n];}));   /* product pages first */
+  var rec=order.filter(function(n){return S[n];})[0];
   var b=document.getElementById("buyMain"); if(b&&rec){ b.href=S[rec]; b.textContent="Buy on "+rec; }
   var bb=document.getElementById("buyBar"), tb=document.getElementById("tbar");
   if(bb&&rec) bb.href=S[rec];

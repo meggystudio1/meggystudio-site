@@ -123,7 +123,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
       <li><span>Transitions</span>Morph, PowerPoint 2019+</li>
       <li><span>Fonts</span>Office fonts, no installs</li>
     </ul>
-    <div class="acts"><a class="btn btn-primary" id="buyMain" href="https://lynk.id/meggystudio1" target="_blank" rel="noopener">Buy on Lynk.id</a><a class="btn btn-secondary" href="#buy">Other stores</a></div>
+    <div class="acts"><a class="btn btn-primary" id="buyMain" href="https://lynk.id/meggystudio1/17ej6ye565ey" target="_blank" rel="noopener">Buy on Lynk.id</a><a class="btn btn-secondary" href="#buy">Other stores</a></div>
     <p class="trust">Cheaper than a coffee. Instant download after payment. One-time payment.</p>
     <div class="tags"><i>Pixel</i><i>Playful</i><i>Colorful</i></div>
   </div>
@@ -144,10 +144,10 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 <section id="buy">
   <h2>Where to buy Pixel Art</h2>
   <p class="sub">Same file on every marketplace. Pick the one that suits your payment method.</p>
-  <div class="markets"><a class="mk" href="https://lynk.id/meggystudio1" target="_blank" rel="noopener"><b>Lynk.id</b><small>Best for buyers in Indonesia</small><em>Open store &rarr;</em></a><a class="mk" href="https://payhip.com/MeggyStudio1" target="_blank" rel="noopener"><b>Payhip</b><small>Card and PayPal checkout</small><em>Open store &rarr;</em></a><a class="mk" href="https://meggystudio.gumroad.com/" target="_blank" rel="noopener"><b>Gumroad</b><small>For international buyers</small><em>Open store &rarr;</em></a></div>
+  <div class="markets"><a class="mk" data-p href="https://lynk.id/meggystudio1/17ej6ye565ey" target="_blank" rel="noopener"><b>Lynk.id</b><small>Best for buyers in Indonesia</small><em>Buy this template &rarr;</em></a><a class="mk" data-p href="https://payhip.com/b/Y6MFD" target="_blank" rel="noopener"><b>Payhip</b><small>Card and PayPal checkout</small><em>Buy this template &rarr;</em></a><a class="mk" href="https://meggystudio.gumroad.com/" target="_blank" rel="noopener"><b>Gumroad</b><small>For international buyers</small><em>Open store &rarr;</em></a></div>
   <p class="sub" style="margin-top:16px">Want to try first? <a href="/#free" style="color:var(--accent)">Download the free 5-slide sample</a>.</p>
 </section>
-<div class="tbar" id="tbar"><div><b>Pixel Art</b><small>Cheaper than a coffee</small></div><a class="btn btn-primary" id="buyBar" href="https://lynk.id/meggystudio1" target="_blank" rel="noopener">Buy now</a></div>
+<div class="tbar" id="tbar"><div><b>Pixel Art</b><small>Cheaper than a coffee</small></div><a class="btn btn-primary" id="buyBar" href="https://lynk.id/meggystudio1/17ej6ye565ey" target="_blank" rel="noopener">Buy now</a></div>
 <section class="faq">
   <h2>FAQ</h2>
   <details><summary>Do I need to install any fonts?</summary><p>No. Pixel Art uses fonts that come with Microsoft Office, so the layout looks the same on any PC.</p></details><details><summary>Which PowerPoint version do I need?</summary><p>Morph transitions play in PowerPoint 2019, 2021 and Microsoft 365. Older versions can open the file, but the transitions may not play.</p></details><details><summary>Can I use it for client work?</summary><p>Yes. You can use it for your own presentations and for client projects. Reselling or redistributing the template file is not allowed.</p></details><details><summary>Can I change the colors and photos?</summary><p>Yes. Everything is native PowerPoint: recolor shapes in a few clicks and right-click any photo, then choose Change Picture.</p></details>
@@ -165,10 +165,13 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
 <script>
 (function(){
   var S={"Lynk.id": "https://lynk.id/meggystudio1", "Payhip": "https://payhip.com/MeggyStudio1", "Gumroad": "https://meggystudio.gumroad.com/"};
-  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n) S[n.textContent]=a.href; });
+  var P={};
+  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n){ S[n.textContent]=a.href; if(a.hasAttribute("data-p")) P[n.textContent]=1; } });
   var id=false; try{ id=/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||""); }catch(e){}
   if(!id) id=(navigator.languages||[navigator.language||""]).some(function(l){return /^id\b/i.test(l);});
-  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"], rec=order.filter(function(n){return S[n];})[0];
+  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"];
+  order=order.filter(function(n){return P[n];}).concat(order.filter(function(n){return !P[n];}));   /* product pages first */
+  var rec=order.filter(function(n){return S[n];})[0];
   var b=document.getElementById("buyMain"); if(b&&rec){ b.href=S[rec]; b.textContent="Buy on "+rec; }
   var bb=document.getElementById("buyBar"), tb=document.getElementById("tbar");
   if(bb&&rec) bb.href=S[rec];
