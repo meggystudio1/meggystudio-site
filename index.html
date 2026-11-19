@@ -1326,6 +1326,8 @@ const MARKETS = [
   {name:"Payhip",  note:"Card and PayPal checkout",     url:"https://payhip.com/MeggyStudio1"},
   {name:"Gumroad", note:"For international buyers",     url:"https://meggystudio.gumroad.com/"}
 ];
+/* per-template product links, filled from links.json by build.py (Google Sheet "MEGGYSTUDIO LINK TOKO") */
+const LINKS = {"corporate":{"Lynk.id":"https://lynk.id/meggystudio1/3vmyzg5e3wr6","Gumroad":"https://meggystudio.gumroad.com/l/ezctkt?wanted=true","Payhip":"https://payhip.com/b/47JYj"},"neon-groove":{"Lynk.id":"https://lynk.id/meggystudio1/qjnryn9nkon5","Gumroad":"https://meggystudio.gumroad.com/l/oulkiz?wanted=true","Payhip":"https://payhip.com/b/M6s8T"}};
 const TEMPLATES = [
  {id:"corporate",      name:"Corporate",        cat:"Business",      n:9, added:"2026-11-14", tags:["Dark","Minimal","Clean"], desc:"Deep blue, big type and glassy 3D accents. A confident company profile for clients, investors and internal reviews."},
  {id:"neon-groove",    name:"Neon Groove",      cat:"Entertainment", n:9, added:"2026-11-14", tags:["Dark","Bold","Music"], desc:"Vinyl records, magenta neon and a retro grid. Built for music, events and creative brands."},
@@ -2038,7 +2040,8 @@ function openStore(t){
   $("#shEye").textContent=t?"Buy "+t.name:"Choose a store";
   $("#shTitle").textContent=t?"Where do you want to pay?":"Get any template";
   $("#shTpl").innerHTML=t?`<img src="${thumb(t.id,0)}" alt="${t.name} template cover"><div><b>${t.name}</b><small>50 slides, Morph, PPTX 16:9</small></div>`:"";
-  $("#shList").innerHTML=STORES.map((m,i)=>`<a class="store" href="${m.url}" target="_blank" rel="noopener"><span class="logo">${m.name[0]}</span><span><b>${m.name}</b><small>${REC_NOTE[m.name]||m.note}</small></span><span class="go">Open ${ext}</span></a>`).join("");
+  const pl=(t&&LINKS[t.id])||{};
+  $("#shList").innerHTML=STORES.map((m,i)=>`<a class="store" href="${pl[m.name]||m.url}" target="_blank" rel="noopener"><span class="logo">${m.name[0]}</span><span><b>${m.name}</b><small>${REC_NOTE[m.name]||m.note}</small></span><span class="go">Open ${ext}</span></a>`).join("");
   $("#sheet").classList.add("open"); document.body.style.overflow="hidden"; mbarTick(); $("#shList a").focus(); ovPush();
 }
 function closeStore(){ if(!$("#sheet").classList.contains("open")) return; $("#sheet").classList.remove("open"); if(!anyOverlay()) document.body.style.overflow=""; mbarTick(); if(shLast) shLast.focus(); ovDone(); }

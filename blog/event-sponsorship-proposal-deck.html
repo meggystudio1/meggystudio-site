@@ -321,6 +321,7 @@ body{background:var(--bg)}
 <script>
 (function(){
   var S={"Lynk.id": "https://lynk.id/meggystudio1", "Payhip": "https://payhip.com/MeggyStudio1", "Gumroad": "https://meggystudio.gumroad.com/"};
+  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n) S[n.textContent]=a.href; });
   var id=false; try{ id=/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||""); }catch(e){}
   if(!id) id=(navigator.languages||[navigator.language||""]).some(function(l){return /^id\b/i.test(l);});
   var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"], rec=order.filter(function(n){return S[n];})[0];
