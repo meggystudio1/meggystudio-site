@@ -1,10 +1,41 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/templates/earth-day-2027", "destination": "/templates/earth-day", "permanent": true },
-    { "source": "/templates/sustainability-day-2027", "destination": "/templates/sustainability-day", "permanent": true }
+    {
+      "source": "/templates/earth-day-2027",
+      "destination": "/templates/earth-day",
+      "permanent": true
+    },
+    {
+      "source": "/templates/sustainability-day-2027",
+      "destination": "/templates/sustainability-day",
+      "permanent": true
+    },
+    {
+      "source": "/blog/template-ppt-sidang-skripsi",
+      "destination": "/blog/thesis-defense-presentation",
+      "permanent": true
+    },
+    {
+      "source": "/blog/ide-template-ppt-aesthetic",
+      "destination": "/blog/aesthetic-powerpoint-templates",
+      "permanent": true
+    },
+    {
+      "source": "/blog/cara-membuat-presentasi-menarik",
+      "destination": "/blog/presentation-design-tips",
+      "permanent": true
+    }
   ],
   "headers": [
-    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=604800" }] }
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=604800"
+        }
+      ]
+    }
   ]
 }
