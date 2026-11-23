@@ -37,5 +37,19 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/tiktok",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ig",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/threads",
+      "destination": "/index.html"
+    }
   ]
 }
