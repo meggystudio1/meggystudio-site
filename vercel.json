@@ -41,15 +41,15 @@
   "rewrites": [
     {
       "source": "/tiktok",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/ig",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/threads",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
