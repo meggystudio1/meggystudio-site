@@ -50,6 +50,10 @@
     {
       "source": "/threads",
       "destination": "/"
+    },
+    {
+      "source": "/x",
+      "destination": "/"
     }
   ]
 }
