@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{var t=localStorage.getItem("ms-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<title>Presentation Color Palette Generator (Free) | MEGGYSTUDIO</title>
+<meta name="description" content="Free presentation colour palette generator. Pick a brand colour and mood to get 5 slide-ready colours with contrast checks and a live slide preview.">
+<link rel="canonical" href="https://meggystudio.com/tools/presentation-color-palette-generator">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0E1430">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MEGGYSTUDIO">
+<meta property="og:title" content="Presentation Color Palette Generator (Free) | MEGGYSTUDIO">
+<meta property="og:description" content="Free presentation colour palette generator. Pick a brand colour and mood to get 5 slide-ready colours with contrast checks and a live slide preview.">
+<meta property="og:url" content="https://meggystudio.com/tools/presentation-color-palette-generator">
+<meta property="og:image" content="https://meggystudio.com/assets/og/home.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Presentation Color Palette Generator (Free) | MEGGYSTUDIO">
+<meta name="twitter:description" content="Free presentation colour palette generator. Pick a brand colour and mood to get 5 slide-ready colours with contrast checks and a live slide preview.">
+<meta name="twitter:image" content="https://meggystudio.com/assets/og/home.jpg">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="MEGGYSTUDIO new templates and guides" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5FA;--text:#0F1420;--muted:#5B6472;--accent:#00917C;--line:rgba(15,25,50,.11);--surface:rgba(15,25,50,.04);--card:#fff;--btn:#0F1420;--btn-text:#fff;--logo-w:#0F1420;--shadow:0 24px 50px -24px rgba(20,30,60,.25);--font:"Geist",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.02em}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.04em;font-size:14px}.brand svg{height:22px;width:auto}
+.nav nav{display:flex;gap:22px;font-size:14px;color:var(--muted)}.nav nav a:hover{color:var(--text)}
+.nav .right{display:flex;align-items:center;gap:10px}
+.follow{position:relative}.follow summary{list-style:none;cursor:pointer;height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;white-space:nowrap}.follow summary::-webkit-details-marker{display:none}.follow summary svg{width:14px;height:14px;transition:transform .2s}.follow[open] summary svg{transform:rotate(180deg)}
+.nav .follow .fmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:210px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:6px;display:flex;flex-direction:column;gap:0;z-index:60}.follow .fmenu a{padding:10px 12px;border-radius:8px;font-size:14px;display:flex;justify-content:space-between;align-items:center;color:var(--text)}.follow .fmenu a:hover{background:var(--surface)}.follow .fmenu a span{opacity:.5}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:10px;font-size:14.5px;font-weight:500;white-space:nowrap;border:1px solid transparent}
+.btn-primary{background:var(--btn);color:var(--btn-text)}.btn-secondary{background:var(--surface);border-color:var(--line)}.btn-secondary:hover{border-color:var(--muted)}
+.crumb{font-size:13px;color:var(--muted);margin:28px 0 18px}.crumb a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:start;margin-bottom:56px}
+.shot{border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:16/9;background:var(--surface)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.hero h1{font-size:clamp(30px,4vw,44px);margin:8px 0 14px}
+.lead{color:var(--muted);font-size:17px;margin-bottom:22px}
+.specs{list-style:none;border-top:1px solid var(--line);margin:0 0 24px}
+.specs li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}.specs span{color:var(--muted)}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.trust{font-size:13px;color:var(--muted);margin-top:12px}
+.tbar{display:none}
+@media (max-width:760px){.tbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(160%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}.tbar.show{transform:none}.tbar b{display:block;font-size:14px;line-height:1.2}.tbar small{font-size:12px;color:var(--muted)}.tbar .btn{height:40px}}
+a.mk{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}.tags i{font-style:normal;font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+section{margin:0 0 64px}
+section>h2{font-size:26px;margin-bottom:8px}section>p.sub{color:var(--muted);margin-bottom:22px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.box h3{font-size:18px;margin-bottom:12px}
+.box ul{padding-left:18px}.box li{margin:6px 0}
+.markets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mk{display:flex;flex-direction:column;gap:4px;padding:18px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.mk b{font-weight:600}.mk small{color:var(--muted);font-size:13px}.mk em{font-style:normal;font-size:12px;font-family:var(--mono);color:var(--accent);margin-top:6px}
+.mk.off{opacity:.55}.mk.off em{color:var(--muted)}
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rel a{display:flex;flex-direction:column;gap:10px}.rel a:hover .shot{transform:translateY(-3px)}.rel .shot{transition:transform .3s}
+.rel b{font-weight:600}.rel span{font-size:13px;color:var(--muted)}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}.faq summary{cursor:pointer;font-weight:500}.faq p{color:var(--muted);margin-top:8px}
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.foot nav{display:flex;gap:18px;flex-wrap:wrap}.foot a:hover{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid a{display:flex;flex-direction:column;gap:10px}.grid p{font-size:14px;color:var(--muted)}
+.post{max-width:760px;margin:0 auto}
+.post h1{font-size:clamp(30px,4.4vw,46px);margin:10px 0 14px}
+.meta{font-size:13.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.post .lede{font-size:19px;color:var(--text);margin-bottom:18px}
+.post p,.post li{font-size:17px}.post p{margin:0 0 16px}
+.post h2{font-size:27px;margin:44px 0 14px;scroll-margin-top:84px}.post h3{font-size:20px;margin:26px 0 8px}
+.post ul,.post ol{padding-left:22px;margin:0 0 18px}.post li{margin:7px 0}
+.post a:not(.btn){color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.post code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+.post figure{margin:26px 0}.post figure img{border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.post figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;text-align:center}
+.post table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+@media (max-width:600px){.post table{display:block;overflow-x:auto}}
+.post .crumb a{color:inherit;text-decoration:none}
+.post th,.post td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.post th{font-weight:600;background:var(--surface)}
+.post .note{font-size:14px;color:var(--muted)}
+.tip{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0;font-size:16px}
+.cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;margin:34px 0;box-shadow:var(--shadow)}
+.cta b{font-size:20px;font-weight:600;display:block;margin-bottom:6px}.cta p{color:var(--muted);margin-bottom:16px}
+.toc{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:0 0 28px;background:var(--surface)}
+.toc b{font-size:13px;font-family:var(--mono);color:var(--muted);font-weight:500}.toc ol{margin:8px 0 0;padding-left:20px}.toc li{font-size:15px;margin:4px 0}.toc a{color:var(--text)!important;text-decoration:none!important}
+.posthero{margin:0 0 26px}
+.bl{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.bl a{display:flex;flex-direction:column;gap:10px}.bl h2{font-size:21px}.bl p{font-size:15px;color:var(--muted)}
+@media (max-width:880px){.bl{grid-template-columns:1fr}}
+@media (max-width:880px){.hero,.cols{grid-template-columns:1fr}.gal,.rel,.grid{grid-template-columns:1fr 1fr}.markets{grid-template-columns:1fr}.nav nav{display:none}}
+@media (max-width:520px){.gal,.rel,.grid{grid-template-columns:1fr}.wrap{padding:0 18px}}
+
+.pick p{font-size:14px;color:var(--muted)}.pick .why{font-size:14px;color:var(--text)}.pick .why b{color:var(--accent);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips a{padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--muted)}.chips a:hover{color:var(--text);border-color:var(--muted)}
+.intro{max-width:760px}.intro p{color:var(--muted);font-size:17px;margin-bottom:14px}
+.colgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.colgrid a{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}.colgrid a:hover{border-color:var(--muted)}
+.stack3{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;aspect-ratio:8/3}.stack3 img{width:100%;height:100%;object-fit:cover;border-radius:8px}.stack3 img:first-child{grid-row:1/3}
+.colgrid b{font-size:17px}.colgrid span{font-size:13.5px;color:var(--muted)}
+.gd{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.gd a{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}.gd a:hover{border-color:var(--muted);border-top-color:var(--c)}.gd b{font-size:17px;line-height:1.3}.gd p{font-size:14px;color:var(--muted);flex:1}.gd em{font-style:normal;font-size:14px;color:var(--accent);font-weight:500}
+.day{font-family:var(--mono);font-size:13px;color:var(--muted);margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);margin-bottom:40px}
+.tool label{display:block;font-size:13px;font-family:var(--mono);color:var(--muted);margin:0 0 6px}
+.tool input,.tool select{width:100%;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;padding:0 12px}
+.tool input[type=color]{padding:4px;cursor:pointer}
+.tg2{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+.res{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 22px}.res div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}.res b{display:block;font-size:28px;letter-spacing:-.02em;line-height:1.1}.res small{color:var(--muted);font-size:13px}
+.outline{width:100%;border-collapse:collapse;font-size:15px}.outline td{padding:9px 10px;border-bottom:1px solid var(--line)}.outline td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
+.bar{height:6px;border-radius:9px;background:var(--accent);opacity:.75;min-width:4px}
+.sw{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0 18px}.sw button{border:1px solid var(--line);border-radius:12px;height:96px;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;font:600 13px var(--mono);text-align:left}
+.sw button small{display:block;font-weight:400;opacity:.8;font-family:var(--font)}
+.prev{max-width:860px;margin:0 auto;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-columns:1.2fr 1fr;gap:0}
+.prev .l{padding:7% 8%;display:flex;flex-direction:column;justify-content:center;gap:4%}.prev .l i{font-style:normal;font:600 clamp(9px,1.2vw,13px) var(--mono);letter-spacing:.08em}.prev h3{font-size:clamp(18px,3.2vw,38px);line-height:1.05}.prev p{font-size:clamp(10px,1.3vw,15px);opacity:.85}
+.prev .r{display:flex;flex-direction:column;justify-content:center;gap:6%;padding:7% 8%}.prev .r div{border-radius:10px;height:22%;display:flex;align-items:center;padding:0 8%;font:600 clamp(10px,1.4vw,16px) var(--font)}
+.cr{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}.cr span{font-size:13px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface)}.cr .ok{color:#0A8F5A}.cr .no{color:#C0392B}
+.pals{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.pals a{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}.pals .st{display:flex;height:54px}.pals .st i{flex:1}.pals b{display:block;padding:10px 12px 2px;font-size:14px}.pals small{display:block;padding:0 12px 10px;font:12px var(--mono);color:var(--muted)}
+.copyok{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--btn);color:var(--btn-text);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}.copyok.on{opacity:1}
+.toolcards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.toolcards a{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px}.toolcards a:hover{border-color:var(--muted)}.toolcards b{font-size:20px}.toolcards p{color:var(--muted);font-size:15px}.toolcards em{font-style:normal;color:var(--accent);font-size:14px;font-weight:500}
+.prose{max-width:760px}.prose h2{font-size:24px;margin:34px 0 10px}.prose p,.prose li{color:var(--muted);font-size:16.5px}.prose p{margin-bottom:14px}.prose ol,.prose ul{padding-left:22px;margin-bottom:14px}.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+@media (max-width:880px){.gd{grid-template-columns:1fr}.colgrid,.pals{grid-template-columns:1fr 1fr}.tg2,.res{grid-template-columns:1fr 1fr}.toolcards{grid-template-columns:1fr}.sw{grid-template-columns:repeat(5,1fr)}.sw button{height:76px;font-size:11px}}
+@media (max-width:520px){.colgrid,.pals{grid-template-columns:1fr}.tool{padding:16px}.sw{gap:6px}.sw button{height:64px;padding:6px;font-size:9.5px}.sw button small{font-size:9px}.res b{font-size:22px}.outline td:nth-child(2){display:none}}
+.tg2>div,.sw button,.res>div{min-width:0}.sw button{overflow:hidden}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Presentation colour palette generator", "url": "https://meggystudio.com/tools/presentation-color-palette-generator", "description": "Free presentation colour palette generator. Pick a brand colour and mood to get 5 slide-ready colours with contrast checks and a live slide preview.", "applicationCategory": "DesignApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "MEGGYSTUDIO", "url": "https://meggystudio.com/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://meggystudio.com/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://meggystudio.com/tools"}, {"@type": "ListItem", "position": 3, "name": "Presentation colour palette generator", "item": "https://meggystudio.com/tools/presentation-color-palette-generator"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a good colour scheme for a presentation?", "acceptedAnswer": {"@type": "Answer", "text": "One dark and one light neutral for text and background, plus one strong accent. Keep text contrast at 4.5:1 or higher."}}, {"@type": "Question", "name": "How do I use my brand colour in a presentation?", "acceptedAnswer": {"@type": "Answer", "text": "Use it as the accent, not the background, unless it is very dark or very light. Pick neutrals that are tinted towards the brand colour so the deck feels connected."}}, {"@type": "Question", "name": "Is this palette generator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. There is no sign-up. Copy the colours and use them in any presentation or design."}}]}</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script><script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="/" aria-label="MEGGYSTUDIO home"><svg viewBox="166 30 1278 1012" aria-hidden="true"><defs><linearGradient id="mlg" gradientUnits="userSpaceOnUse" x1="0" y1="40" x2="0" y2="1030"><stop offset="0" stop-color="#00EFCB"/><stop offset="1" stop-color="#2E8BEA"/></linearGradient></defs><path fill="var(--logo-w)" fill-rule="evenodd" d="M1031,568 L1028,569 L879,825 L876,827 L847,783 L840,774 L837,774 L800,838 L805,850 L870,949 L873,948 L1064,625 L1061,614 Z M353,47 L350,48 L179,1028 L359,1029 L414,1028 L458,784 L455,773 L418,708 L415,711 L368,962 L351,965 L252,963 L389,216 L419,258 L713,707 L716,707 L752,644 Z"/><path fill="url(#mlg)" fill-rule="evenodd" d="M1253,42 L1145,41 L1142,43 L568,1024 L568,1029 L646,1028 L1190,99 L1193,103 L1348,947 L1348,954 L1345,956 L1314,955 L1312,953 L1174,201 L1170,198 L1129,270 L1124,287 L1256,1024 L1260,1029 L1430,1029 L1409,897 L1283,208 L1273,141 Z"/></svg><span>MEGGYSTUDIO</span></a>
+  <nav aria-label="Main"><a href="/templates">All templates</a><a href="/collections">Collections</a><a href="/new">New</a><a href="/tools">Free tools</a><a href="/blog">Blog</a><a href="/#free">Free sample</a></nav>
+  <div class="right"><details class="follow"><summary aria-label="Follow MEGGYSTUDIO on social media">Follow<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><nav class="fmenu" aria-label="Social media"><a href="https://www.instagram.com/meggystudio1/" target="_blank" rel="noopener me">Instagram<span>&#8599;</span></a><a href="https://www.tiktok.com/@meggystudio1" target="_blank" rel="noopener me">TikTok<span>&#8599;</span></a><a href="https://www.threads.com/@meggystudio1" target="_blank" rel="noopener me">Threads<span>&#8599;</span></a><a href="https://www.pinterest.com/meggystudio/" target="_blank" rel="noopener me">Pinterest<span>&#8599;</span></a><a href="https://www.behance.net/meggystudio" target="_blank" rel="noopener me">Behance<span>&#8599;</span></a></nav></details><a class="btn btn-primary" href="#buy">Buy</a></div>
+</div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">Home</a> / <a href="/tools">Free tools</a> / Presentation colour palette generator</p>
+<section style="margin-bottom:28px">
+  <h1 style="font-size:clamp(30px,4vw,44px);margin-bottom:10px">Presentation colour palette generator</h1>
+  <p class="sub" style="color:var(--muted);max-width:720px">Pick a brand colour and a mood. You get five slide-ready colours with contrast checks, a live slide preview and steps to load them into PowerPoint.</p>
+</section>
+<div class="tool">
+  <div class="tg2">
+    <div><label for="base">Brand or base colour</label><input id="base" type="color" value="#2E5BEA"></div>
+    <div><label for="mode">Mood</label><select id="mode"><option value="corporate">Corporate (light)</option><option value="dark" selected>Dark tech</option><option value="bold">Bold and loud</option><option value="pastel">Soft pastel</option><option value="earthy">Warm and earthy</option><option value="mono">Monochrome plus accent</option></select></div>
+    <div><label for="shift">Hue shift</label><input id="shift" type="range" min="-60" max="60" value="0" style="padding:0"></div>
+    <div><label>&nbsp;</label><button class="btn btn-secondary" id="rnd" type="button" style="width:100%">Surprise me</button></div>
+  </div>
+  <div class="sw" id="sw"></div>
+  <div class="prev" id="prev" aria-label="Slide preview">
+    <div class="l"><i id="pvTag">Q4 PLAN</i><h3>Grow the brand without losing the plot</h3><p>A preview of your palette on a title slide.</p></div>
+    <div class="r" id="pvR"><div id="pv1">Revenue +38%</div><div id="pv2">New markets: 3</div><div id="pv3">Team: 24</div></div>
+  </div>
+  <div class="cr" id="crs"></div>
+  <label for="hexes" style="margin-top:16px">Your palette</label>
+  <textarea id="hexes" rows="5" readonly style="width:100%;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:14px var(--mono);padding:10px 12px;resize:vertical"></textarea>
+  <div style="margin-top:12px"><button class="btn btn-primary" id="copyAll" type="button">Copy all colours</button></div>
+</div>
+<div class="copyok" id="toast" role="status"></div>
+<section>
+  <h2>Palettes from our templates</h2>
+  <p class="sub">Colours pulled from the cover slides of real MEGGYSTUDIO templates. Click one to see the template.</p>
+  <div class="pals"><a href="/templates/corporate"><div class="st"><i style=background:#060F30></i><i style=background:#092D9D></i><i style=background:#2F3C68></i><i style=background:#5B70AA></i><i style=background:#F8FBFF></i></div><b>Corporate</b><small>#060F30 #092D9D #2F3C68 #5B70AA #F8FBFF</small></a><a href="/templates/futuristic-hud"><div class="st"><i style=background:#080E1D></i><i style=background:#121C2D></i><i style=background:#12374C></i><i style=background:#295E72></i><i style=background:#78D0E1></i></div><b>Futuristic HUD</b><small>#080E1D #121C2D #12374C #295E72 #78D0E1</small></a><a href="/templates/kpop-bento"><div class="st"><i style=background:#351F3B></i><i style=background:#79586B></i><i style=background:#C29989></i><i style=background:#D8D7D7></i><i style=background:#FBF7FF></i></div><b>K-Pop Bento</b><small>#351F3B #79586B #C29989 #D8D7D7 #FBF7FF</small></a><a href="/templates/coffee-house"><div class="st"><i style=background:#211610></i><i style=background:#513B2F></i><i style=background:#967554></i><i style=background:#DAB279></i><i style=background:#EDD5AE></i></div><b>Coffee House</b><small>#211610 #513B2F #967554 #DAB279 #EDD5AE</small></a><a href="/templates/editorial-wedding"><div class="st"><i style=background:#201F1A></i><i style=background:#584930></i><i style=background:#9F8362></i><i style=background:#B2A28E></i><i style=background:#C8BEB5></i></div><b>Editorial Wedding</b><small>#201F1A #584930 #9F8362 #B2A28E #C8BEB5</small></a><a href="/templates/80s-synthwave"><div class="st"><i style=background:#0B031A></i><i style=background:#661D53></i><i style=background:#CB457F></i><i style=background:#C37F98></i><i style=background:#D6E3EC></i></div><b>80s Synthwave</b><small>#0B031A #661D53 #CB457F #C37F98 #D6E3EC</small></a><a href="/templates/swiss-style"><div class="st"><i style=background:#111111></i><i style=background:#1E244F></i><i style=background:#1D3BFE></i><i style=background:#6D708D></i><i style=background:#F2EEE9></i></div><b>Swiss Style</b><small>#111111 #1E244F #1D3BFE #6D708D #F2EEE9</small></a><a href="/templates/nature-odyssey"><div class="st"><i style=background:#0B0E11></i><i style=background:#35353C></i><i style=background:#3B668A></i><i style=background:#7290AE></i><i style=background:#93B1C4></i></div><b>Nature Odyssey</b><small>#0B0E11 #35353C #3B668A #7290AE #93B1C4</small></a><a href="/templates/valentine-love-letters"><div class="st"><i style=background:#AF102A></i><i style=background:#C26266></i><i style=background:#E7C7C2></i><i style=background:#EFE3D6></i><i style=background:#FDF7EC></i></div><b>Valentine Love Letters</b><small>#AF102A #C26266 #E7C7C2 #EFE3D6 #FDF7EC</small></a><a href="/templates/cyber-mecha"><div class="st"><i style=background:#090B0F></i><i style=background:#31364A></i><i style=background:#3A54B8></i><i style=background:#8F93A5></i><i style=background:#EEF0F4></i></div><b>Futuristic Cyber Mecha</b><small>#090B0F #31364A #3A54B8 #8F93A5 #EEF0F4</small></a><a href="/templates/bauhaus"><div class="st"><i style=background:#0F1319></i><i style=background:#7E383C></i><i style=background:#1F4D9B></i><i style=background:#F1B622></i><i style=background:#F2EBDD></i></div><b>Bauhaus</b><small>#0F1319 #7E383C #1F4D9B #F1B622 #F2EBDD</small></a><a href="/templates/ramadan-layered"><div class="st"><i style=background:#1D1C55></i><i style=background:#312F85></i><i style=background:#4C3A99></i><i style=background:#6E5C7D></i><i style=background:#CAAA7E></i></div><b>Ramadan Layered</b><small>#1D1C55 #312F85 #4C3A99 #6E5C7D #CAAA7E</small></a><a href="/templates/fairy-garden"><div class="st"><i style=background:#2E1B2D></i><i style=background:#554D86></i><i style=background:#9E699F></i><i style=background:#A2C0CF></i><i style=background:#EFE8F3></i></div><b>Fairy Garden</b><small>#2E1B2D #554D86 #9E699F #A2C0CF #EFE8F3</small></a><a href="/templates/gym-fitness"><div class="st"><i style=background:#030303></i><i style=background:#303029></i><i style=background:#5F6839></i><i style=background:#DDEBA1></i><i style=background:#D2FF0F></i></div><b>Gym Fitness</b><small>#030303 #303029 #5F6839 #DDEBA1 #D2FF0F</small></a><a href="/templates/art-deco"><div class="st"><i style=background:#170306></i><i style=background:#3F1316></i><i style=background:#624435></i><i style=background:#84674F></i><i style=background:#CAAF84></i></div><b>Art Deco</b><small>#170306 #3F1316 #624435 #84674F #CAAF84</small></a><a href="/templates/liquid-glass"><div class="st"><i style=background:#243A89></i><i style=background:#4B73DD></i><i style=background:#8DB3DC></i><i style=background:#DCC4C9></i><i style=background:#F0EFF2></i></div><b>Liquid Glass</b><small>#243A89 #4B73DD #8DB3DC #DCC4C9 #F0EFF2</small></a></div>
+</section>
+<section class="prose"><h2>Five colours is all a deck needs</h2>
+<p>The generator gives you five roles, not five random colours. Background and surface carry most of the slide. Text has to pass contrast against both. Accent is for the one thing you want people to look at, such as a key number or a button. Accent 2 is a backup for charts that need a second series. If everything is accent, nothing is.</p>
+<h2>Check the contrast badges</h2>
+<p>Text should reach at least 4.5:1 against its background so people at the back of the room can read it. Accents used for large numbers or shapes only need about 3:1. Projectors wash colours out, so when a badge says low, darken the text or lighten the background before you present.</p>
+<h2>Put the palette into PowerPoint</h2>
+<ol><li>Open the Design tab, then Variants, then Colors, then Customize Colors.</li><li>Paste Text into Text/Background Dark 1 and Background into Text/Background Light 1.</li><li>Put Accent and Accent 2 into Accent 1 and Accent 2, then save the colour set with a name.</li></ol>
+<p>Shapes and charts that use theme colours update in one go. For more on choosing colours, read <a href="/blog/presentation-color-schemes">presentation colour schemes that work</a>.</p></section>
+<section class="faq"><h2>FAQ</h2><details><summary>What is a good colour scheme for a presentation?</summary><p>One dark and one light neutral for text and background, plus one strong accent. Keep text contrast at 4.5:1 or higher.</p></details><details><summary>How do I use my brand colour in a presentation?</summary><p>Use it as the accent, not the background, unless it is very dark or very light. Pick neutrals that are tinted towards the brand colour so the deck feels connected.</p></details><details><summary>Is this palette generator free?</summary><p>Yes. There is no sign-up. Copy the colours and use them in any presentation or design.</p></details></section>
+<section>
+  <h2>More free tools</h2>
+  <p class="sub">&nbsp;</p>
+  <div class="chips"><a href="/tools/slide-count-calculator">Slide count calculator</a><a href="/tools/presentation-color-palette-generator">Color palette generator</a><a href="/collections">Template collections</a></div>
+</section>
+</main>
+<footer><div class="wrap foot">
+  <nav aria-label="Footer"><a href="/">Home</a><a href="/templates">All templates</a><a href="/collections">Collections</a><a href="/new">New templates</a><a href="/tools">Free tools</a><a href="/blog">Blog</a><a href="/feed.xml">RSS</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a><a href="https://www.instagram.com/meggystudio1/" target="_blank" rel="noopener me">Instagram &#8599;</a><a href="https://www.tiktok.com/@meggystudio1" target="_blank" rel="noopener me">TikTok &#8599;</a><a href="https://www.threads.com/@meggystudio1" target="_blank" rel="noopener me">Threads &#8599;</a><a href="https://www.pinterest.com/meggystudio/" target="_blank" rel="noopener me">Pinterest &#8599;</a><a href="https://www.behance.net/meggystudio" target="_blank" rel="noopener me">Behance &#8599;</a></nav>
+  <span>&copy; 2026 MEGGYSTUDIO (Meggy Studio). All rights reserved.</span>
+</div></footer>
+<script>document.addEventListener('click',e=>{document.querySelectorAll('details.follow[open]').forEach(d=>{if(!d.contains(e.target))d.removeAttribute('open')})});</script>
+<script>
+(function(){
+  var S={"Lynk.id": "https://lynk.id/meggystudio1", "Payhip": "https://payhip.com/MeggyStudio1", "Gumroad": "https://meggystudio.gumroad.com/"};
+  var P={};
+  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n){ S[n.textContent]=a.href; if(a.hasAttribute("data-p")) P[n.textContent]=1; } });
+  var id=false; try{ id=/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||""); }catch(e){}
+  if(!id) id=(navigator.languages||[navigator.language||""]).some(function(l){return /^id\b/i.test(l);});
+  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"];
+  order=order.filter(function(n){return P[n];}).concat(order.filter(function(n){return !P[n];}));   /* product pages first */
+  var rec=order.filter(function(n){return S[n];})[0];
+  var b=document.getElementById("buyMain"); if(b&&rec){ b.href=S[rec]; b.textContent="Buy on "+rec; }
+  var bb=document.getElementById("buyBar"), tb=document.getElementById("tbar");
+  if(bb&&rec) bb.href=S[rec];
+  if(tb&&b&&window.IntersectionObserver){ var vis={}; var upd=function(){ tb.classList.toggle("show", !vis.main && !vis.buy && b.getBoundingClientRect().top<0); };
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ vis[e.target===b?"main":"buy"]=e.isIntersecting; }); upd(); });
+    io.observe(b); var by=document.getElementById("buy"); if(by) io.observe(by); addEventListener("scroll",upd,{passive:true}); }
+  [].forEach.call(document.querySelectorAll(".markets"),function(box){
+    var items=[].slice.call(box.children);
+    items.sort(function(a,c){ return order.indexOf(a.querySelector("b").textContent)-order.indexOf(c.querySelector("b").textContent); }).forEach(function(n){ box.appendChild(n); });
+  });
+})();
+</script>
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+function h2r(h){h=h.replace("#","");return[parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)]}
+function r2hsl(r,g,b){r/=255;g/=255;b/=255;var mx=Math.max(r,g,b),mn=Math.min(r,g,b),h,s,l=(mx+mn)/2;if(mx==mn){h=s=0}else{var d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx==r?(g-b)/d+(g<b?6:0):mx==g?(b-r)/d+2:(r-g)/d+4;h/=6}return[h*360,s*100,l*100]}
+function hsl(h,s,l){h=((h%360)+360)%360;s=Math.max(0,Math.min(100,s))/100;l=Math.max(0,Math.min(100,l))/100;var a=s*Math.min(l,1-l),f=function(n){var k=(n+h/30)%12;return Math.round(255*(l-a*Math.max(-1,Math.min(k-3,9-k,1))))};return"#"+[f(0),f(8),f(4)].map(function(x){return("0"+x.toString(16)).slice(-2)}).join("").toUpperCase()}
+function lum(hex){return h2r(hex).map(function(c){c/=255;return c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4)}).reduce(function(a,c,i){return a+c*[.2126,.7152,.0722][i]},0)}
+function cr(a,b){var x=lum(a),y=lum(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+var MODES={
+ corporate:function(h,s){return{bg:hsl(h,12,97),surface:hsl(h,20,91),text:hsl(h,40,12),accent:hsl(h,Math.max(s,55),40),accent2:hsl(h+180,45,52)}},
+ dark:function(h,s){return{bg:hsl(h,45,8),surface:hsl(h,35,15),text:hsl(h,15,94),accent:hsl(h,Math.max(s,75),60),accent2:hsl(h+150,80,62)}},
+ bold:function(h,s){return{bg:hsl(h,Math.max(s,70),48),surface:hsl(h,60,38),text:hsl(h,20,98),accent:hsl(h+180,90,62),accent2:hsl(h+60,95,60)}},
+ pastel:function(h,s){return{bg:hsl(h,60,95),surface:hsl(h+30,55,88),text:hsl(h,35,22),accent:hsl(h,55,62),accent2:hsl(h+120,45,70)}},
+ earthy:function(h,s){return{bg:hsl(35,30,93),surface:hsl(35,25,84),text:hsl(h,25,15),accent:hsl(h,Math.min(s,45),38),accent2:hsl(h+40,40,55)}},
+ mono:function(h,s){return{bg:hsl(h,5,98),surface:hsl(h,5,90),text:hsl(h,8,10),accent:hsl(h,Math.max(s,60),48),accent2:hsl(h,8,45)}}
+};
+var NAMES={bg:"Background",surface:"Surface",text:"Text",accent:"Accent",accent2:"Accent 2"};
+var cur={};
+function draw(){
+ var c=h2r($("base").value),x=r2hsl(c[0],c[1],c[2]),p=MODES[$("mode").value](x[0]+(+$("shift").value),x[1]);
+ cur=p; var sw="";
+ Object.keys(NAMES).forEach(function(k){var t=lum(p[k])>.35?"#111":"#fff";sw+='<button type="button" data-hex="'+p[k]+'" style="background:'+p[k]+';color:'+t+'" title="Copy '+p[k]+'">'+p[k]+'<small>'+NAMES[k]+'</small></button>'});
+ $("sw").innerHTML=sw;
+ var pv=$("prev"); pv.style.background=p.bg; pv.style.color=p.text;
+ $("pvTag").style.color=p.accent; $("pvR").style.background=p.surface;
+ $("pv1").style.background=p.accent; $("pv1").style.color=lum(p.accent)>.35?"#111":"#fff";
+ $("pv2").style.background=p.accent2; $("pv2").style.color=lum(p.accent2)>.35?"#111":"#fff";
+ $("pv3").style.background=p.bg; $("pv3").style.color=p.text;
+ var a=cr(p.text,p.bg),b=cr(p.accent,p.bg),cc=cr(p.text,p.surface);
+ function tag(v,l,min){return'<span class="'+(v>=min?"ok":"no")+'">'+l+": "+v.toFixed(1)+":1 "+(v>=min?"pass":"low")+'</span>'}
+ $("crs").innerHTML=tag(a,"Text on background",4.5)+tag(cc,"Text on surface",4.5)+tag(b,"Accent on background",3);
+ $("hexes").value=Object.keys(NAMES).map(function(k){return NAMES[k]+": "+p[k]}).join("\n");
+}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(function(){t.classList.remove("on")},1300)}
+function copy(s){if(navigator.clipboard){navigator.clipboard.writeText(s).then(function(){toast("Copied "+(s.length<10?s:"palette"))},function(){})}}
+$("sw").addEventListener("click",function(e){var b=e.target.closest("button");if(b)copy(b.dataset.hex)});
+$("copyAll").addEventListener("click",function(){copy($("hexes").value)});
+$("rnd").addEventListener("click",function(){$("base").value=hsl(Math.random()*360,55+Math.random()*35,40+Math.random()*20);draw()});
+["base","mode","shift"].forEach(function(i){$(i).addEventListener("input",draw)});
+[].forEach.call(document.querySelectorAll("[data-load]"),function(a){a.addEventListener("click",function(e){if(e.metaKey||e.ctrlKey)return;});});
+draw();
+})();
+</script></body>
+</html>
