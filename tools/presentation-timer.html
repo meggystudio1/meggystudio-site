@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{var t=localStorage.getItem("ms-theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<title>Presentation Timer: Free Full-Screen Countdown | MEGGYSTUDIO</title>
+<meta name="description" content="Free presentation timer with full-screen countdown, colour warnings, overtime and slide pacing. Works on laptop and phone, no sign-up.">
+<link rel="canonical" href="https://meggystudio.com/tools/presentation-timer">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0E1430">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MEGGYSTUDIO">
+<meta property="og:title" content="Presentation Timer: Free Full-Screen Countdown | MEGGYSTUDIO">
+<meta property="og:description" content="Free presentation timer with full-screen countdown, colour warnings, overtime and slide pacing. Works on laptop and phone, no sign-up.">
+<meta property="og:url" content="https://meggystudio.com/tools/presentation-timer">
+<meta property="og:image" content="https://meggystudio.com/assets/og/home.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Presentation Timer: Free Full-Screen Countdown | MEGGYSTUDIO">
+<meta name="twitter:description" content="Free presentation timer with full-screen countdown, colour warnings, overtime and slide pacing. Works on laptop and phone, no sign-up.">
+<meta name="twitter:image" content="https://meggystudio.com/assets/og/home.jpg">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="MEGGYSTUDIO new templates and guides" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5FA;--text:#0F1420;--muted:#5B6472;--accent:#00917C;--line:rgba(15,25,50,.11);--surface:rgba(15,25,50,.04);--card:#fff;--btn:#0F1420;--btn-text:#fff;--logo-w:#0F1420;--shadow:0 24px 50px -24px rgba(20,30,60,.25);--font:"Geist",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1430;--text:#ECEFF6;--muted:#97A0B4;--accent:#2EE6C9;--line:rgba(255,255,255,.10);--surface:rgba(255,255,255,.05);--card:#151B3A;--btn:#ECEFF6;--btn-text:#0E1430;--logo-w:#fff;--shadow:0 30px 60px -24px rgba(0,0,0,.6);color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:600;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.02em}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.04em;font-size:14px}.brand svg{height:22px;width:auto}
+.nav nav{display:flex;gap:22px;font-size:14px;color:var(--muted)}.nav nav a:hover{color:var(--text)}
+.nav .right{display:flex;align-items:center;gap:10px}
+.follow{position:relative}.follow summary{list-style:none;cursor:pointer;height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;white-space:nowrap}.follow summary::-webkit-details-marker{display:none}.follow summary svg{width:14px;height:14px;transition:transform .2s}.follow[open] summary svg{transform:rotate(180deg)}
+.nav .follow .fmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:210px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:6px;display:flex;flex-direction:column;gap:0;z-index:60}.follow .fmenu a{padding:10px 12px;border-radius:8px;font-size:14px;display:flex;justify-content:space-between;align-items:center;color:var(--text)}.follow .fmenu a:hover{background:var(--surface)}.follow .fmenu a span{opacity:.5}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:10px;font-size:14.5px;font-weight:500;white-space:nowrap;border:1px solid transparent}
+.btn-primary{background:var(--btn);color:var(--btn-text)}.btn-secondary{background:var(--surface);border-color:var(--line)}.btn-secondary:hover{border-color:var(--muted)}
+.crumb{font-size:13px;color:var(--muted);margin:28px 0 18px}.crumb a:hover{color:var(--text)}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:start;margin-bottom:56px}
+.shot{border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);aspect-ratio:16/9;background:var(--surface)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.hero h1{font-size:clamp(30px,4vw,44px);margin:8px 0 14px}
+.lead{color:var(--muted);font-size:17px;margin-bottom:22px}
+.specs{list-style:none;border-top:1px solid var(--line);margin:0 0 24px}
+.specs li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}.specs span{color:var(--muted)}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.trust{font-size:13px;color:var(--muted);margin-top:12px}
+.tbar{display:none}
+@media (max-width:760px){.tbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 16px 40px -14px rgba(0,0,0,.45);transform:translateY(160%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}.tbar.show{transform:none}.tbar b{display:block;font-size:14px;line-height:1.2}.tbar small{font-size:12px;color:var(--muted)}.tbar .btn{height:40px}}
+a.mk{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}.tags i{font-style:normal;font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+section{margin:0 0 64px}
+section>h2{font-size:26px;margin-bottom:8px}section>p.sub{color:var(--muted);margin-bottom:22px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.box h3{font-size:18px;margin-bottom:12px}
+.box ul{padding-left:18px}.box li{margin:6px 0}
+.markets{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mk{display:flex;flex-direction:column;gap:4px;padding:18px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.mk b{font-weight:600}.mk small{color:var(--muted);font-size:13px}.mk em{font-style:normal;font-size:12px;font-family:var(--mono);color:var(--accent);margin-top:6px}
+.mk.off{opacity:.55}.mk.off em{color:var(--muted)}
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rel a{display:flex;flex-direction:column;gap:10px}.rel a:hover .shot{transform:translateY(-3px)}.rel .shot{transition:transform .3s}
+.rel b{font-weight:600}.rel span{font-size:13px;color:var(--muted)}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}.faq summary{cursor:pointer;font-weight:500}.faq p{color:var(--muted);margin-top:8px}
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.foot nav{display:flex;gap:18px;flex-wrap:wrap}.foot a:hover{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid a{display:flex;flex-direction:column;gap:10px}.grid p{font-size:14px;color:var(--muted)}
+.post{max-width:760px;margin:0 auto}
+.post h1{font-size:clamp(30px,4.4vw,46px);margin:10px 0 14px}
+.meta{font-size:13.5px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.post .lede{font-size:19px;color:var(--text);margin-bottom:18px}
+.post p,.post li{font-size:17px}.post p{margin:0 0 16px}
+.post h2{font-size:27px;margin:44px 0 14px;scroll-margin-top:84px}.post h3{font-size:20px;margin:26px 0 8px}
+.post ul,.post ol{padding-left:22px;margin:0 0 18px}.post li{margin:7px 0}
+.post a:not(.btn){color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.post code{font-family:var(--mono);font-size:.9em;background:var(--surface);border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+.post figure{margin:26px 0}.post figure img{border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.post figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;text-align:center}
+.post table{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:15px}
+@media (max-width:600px){.post table{display:block;overflow-x:auto}}
+.post .crumb a{color:inherit;text-decoration:none}
+.post th,.post td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}.post th{font-weight:600;background:var(--surface)}
+.post .note{font-size:14px;color:var(--muted)}
+.tip{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:16px 18px;margin:22px 0;font-size:16px}
+.cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;margin:34px 0;box-shadow:var(--shadow)}
+.cta b{font-size:20px;font-weight:600;display:block;margin-bottom:6px}.cta p{color:var(--muted);margin-bottom:16px}
+.toc{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:0 0 28px;background:var(--surface)}
+.toc b{font-size:13px;font-family:var(--mono);color:var(--muted);font-weight:500}.toc ol{margin:8px 0 0;padding-left:20px}.toc li{font-size:15px;margin:4px 0}.toc a{color:var(--text)!important;text-decoration:none!important}
+.posthero{margin:0 0 26px}
+.bl{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.bl a{display:flex;flex-direction:column;gap:10px}.bl h2{font-size:21px}.bl p{font-size:15px;color:var(--muted)}
+@media (max-width:880px){.bl{grid-template-columns:1fr}}
+@media (max-width:880px){.hero,.cols{grid-template-columns:1fr}.gal,.rel,.grid{grid-template-columns:1fr 1fr}.markets{grid-template-columns:1fr}.nav nav{display:none}}
+@media (max-width:520px){.gal,.rel,.grid{grid-template-columns:1fr}.wrap{padding:0 18px}}
+.mmenu{display:none}
+.mmenu summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:flex;align-items:center;justify-content:center}.mmenu summary::-webkit-details-marker{display:none}
+.mmenu summary svg{width:20px;height:20px}.mmenu .i-close,.mmenu[open] .i-open{display:none}.mmenu[open] .i-close{display:block}
+.mpanel{position:absolute;left:0;right:0;top:100%;height:calc(100dvh - 64px);overflow:auto;background:var(--bg);border-top:1px solid var(--line);padding:12px 18px 40px;display:flex;flex-direction:column;z-index:50}
+.mpanel>a{padding:15px 4px;font-size:18px;font-weight:500;border-bottom:1px solid var(--line)}
+.msoc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.msoc a{padding:9px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--muted)}
+@media (max-width:880px){.mmenu{display:block}.nav .follow{display:none}.nav .btn{height:44px}}
+@media (max-width:360px){.brand span{font-size:13px}}
+.by{flex-wrap:wrap;row-gap:6px}
+@media (max-width:600px){.by .dot{display:none!important}.by{column-gap:14px!important}}
+
+.rd{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
+.rd-feat{display:flex;flex-direction:column;gap:12px}.rd-feat .shot{margin-bottom:6px}
+.rd-k{font-size:13px;font-weight:600;color:var(--accent)}
+.rd-feat h3{font-size:clamp(22px,2.4vw,28px);line-height:1.2}
+.rd-take{font-size:16px;color:var(--muted);border-left:2px solid var(--accent);padding-left:14px}
+.rd-m{font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:10px}.rd-m i{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6}
+.rd-feat:hover h3,.rd-list a:hover b{color:var(--accent)}
+.rd-list{list-style:none;border-top:1px solid var(--line)}
+.rd-list a{display:grid;grid-template-columns:112px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.rd-list img{width:112px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.rd-list b{display:block;font-size:16px;font-weight:600;line-height:1.3;margin-bottom:4px;transition:color .2s}
+.rd-list small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;color:var(--muted);line-height:1.45}
+.rd-min{font-size:13px;color:var(--muted);white-space:nowrap}
+@media (max-width:880px){.rd{grid-template-columns:1fr;gap:28px}}
+@media (max-width:520px){.rd-list a{grid-template-columns:88px 1fr;gap:12px}.rd-list img{width:88px}.rd-min{display:none}}
+.pick p{font-size:14px;color:var(--muted)}.pick .why{font-size:14px;color:var(--text)}.pick .why b{color:var(--accent);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips a{padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--muted)}.chips a:hover{color:var(--text);border-color:var(--muted)}
+.intro{max-width:760px}.intro p{color:var(--muted);font-size:17px;margin-bottom:14px}
+.colgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.colgrid a{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}.colgrid a:hover{border-color:var(--muted)}
+.stack3{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:6px;aspect-ratio:8/3}.stack3 img{width:100%;height:100%;object-fit:cover;border-radius:8px}.stack3 img:first-child{grid-row:1/3}
+.colgrid b{font-size:17px}.colgrid span{font-size:13.5px;color:var(--muted)}
+.gd{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.gd a{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}.gd a:hover{border-color:var(--muted);border-top-color:var(--c)}.gd b{font-size:17px;line-height:1.3}.gd p{font-size:14px;color:var(--muted);flex:1}.gd em{font-style:normal;font-size:14px;color:var(--accent);font-weight:500}
+.day{font-family:var(--mono);font-size:13px;color:var(--muted);margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);margin-bottom:40px}
+.tool label{display:block;font-size:13px;font-weight:500;color:var(--muted);margin:0 0 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tool input,.tool select{width:100%;height:46px;font-size:16px!important;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;padding:0 12px}
+.tool input[type=color]{padding:4px;cursor:pointer}
+.tg2{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;align-items:end}
+.res{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 22px}.res div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}.res div{display:flex;flex-direction:column;gap:6px}.res b{display:block;font-size:28px;letter-spacing:-.02em;line-height:1.1}.res small{color:var(--muted);font-size:13px;line-height:1.35}
+.outline{width:100%;border-collapse:collapse;font-size:15px}.outline td{padding:9px 10px;border-bottom:1px solid var(--line)}.outline td:last-child{text-align:right;font-family:var(--mono);white-space:nowrap}
+.bar{height:6px;border-radius:9px;background:var(--accent);opacity:.75;min-width:4px}
+.sw{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:6px 0 18px}.sw button{border:1px solid var(--line);border-radius:12px;height:96px;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;font:600 13px var(--mono);text-align:left}
+.sw button small{display:block;font-weight:400;opacity:.8;font-family:var(--font)}
+.prev{max-width:860px;margin:0 auto;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);display:grid;grid-template-columns:1.2fr 1fr;gap:0}
+.prev .l{padding:7% 8%;display:flex;flex-direction:column;justify-content:center;gap:4%}.prev .l i{font-style:normal;font:600 clamp(9px,1.2vw,13px) var(--mono);letter-spacing:.08em}.prev h3{font-size:clamp(18px,3.2vw,38px);line-height:1.05}.prev p{font-size:clamp(10px,1.3vw,15px);opacity:.85}
+.prev .r{display:flex;flex-direction:column;justify-content:center;gap:6%;padding:7% 8%}.prev .r div{border-radius:10px;height:22%;display:flex;align-items:center;padding:0 8%;font:600 clamp(10px,1.4vw,16px) var(--font)}
+.cr{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}.cr span{font-size:13px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface)}.cr .ok{color:#0A8F5A}.cr .no{color:#C0392B}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .cr .ok{color:#4ADE95}:root:not([data-theme=light]) .cr .no{color:#FF7A6B}}:root[data-theme=dark] .cr .ok{color:#4ADE95}:root[data-theme=dark] .cr .no{color:#FF7A6B}
+.pals{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.pals a{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}.pals .st{display:flex;height:54px}.pals .st i{flex:1}.pals b{display:block;padding:10px 12px 2px;font-size:14px}.pals small{display:block;padding:0 12px 10px;font:12px var(--mono);color:var(--muted)}
+.copyok{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--btn);color:var(--btn-text);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}.copyok.on{opacity:1}
+.toolcards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.toolcards a{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px}.toolcards a:hover{border-color:var(--muted)}.toolcards b{font-size:20px}.toolcards p{color:var(--muted);font-size:15px}.toolcards em{font-style:normal;color:var(--accent);font-size:14px;font-weight:500}
+.prose{max-width:760px}.prose h2{font-size:24px;margin:34px 0 10px}.prose p,.prose li{color:var(--muted);font-size:16.5px}.prose p{margin-bottom:14px}.prose ol,.prose ul{padding-left:22px;margin-bottom:14px}.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+@media (max-width:880px){.gd{grid-template-columns:1fr}.colgrid,.pals{grid-template-columns:1fr 1fr}.tg2,.res{grid-template-columns:1fr 1fr}.toolcards{grid-template-columns:1fr}.sw{grid-template-columns:repeat(5,1fr)}.sw button{height:76px;font-size:11px}}
+@media (max-width:520px){.colgrid,.pals{grid-template-columns:1fr}.tool{padding:18px;border-radius:16px}.tg2{grid-template-columns:1fr;gap:14px}.tool label.sp{display:none}.res{gap:10px}.res div{padding:12px}.res b{font-size:22px}.res small{font-size:12.5px}
+.outline td{padding:10px 4px}.outline td:nth-child(2){display:none}
+.sw{grid-template-columns:1fr;gap:6px}.sw button{height:46px;flex-direction:row;justify-content:space-between;align-items:center;padding:0 14px;font-size:14px}.sw button small{font-size:13px}
+.prev{border-radius:12px}.toolcards a{padding:20px}}
+.tg2>div,.sw button,.res>div{min-width:0}.sw button{overflow:hidden}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Presentation timer", "url": "https://meggystudio.com/tools/presentation-timer", "description": "Free presentation timer with full-screen countdown, colour warnings, overtime and slide pacing. Works on laptop and phone, no sign-up.", "applicationCategory": "DesignApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "MEGGYSTUDIO", "url": "https://meggystudio.com/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://meggystudio.com/"}, {"@type": "ListItem", "position": 2, "name": "Free tools", "item": "https://meggystudio.com/tools"}, {"@type": "ListItem", "position": 3, "name": "Presentation timer", "item": "https://meggystudio.com/tools/presentation-timer"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the timer work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Once the page has loaded, the timer runs in your browser and needs no internet connection."}}, {"@type": "Question", "name": "Can I show the timer full screen?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Press the Full screen button or the F key. Press Escape to leave full screen."}}, {"@type": "Question", "name": "Will the timer keep running if I switch tabs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It measures real elapsed time, so it stays accurate even if the tab is in the background. Some phones pause web pages when the screen locks, so keep the screen on while presenting."}}, {"@type": "Question", "name": "How long should I leave for questions?", "acceptedAnswer": {"@type": "Answer", "text": "For a 20 to 30 minute slot, plan 15 to 20 percent of the time for Q&A and set the timer to the talk length only."}}]}</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script><script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="/" aria-label="MEGGYSTUDIO home"><svg viewBox="166 30 1278 1012" aria-hidden="true"><defs><linearGradient id="mlg" gradientUnits="userSpaceOnUse" x1="0" y1="40" x2="0" y2="1030"><stop offset="0" stop-color="#00EFCB"/><stop offset="1" stop-color="#2E8BEA"/></linearGradient></defs><path fill="var(--logo-w)" fill-rule="evenodd" d="M1031,568 L1028,569 L879,825 L876,827 L847,783 L840,774 L837,774 L800,838 L805,850 L870,949 L873,948 L1064,625 L1061,614 Z M353,47 L350,48 L179,1028 L359,1029 L414,1028 L458,784 L455,773 L418,708 L415,711 L368,962 L351,965 L252,963 L389,216 L419,258 L713,707 L716,707 L752,644 Z"/><path fill="url(#mlg)" fill-rule="evenodd" d="M1253,42 L1145,41 L1142,43 L568,1024 L568,1029 L646,1028 L1190,99 L1193,103 L1348,947 L1348,954 L1345,956 L1314,955 L1312,953 L1174,201 L1170,198 L1129,270 L1124,287 L1256,1024 L1260,1029 L1430,1029 L1409,897 L1283,208 L1273,141 Z"/></svg><span>MEGGYSTUDIO</span></a>
+  <nav aria-label="Main"><a href="/templates">All templates</a><a href="/collections">Collections</a><a href="/new">New</a><a href="/tools">Free tools</a><a href="/blog">Blog</a><a href="/#free">Free sample</a></nav>
+  <div class="right"><details class="follow"><summary aria-label="Follow MEGGYSTUDIO on social media">Follow<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><nav class="fmenu" aria-label="Social media"><a href="https://www.instagram.com/meggystudio1/" target="_blank" rel="noopener me">Instagram<span>&#8599;</span></a><a href="https://www.tiktok.com/@meggystudio1" target="_blank" rel="noopener me">TikTok<span>&#8599;</span></a><a href="https://www.threads.com/@meggystudio1" target="_blank" rel="noopener me">Threads<span>&#8599;</span></a><a href="https://www.pinterest.com/meggystudio/" target="_blank" rel="noopener me">Pinterest<span>&#8599;</span></a><a href="https://www.behance.net/meggystudio" target="_blank" rel="noopener me">Behance<span>&#8599;</span></a></nav></details><a class="btn btn-primary" href="/#buy">Buy</a><details class="mmenu"><summary aria-label="Open menu"><svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg><svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></summary><div class="mpanel" role="navigation" aria-label="Mobile"><a href="/">Home</a><a href="/templates">All templates</a><a href="/collections">Collections</a><a href="/new">New templates</a><a href="/tools">Free tools</a><a href="/blog">Blog</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a><div class="msoc"><a href="https://www.instagram.com/meggystudio1/" target="_blank" rel="noopener me">Instagram</a><a href="https://www.tiktok.com/@meggystudio1" target="_blank" rel="noopener me">TikTok</a><a href="https://www.threads.com/@meggystudio1" target="_blank" rel="noopener me">Threads</a><a href="https://www.pinterest.com/meggystudio/" target="_blank" rel="noopener me">Pinterest</a><a href="https://www.behance.net/meggystudio" target="_blank" rel="noopener me">Behance</a></div></div></details></div>
+</div></header>
+<main class="wrap">
+<p class="crumb"><a href="/">Home</a> / <a href="/tools">Free tools</a> / Presentation timer</p>
+<section style="margin-bottom:28px">
+  <h1 style="font-size:clamp(30px,4vw,44px);margin-bottom:10px">Presentation timer</h1>
+  <p class="sub" style="color:var(--muted);max-width:720px">A full-screen countdown for talks and rehearsals. Colour warnings, overtime, an optional beep and a line that tells you which slide you should be on.</p>
+</section>
+<style>
+.tm{display:flex;flex-direction:column;align-items:center;gap:18px;padding:34px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line);transition:background .3s,color .3s}
+.tm.full{position:fixed;inset:0;z-index:100;border-radius:0;justify-content:center;border:0}
+.tm .clock{font:700 clamp(64px,16vw,190px)/1 var(--mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.tm.full .clock{font-size:clamp(90px,24vw,360px)}
+.tm .st{font-size:15px;color:var(--muted);text-align:center}
+.tm .pbar{width:min(640px,100%);height:8px;border-radius:9px;background:var(--line);overflow:hidden}.tm .pbar i{display:block;height:100%;width:0;background:currentColor;opacity:.8}
+.tm.warn{background:#FFF1D6;color:#7A4A00}.tm.end{background:#FFE1DD;color:#9B1C12}.tm.over{background:#9B1C12;color:#fff}
+.tm.warn .st,.tm.end .st,.tm.over .st{color:inherit;opacity:.85}
+.tm .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.tm .acts button{min-width:110px}
+.tm.full .acts{position:absolute;bottom:28px}
+.btn2{height:44px;padding:0 18px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit;font-weight:600;cursor:pointer}
+.btn2.pri{background:var(--btn);color:var(--btn-text);border-color:var(--btn)}
+.ol2{list-style:none;counter-reset:s;margin:0;padding:0}.ol2 li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ol2 li:before{content:counter(s,decimal-leading-zero);grid-row:1/4;font:600 15px var(--mono);color:var(--accent);padding-top:2px}
+.ol2 b{font-size:16px}.ol2 p{font-size:14.5px;color:var(--muted);margin:0}.ol2 q{font-size:14.5px;quotes:none;color:var(--text)}.ol2 q:before{content:"Headline: ";color:var(--muted)}
+.fp{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.fp article{border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.fp h3{font-size:30px;line-height:1.1;margin:0;font-weight:700;overflow-wrap:anywhere}.fp .bd{font-size:16px;line-height:1.5;color:var(--muted);margin:0}
+.fp .nm{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:13px var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.fp .nm b{color:var(--text);font-weight:600}.fp .tag{font-size:12px;padding:2px 8px;border-radius:6px;background:var(--surface);border:1px solid var(--line)}
+.szo{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:start}
+.szbox{display:flex;align-items:center;justify-content:center;min-height:240px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.szbox div{background:var(--accent);opacity:.85;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font:600 14px var(--mono);max-width:100%;max-height:220px}
+.kv{width:100%;border-collapse:collapse;font-size:15px}.kv td{padding:10px 8px;border-bottom:1px solid var(--line)}.kv td:last-child{text-align:right;font-family:var(--mono)}
+.warnbox{padding:10px 14px;border-radius:12px;background:#FFF4E5;color:#8A4B00;font-size:14px;margin:0 0 14px}
+@media (max-width:880px){.fp,.szo{grid-template-columns:1fr}}
+</style><div class="tool">
+  <div class="tg2">
+    <div><label for="tMin">Talk length (minutes)</label><input id="tMin" type="number" min="1" max="600" value="10" inputmode="decimal"></div>
+    <div><label for="tWarn">Warn me with (minutes left)</label><input id="tWarn" type="number" min="0" max="60" value="2" inputmode="decimal"></div>
+    <div><label for="tSl">Number of slides (optional)</label><input id="tSl" type="number" min="0" max="500" value="" placeholder="e.g. 12" inputmode="numeric"></div>
+    <div><label for="tSnd">Sound</label><label style="display:flex;align-items:center;gap:10px;height:46px;color:var(--text);font-size:15px;white-space:normal"><input id="tSnd" type="checkbox" style="width:20px;height:20px" checked> Beep at the warning and at zero</label></div>
+  </div>
+  <div class="tm" id="tm" aria-live="polite">
+    <div class="clock" id="clk">10:00</div>
+    <div class="pbar"><i id="pb"></i></div>
+    <div class="st" id="tst"></div>
+    <div class="acts"><button class="btn2 pri" id="go" type="button">Start</button><button class="btn2" id="rs" type="button">Reset</button><button class="btn2" id="fs" type="button">Full screen</button></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:12px">Shortcuts: <b>Space</b> start or pause, <b>R</b> reset, <b>F</b> full screen. The timer keeps counting into overtime so you know exactly how far over you went.</p>
+</div>
+<section class="prose"><h2>How to use it while you present</h2>
+<p>Open the timer on a second device you can glance at, such as your phone on the lectern or a tablet next to the laptop. If you only have one screen, run PowerPoint in Presenter View on the laptop and keep this tab on the projector-free screen, or use the full-screen mode during rehearsal.</p>
+<p>The background changes colour as time runs out: amber when you reach your warning time, red in the last minute, and solid red when you go over. You can read it from across a room without reading a single number.</p>
+<h2>Use the slide pacing line in rehearsal</h2>
+<p>Enter how many slides you have and the timer tells you which slide you should be on right now. If you keep finding yourself two slides behind at the halfway mark, the deck is too long for the time, not your delivery too slow. Cut slides, or merge two into one. Our <a href="/tools/slide-count-calculator">slide count calculator</a> gives you a realistic number for your talk length.</p>
+<h2>Rehearse three times, not ten</h2>
+<p>The first run shows where the time goes. The second fixes the transitions between sections. The third is about energy. After that, most people start sounding memorised. Leave a minute of buffer: live talks almost always run longer than rehearsals because of pauses, laughs and clicker problems.</p></section>
+<section class="faq"><h2>FAQ</h2><details><summary>Does the timer work offline?</summary><p>Yes. Once the page has loaded, the timer runs in your browser and needs no internet connection.</p></details><details><summary>Can I show the timer full screen?</summary><p>Yes. Press the Full screen button or the F key. Press Escape to leave full screen.</p></details><details><summary>Will the timer keep running if I switch tabs?</summary><p>Yes. It measures real elapsed time, so it stays accurate even if the tab is in the background. Some phones pause web pages when the screen locks, so keep the screen on while presenting.</p></details><details><summary>How long should I leave for questions?</summary><p>For a 20 to 30 minute slot, plan 15 to 20 percent of the time for Q&amp;A and set the timer to the talk length only.</p></details></section>
+<section>
+  <h2>More free tools</h2>
+  <p class="sub">&nbsp;</p>
+  <div class="chips"><a href="/tools/slide-count-calculator">Slide count calculator</a><a href="/tools/presentation-color-palette-generator">Colour palette generator</a><a href="/tools/pitch-deck-outline-generator">Pitch deck outline generator</a><a href="/tools/powerpoint-font-pairing">PowerPoint font pairing</a><a href="/tools/slide-size-calculator">Slide size calculator</a><a href="/collections">Template collections</a></div>
+</section>
+</main>
+<footer><div class="wrap foot">
+  <nav aria-label="Footer"><a href="/">Home</a><a href="/templates">All templates</a><a href="/collections">Collections</a><a href="/new">New templates</a><a href="/tools">Free tools</a><a href="/blog">Blog</a><a href="/feed.xml">RSS</a><a href="/#free">Free sample</a><a href="/#buy">Where to buy</a><a href="/#contact">Contact</a><a href="https://www.instagram.com/meggystudio1/" target="_blank" rel="noopener me">Instagram &#8599;</a><a href="https://www.tiktok.com/@meggystudio1" target="_blank" rel="noopener me">TikTok &#8599;</a><a href="https://www.threads.com/@meggystudio1" target="_blank" rel="noopener me">Threads &#8599;</a><a href="https://www.pinterest.com/meggystudio/" target="_blank" rel="noopener me">Pinterest &#8599;</a><a href="https://www.behance.net/meggystudio" target="_blank" rel="noopener me">Behance &#8599;</a></nav>
+  <span>&copy; 2026 MEGGYSTUDIO (Meggy Studio). All rights reserved.</span>
+</div></footer>
+<script>document.addEventListener('click',e=>{document.querySelectorAll('details.follow[open],details.mmenu[open]').forEach(d=>{if(!d.contains(e.target)||e.target.closest('.mpanel a'))d.removeAttribute('open')})});</script>
+<script>
+(function(){
+  var S={"Lynk.id": "https://lynk.id/meggystudio1", "Payhip": "https://payhip.com/MeggyStudio1", "Gumroad": "https://meggystudio.gumroad.com/"};
+  var P={};
+  [].forEach.call(document.querySelectorAll(".markets a.mk"),function(a){ var n=a.querySelector("b"); if(n){ S[n.textContent]=a.href; if(a.hasAttribute("data-p")) P[n.textContent]=1; } });
+  var id=false; try{ id=/^Asia\/(Jakarta|Makassar|Jayapura|Pontianak)$/.test(Intl.DateTimeFormat().resolvedOptions().timeZone||""); }catch(e){}
+  if(!id) id=(navigator.languages||[navigator.language||""]).some(function(l){return /^id\b/i.test(l);});
+  var order=id?["Lynk.id","Payhip","Gumroad"]:["Gumroad","Payhip","Lynk.id"];
+  order=order.filter(function(n){return P[n];}).concat(order.filter(function(n){return !P[n];}));   /* product pages first */
+  var rec=order.filter(function(n){return S[n];})[0];
+  var b=document.getElementById("buyMain"); if(b&&rec){ b.href=S[rec]; b.textContent="Buy on "+rec; }
+  var bb=document.getElementById("buyBar"), tb=document.getElementById("tbar");
+  if(bb&&rec) bb.href=S[rec];
+  if(tb&&b&&window.IntersectionObserver){ var vis={}; var upd=function(){ tb.classList.toggle("show", !vis.main && !vis.buy && b.getBoundingClientRect().top<0); };
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ vis[e.target===b?"main":"buy"]=e.isIntersecting; }); upd(); });
+    io.observe(b); var by=document.getElementById("buy"); if(by) io.observe(by); addEventListener("scroll",upd,{passive:true}); }
+  [].forEach.call(document.querySelectorAll(".markets"),function(box){
+    var items=[].slice.call(box.children);
+    items.sort(function(a,c){ return order.indexOf(a.querySelector("b").textContent)-order.indexOf(c.querySelector("b").textContent); }).forEach(function(n){ box.appendChild(n); });
+  });
+})();
+</script>
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+var total=0,left=0,run=false,last=0,raf=0,beeped={};
+function fmt(s){var neg=s<0;s=Math.abs(Math.round(s));var m=Math.floor(s/60),x=s%60;return(neg?"+":"")+m+":"+("0"+x).slice(-2)}
+function read(){var m=parseFloat($("tMin").value),w=parseFloat($("tWarn").value),n=parseInt($("tSl").value,10);
+ if(!(m>0))m=10;if(m>600)m=600;if(!(w>=0))w=2;if(w>=m)w=Math.max(0,m/5);return{m:m,w:w,n:n>0?Math.min(n,500):0}}
+function beep(){try{var c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=880;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.15,c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.5);o.start();o.stop(c.currentTime+.5)}catch(e){}}
+function paint(){var o=read(),b=$("tm");$("clk").textContent=fmt(left);
+ var used=total-left,p=Math.max(0,Math.min(1,used/total));$("pb").style.width=(p*100)+"%";
+ b.classList.toggle("warn",left>0&&left<=o.w*60);b.classList.toggle("end",left>0&&left<=60&&o.w*60>60);b.classList.toggle("over",left<=0&&used>0);
+ var st;if(left<=0&&used>0)st="Time is up. You are over by "+fmt(-left).replace("+","")+".";
+ else if(!run&&used==0)st="Press Start or the space bar when you begin.";
+ else if(!run)st="Paused.";
+ else st=(left<=o.w*60?"Start wrapping up. ":"")+(left<60?Math.ceil(left)+" sec left":Math.ceil(left/60)+" min left");
+ if(o.n&&run&&left>0){var idx=Math.min(o.n,Math.floor(used/(total/o.n))+1);st+=", aim to be on slide "+idx+" of "+o.n;}
+ $("tst").textContent=st;
+ if($("tSnd").checked&&run){[["w",o.w*60],["z",0]].forEach(function(k){if(left<=k[1]&&!beeped[k[0]]){beeped[k[0]]=1;beep()}})}
+ document.title=(run||used>0?fmt(left)+" | ":"")+"Presentation timer | MEGGYSTUDIO";}
+function tick(t){if(!run)return;var dt=(t-last)/1000;last=t;left-=dt;paint();raf=requestAnimationFrame(tick)}
+function reset(){run=false;cancelAnimationFrame(raf);var o=read();total=o.m*60;left=total;beeped={};$("go").textContent="Start";paint()}
+function toggle(){if(!run&&left===total)reset();run=!run;$("go").textContent=run?"Pause":"Resume";if(run){last=performance.now();raf=requestAnimationFrame(tick)}paint()}
+function full(){var b=$("tm");if(document.fullscreenElement){document.exitFullscreen()}else if(b.requestFullscreen){b.requestFullscreen().catch(function(){b.classList.toggle("full")})}else{b.classList.toggle("full")}}
+document.addEventListener("fullscreenchange",function(){$("tm").classList.toggle("full",!!document.fullscreenElement)});
+$("go").onclick=toggle;$("rs").onclick=reset;$("fs").onclick=full;
+["tMin","tWarn","tSl"].forEach(function(i){$(i).addEventListener("input",function(){if(!run&&left===total)reset();else paint()})});
+document.addEventListener("keydown",function(e){if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.code=="Space"){e.preventDefault();toggle()}else if(e.key=="r"||e.key=="R")reset();else if(e.key=="f"||e.key=="F")full()});
+reset();
+})();
+</script></body>
+</html>
