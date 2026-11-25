@@ -185,6 +185,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;font-size:13.5px;color:va
     <div><label for="type">Type of presentation</label><select id="type"><option value="pitch" selected>Investor pitch</option><option value="sales">Sales deck</option><option value="school">School or class presentation</option><option value="thesis">Thesis or research defense</option><option value="keynote">Conference talk or keynote</option><option value="webinar">Webinar or training</option><option value="review">Business review or report</option><option value="lightning">Lightning talk or Pecha Kucha</option></select></div>
     <div><label for="dens">Slide style</label><select id="dens"><option value="visual">Visual (big images, few words)</option><option value="balanced" selected>Balanced</option><option value="detailed">Detailed (charts, tables)</option></select></div>
   </div>
+  <p id="calcMsg" role="status" style="display:none;margin:-4px 0 14px;padding:10px 14px;border-radius:12px;background:#FFF4E5;color:#8A4B00;font-size:14px"></p>
   <div class="res" aria-live="polite">
     <div><b id="rN">-</b><small>slides recommended</small></div>
     <div><b id="rS">-</b><small>per slide on average</small></div>
@@ -249,16 +250,28 @@ var T={
 };
 var D={visual:.75,balanced:1,detailed:1.3};
 function $(i){return document.getElementById(i)}
+function msg(t){var e=$("calcMsg");e.textContent=t||"";e.style.display=t?"block":"none"}
 function calc(){
- var m=Math.max(1,parseFloat($("mins").value)||10), q=Math.max(0,parseFloat($("qa").value)||0), ty=T[$("type").value], d=D[$("dens").value];
- var talk=Math.max(1,m-q), sec=ty.s*d, n=Math.max(3,Math.round(talk*60/sec));
- var lo=Math.max(3,Math.round(n*.85)), hi=Math.max(lo+1,Math.round(n*1.15));
+ var rawM=parseFloat($("mins").value), rawQ=parseFloat($("qa").value), ty=T[$("type").value], d=D[$("dens").value], note="";
+ if(!(rawM>0)){ note="Enter how many minutes you have, for example 10."; rawM=10; }
+ else if(rawM>240){ note="Showing the result for 240 minutes, the longest this calculator plans for."; rawM=240; }
+ var m=Math.round(rawM*10)/10, q=rawQ>0?rawQ:0;
+ if(q>=m){ note="Q&A time has to be shorter than the total time. Q&A is set to 0 for this result."; q=0; }
+ msg(note);
+ var talk=Math.round((m-q)*10)/10, sec=ty.s*d, n=Math.max(1,Math.round(talk*60/sec));
+ var lo=Math.max(1,Math.round(n*.85)), hi=Math.max(lo+1,Math.round(n*1.15));
  $("rN").textContent=lo+"-"+hi; $("rS").textContent=Math.round(sec)+"s"; $("rT").textContent=talk+" min"; $("rW").textContent=(Math.round(talk*130/10)*10).toLocaleString("en-US");
- var rows="", left=n, o=ty.o, k=[];
- o.forEach(function(x,i){ var c=Math.max(1,Math.round(n*x[1])); k.push(c); });
- var diff=n-k.reduce(function(a,b){return a+b},0), big=k.indexOf(Math.max.apply(null,k)); k[big]=Math.max(1,k[big]+diff);
- o.forEach(function(x,i){ rows+='<tr><td>'+x[0]+'</td><td style="width:40%"><div class="bar" style="width:'+Math.round(k[i]/Math.max.apply(null,k)*100)+'%"></div></td><td>'+k[i]+(k[i]==1?' slide':' slides')+'</td></tr>'; });
- $("outl").innerHTML=rows; $("oTitle").textContent="Suggested outline for a "+m+"-minute "+ty.n.toLowerCase();
+ // split n slides across sections by weight (largest remainder), so the outline always adds up to n
+ var o=ty.o.map(function(x,i){return{n:x[0],w:x[1],i:i}}), tw=o.reduce(function(a,x){return a+x.w},0), use=o;
+ if(n<o.length){ use=o.slice().sort(function(a,b){return b.w-a.w}).slice(0,n).sort(function(a,b){return a.i-b.i}); tw=use.reduce(function(a,x){return a+x.w},0); }
+ var k=use.map(function(x){var e=n*x.w/tw;return{f:Math.max(1,Math.floor(e)),r:e-Math.floor(e)}}), sum=k.reduce(function(a,x){return a+x.f},0);
+ var order=k.map(function(x,i){return i}).sort(function(a,b){return k[b].r-k[a].r});
+ for(var j=0;sum<n;j=(j+1)%k.length){k[order[j]].f++;sum++}
+ for(var j2=k.length-1;sum>n&&j2>=0;j2--){var ix=order[j2];if(k[ix].f>1){k[ix].f--;sum--}}
+ var mx=Math.max.apply(null,k.map(function(x){return x.f})), rows="";
+ use.forEach(function(x,i){ var c=k[i].f; rows+='<tr><td>'+x.n+'</td><td style="width:40%"><div class="bar" style="width:'+Math.round(c/mx*100)+'%"></div></td><td>'+c+(c==1?' slide':' slides')+'</td></tr>'; });
+ if(use.length<o.length){ rows+='<tr><td colspan="3" style="color:var(--muted);font-size:13px">Short talk: only the most important sections are kept. Fold the rest into these slides.</td></tr>'; }
+ $("outl").innerHTML=rows; $("oTitle").textContent="Suggested outline for a "+m+"-minute "+ty.n.toLowerCase()+" ("+n+(n==1?" slide)":" slides)");
 }
 ["mins","qa","type","dens"].forEach(function(i){$(i).addEventListener("input",calc)});
 calc();
